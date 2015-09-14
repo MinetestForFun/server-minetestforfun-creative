@@ -85,6 +85,7 @@ minetest.register_on_joinplayer(function(player)
     sneak_glitch = false, -- Climable blocks are quite fast in Carbone.
   })
 	player:hud_set_hotbar_itemcount(hotbar_size)
+	player:hud_set_flags({crosshair = true, hotbar = true, healthbar = false, wielditem = true, breathbar = false})
 end)
 
 minetest.register_on_respawnplayer(function(player)
