@@ -37,7 +37,6 @@ load_mod_framedglass = true
 load_mod_glow = true
 load_mod_homedecor = true
 load_mod_homedecor_3d_extras = true
-load_mod_hudbars = true
 load_mod_inbox = true
 load_mod_interact = true
 load_mod_invtweak = true
