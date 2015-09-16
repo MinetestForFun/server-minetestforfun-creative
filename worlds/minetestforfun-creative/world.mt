@@ -10,6 +10,7 @@ load_mod_ambience = true
 load_mod_areas = true
 load_mod_arrow_signs = true
 load_mod_automappercolors = true
+load_mod_bakedclay = true
 load_mod_biome_lib = true
 load_mod_bobblocks = true
 load_mod_builtin_falling = true
