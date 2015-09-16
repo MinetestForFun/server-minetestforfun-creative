@@ -5,23 +5,21 @@ interact.languages = {
 --The actual rules.
 interact.rules = {
 	en = [[1) No intentional try to disturb the server's stability will be tolerated. (lag, crash, bug exploit, ...)
-2) Cheating (hack, modified client, ...) is forbidden on this server. Be fair-play and learn to play according to the rules.
-3) On the server, PVP is authorized and theft/grief as well, to the exception of public buildings. (remember to use the areas mod to protect your buildings)
-4) Please do not spam or flood.
-5) Each player is responsible of his/her own account, we can't be held liable for any illegitimate use of it.
-6) Try to avoid 1x1 towers and overall destroying the environment, anywhere that is. This way the server will stay as beautiful, wild and natural as possible.
-7) Do not ask to be a member of the server staff.
-8) Swearing, racism, hate speech and the like is strictly prohibited.
+2) Please do not spam or flood.
+3) Each player is responsible of his/her own account, we can't be held liable for any illegitimate use of it.
+4) Try to avoid 1x1 towers.
+5) Grief is allowed if the area isn't protected.
+6) Do not ask to be a member of the server staff.
+7) Swearing, racism, hate speech and the like is strictly prohibited.
 
 Click on the "I accept" button to get the permission to build and interact with the server.]],
 	fr = [[1) Aucune atteinte intentionnelle au bon fonctionnement du serveur ne sera admise. (lag, crash, exploit de bug, etc...)
-2) La triche (hack, client modifie, etc...) n'est pas toleree sur le serveur. Soyez fair-play et apprenez a jouer selon les regles.
-3) Sur le serveur, le PVP est autorise, le vole/grief est aussi autorise, le grief n'est pas autorise sur les constructions publics. (pensez au mod areas pour proteger vos biens)
-4) Merci de ne pas spammer ou flooder.
-5) Chaque joueur a l'entiere responsabilite de son compte, nous ne sommes en aucun cas responsable d'une utilisation frauduleuse de votre compte dans le jeu.
-6) Si possible, evitez les constructions de tours en 1x1 mais aussi, de poser des blocs gachant le decor, n'importe ou. Ceci pour que le serveur reste le plus beau, sauvage et naturel possible.
-7) Ne demandez pas a etre membre de l'equipe du serveur.
-8) Aucune forme d'insulte ou de racisme n'est admise.
+2) Merci de ne pas spammer ou flooder.
+3) Chaque joueur a l'entiere responsabilite de son compte, nous ne sommes en aucun cas responsable d'une utilisation frauduleuse de votre compte dans le jeu.
+4) Si possible, evitez les constructions de tours en 1x1.
+5) Le grief est autorise si la zone n'est pas protégée.
+6) Ne demandez pas a etre membre de l'equipe du serveur.
+7) Aucune forme d'insulte ou de racisme n'est admise.
 
 Cliquez sur le bouton "Accepter" pour pouvoir construire et interagir sur le serveur.]]
 }
@@ -55,12 +53,12 @@ interact.s4_multi1 = {
 	fr = "Pas de grief"
 }
 interact.s4_multi2 = {
-	en = "No PvP",
-	fr = "Pas de PvP"
+	en = "Kill unicorns",
+	fr = "Tuez des licornes"
 }
 interact.s4_multi3 = {
-	en = "Object thief allowed",
-	fr = "Vol d'objets autorisé"
+	en = "No swearing and racism",
+	fr = "Pas d'insulte ni de racisme"
 }
 
 --Which answer is needed for the quiz questions. interact.quiz1-4 takes true or false.
@@ -72,5 +70,5 @@ interact.s4_multi3 = {
 interact.quiz1 = false
 interact.quiz2 = false
 interact.quiz3 = true
-interact.quiz4 = true
+interact.quiz4 = false
 interact.quiz_multi = 3
