@@ -31,6 +31,7 @@ load_mod_fences = true
 load_mod_ferns = true
 load_mod_flowers_plus = true
 load_mod_framedglass = true
+load_mod_give_initial_stuff = true
 load_mod_glow = true
 load_mod_xdecor = true
 load_mod_interact = true
