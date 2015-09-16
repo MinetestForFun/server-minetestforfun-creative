@@ -101,6 +101,27 @@ if not unified_inventory.lite_mode then
 			end
 		end,
 	})
+
+	unified_inventory.register_button("nether_to_hell", {
+		type = "image",
+		image = minetest.registered_nodes["default:lava_source"].inventory_image,
+		tooltip = S("Go to the Nether"),
+		action = function(player)
+			nether.player_to_nether(player, true)
+			player:moveto({x = 0, y = -20000, z = 0})
+		end,
+	})
+
+	unified_inventory.register_button("nether_from_hell", {
+		type = "image",
+		image = minetest.registered_nodes["default:water_source"].inventory_image,
+		tooltip = S("Go back from the Nether"),
+		action = function(player)
+			nether.player_to_nether(player)
+			player:moveto((minetest.string_to_pos(minetest.setting_get("static_spawnpoint")) or {x = 0, y = 10, z = 0}))
+		end,
+	})
+
 end
 
 unified_inventory.register_button("clear_inv", {

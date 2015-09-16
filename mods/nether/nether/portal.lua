@@ -49,7 +49,7 @@ else
 	function update_background()end
 end
 
-local function player_to_nether(player, safe)
+function nether.player_to_nether(player, safe)
 	local pname = player:get_player_name()
 	if table.icontains(players_in_nether, pname) then
 		return
@@ -63,7 +63,7 @@ local function player_to_nether(player, safe)
 	update_background(player, true)
 end
 
-local function player_from_nether(player)
+function nether.player_from_nether(player)
 	local pname = player:get_player_name()
 	local changes
 	for n,i in ipairs(players_in_nether) do
@@ -440,6 +440,7 @@ minetest.override_item("default:obsidian", {
 minetest.after(0.1, function()
 	minetest.override_item("default:mese_crystal_fragment", {
 		on_place = function(stack, player, pt)
+			print("moo")
 			if pt.under
 			and minetest.get_node(pt.under).name == "default:obsidian" then
 				print("[nether] tries to enable a portal")
