@@ -77,6 +77,7 @@ load_mod_mesecons_switch = true
 load_mod_mesecons_torch = true
 load_mod_mesecons_walllever = true
 load_mod_metatools = true
+load_mod_mobs = true
 load_mod_molehills = true
 load_mod_moreblocks = true
 load_mod_moreores = true
