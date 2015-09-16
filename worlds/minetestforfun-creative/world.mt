@@ -135,4 +135,5 @@ load_mod_worldedit_infinity = true
 load_mod_worldedit_limited = true
 load_mod_worldedit_shortcommands = true
 load_mod_xban2 = true
+load_mod_xpanes_custom  = true
 load_mod_youngtrees = true
