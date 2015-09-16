@@ -259,7 +259,7 @@ minetest.register_abm({
 						remove_portal_essence(pos)
 
 						minetest.sound_play("nether_portal_usual", {to_player=pname, gain=1})
-						player_to_nether(obj)
+						nether.player_to_nether(obj)
 						--obj:setpos(target)
 
 					end, obj, pos, target)
@@ -534,7 +534,7 @@ function nether_port(player, pos)
 	minetest.sound_play("nether_teleporter", {to_player=player:get_player_name()}) --MFF crabman (5/09/2015) fix positional sound don't work to player
 	minetest.sound_play("nether_teleporter", {pos=pos})
 	if pos.y < nether.start then
-		player_from_nether(player)
+		nether.player_from_nether(player)
 		local pos_togo = {x = 0, y = 35, z = -7}
 		if minetest.setting_getbool("static_spawnpoint") ~= nil then
 			local stsp_conf = minetest.setting_get("static_spawnpoint")
@@ -543,7 +543,7 @@ function nether_port(player, pos)
 		player:moveto(pos_togo)
 	else
 		player:moveto({x=pos.x, y=portal_target+math.random(4), z=pos.z})
-		player_to_nether(player, true)
+		nether.player_to_nether(player, true)
 	end
 	return true
 end
