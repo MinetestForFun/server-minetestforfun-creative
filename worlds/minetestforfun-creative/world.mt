@@ -1,7 +1,5 @@
 gameid = minetestforfun_game
-backend = redis
-redis_hash = IGNORED
-redis_address = localhost
+backend = sqlite3
 
 load_mod_3dmushrooms = true
 load_mod__misc = true
