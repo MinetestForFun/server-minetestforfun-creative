@@ -49,8 +49,8 @@ interact.s4_multi_question = {
 
 --The answers to the multiple choice questions. Only one of these should be true.
 interact.s4_multi1 = {
-	en = "No griefing",
-	fr = "Pas de grief"
+	en = "prohibition of eating frogs",
+	fr = "Interdiction de manger des grenouilles"
 }
 interact.s4_multi2 = {
 	en = "Kill unicorns",
