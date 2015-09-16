@@ -1,4 +1,4 @@
-gameid = minetestforfun_game
+gameid = minetestforfun_creative
 backend = sqlite3
 
 load_mod_3dmushrooms = true
