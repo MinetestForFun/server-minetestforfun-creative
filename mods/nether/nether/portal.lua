@@ -37,7 +37,7 @@ local function save_nether_players()
 end
 
 local update_background
-if damage_enabled then
+--if damage_enabled then
 	function update_background(player, down)
 		if down then
 			player:set_sky({r=15, g=0, b=0}, "plain")
@@ -45,9 +45,9 @@ if damage_enabled then
 			player:set_sky(nil, "regular")
 		end
 	end
-else
-	function update_background()end
-end
+--else
+--	function update_background()end
+--end
 
 function nether.player_to_nether(player, safe)
 	local pname = player:get_player_name()
