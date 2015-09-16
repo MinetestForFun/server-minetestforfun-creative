@@ -13,12 +13,12 @@ interact.form_order = {
 --The text at the top.
 interact.s1_header = {
 	en = "Hello, welcome to this server!",
-	fr = "Bonjour et bienvenue sur ce serveur!"
+	fr = "Bonjour et bienvenue sur ce serveur !"
 }
 --Lines one and two. Make sure each line is less than 70 characters, or they will run off the screen.
 interact.s1_l2 = {
-	en = "Could you please tell me if you like to grief or not?",
-	fr = "Aimez-vous détruire les choses des autres?"
+	en = "Do you like to build?",
+	fr = "Aimez-vous construire ?"
 }
 interact.s1_l3 = {en="",fr=""}
 --The buttons. Each can have 15 characters, max.
@@ -28,13 +28,13 @@ interact.s1_b1 = {
 }
 interact.s1_b2 = {
 	en = "Yes, I do!",
-	fr = "Oui!"
+	fr = "Oui !"
 }
 
 --The message to send kicked griefers.
 interact.msg_grief = {
-	en = "Try out singleplayer if you like griefing, because then you'll only destroy your own stuff!",
-	fr = "Essayez le mode solo si vous aimez détruire des choses, car vous ne détruirez que les votres!"
+	en = "Try out an another server if you don't like to build!",
+	fr = "Essayez un autre serveur si vous n'aimez pas construire !"
 }
 
 --Ban or kick griefers? Default is kick, set to true for ban.
