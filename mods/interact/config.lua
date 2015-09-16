@@ -22,11 +22,12 @@ interact.s1_l2 = {
 }
 interact.s1_l3 = {en="",fr=""}
 --The buttons. Each can have 15 characters, max.
-interact.s1_b1 = {
+interact.s1_b2 = {
 	en = "No, I don't.",
 	fr = "Non."
 }
-interact.s1_b2 = {
+
+interact.s1_b1 = {
 	en = "Yes, I do!",
 	fr = "Oui !"
 }
