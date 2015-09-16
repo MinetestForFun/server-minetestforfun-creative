@@ -19,6 +19,7 @@ load_mod_cavestuff = true
 load_mod_chatplus = true
 load_mod_christmas_craft = true
 load_mod_clams = true
+load_mod_colored_steel = true
 load_mod_coloredwood = true
 load_mod_colouredstonebricks = true
 load_mod_columnia = true
