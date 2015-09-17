@@ -148,7 +148,7 @@ for i, bush_name in ipairs(bushes_classic.bushes) do
 
 	local desc = bushes_classic.bushes_descriptions[i]
 
-	minetest.register_node(":bushes:basket_"..bush_name, {
+	--[[minetest.register_node(":bushes:basket_"..bush_name, {
 		description = S("Basket with "..desc.." Pies"),
 		drawtype = "mesh",
 		mesh = "bushes_basket_full.obj",
@@ -160,7 +160,7 @@ for i, bush_name in ipairs(bushes_classic.bushes) do
 		paramtype2 = "facedir",
 		on_use = minetest.item_eat(18),
 		groups = { dig_immediate = 3 },
-	})
+	})]]
 
 	local texture_top, texture_bottom
 
