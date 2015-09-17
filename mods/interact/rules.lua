@@ -9,8 +9,7 @@ interact.rules = {
 3) Each player is responsible of his/her own account, we can't be held liable for any illegitimate use of it.
 4) Try to avoid 1x1 towers.
 5) Grief is allowed if the area isn't protected.
-6) Do not ask to be a member of the server staff.
-7) Swearing, racism, hate speech and the like is strictly prohibited.
+6) Swearing, racism, hate speech and the like is strictly prohibited.
 
 Click on the "I accept" button to get the permission to build and interact with the server.]],
 	fr = [[1) Aucune atteinte intentionnelle au bon fonctionnement du serveur ne sera admise. (lag, crash, exploit de bug, etc...)
@@ -18,8 +17,7 @@ Click on the "I accept" button to get the permission to build and interact with 
 3) Chaque joueur a l'entiere responsabilite de son compte, nous ne sommes en aucun cas responsable d'une utilisation frauduleuse de votre compte dans le jeu.
 4) Si possible, evitez les constructions de tours en 1x1.
 5) Le grief est autorise si la zone n'est pas protégée.
-6) Ne demandez pas a etre membre de l'equipe du serveur.
-7) Aucune forme d'insulte ou de racisme n'est admise.
+6) Aucune forme d'insulte ou de racisme n'est admise.
 
 Cliquez sur le bouton "Accepter" pour pouvoir construire et interagir sur le serveur.]]
 }
@@ -30,18 +28,18 @@ interact.s4_question1 = {
 	en = "Can I use a bug to crash the server so it restarts?",
 	fr = "Puis-je utiliser un bug pour faire crasher le serveur afin qu'il redémarre?"
 }
-interact.s4_question2 = {
-	en = "Can I ask to be a member of the staff?",
-	fr = "Puis-je demander à faire partie de l'équipe d'administration?"
-}
-interact.s4_question3 = {
-	en = "Am I alllowed to grief a non-protected zone?",
-	fr = "Ai-je le droit de grieffer une zone non-protégée?"
-}
-interact.s4_question4 = {
-	en = "Can I freely join the IRC channel?",
-	fr = "Puis-je joindre librement l'IRC?"
-}
+--interact.s4_question2 = {
+--	en = "Can I ask to be a member of the staff?",
+--	fr = "Puis-je demander à faire partie de l'équipe d'administration?"
+--}
+--interact.s4_question3 = {
+--	en = "Am I alllowed to grief a non-protected zone?",
+--	fr = "Ai-je le droit de grieffer une zone non-protégée?"
+--}
+--interact.s4_question4 = {
+--	en = "Can I freely join the IRC channel?",
+--	fr = "Puis-je joindre librement l'IRC?"
+--}
 interact.s4_multi_question = {
 	en = "Which of these is a rule?",
 	fr = "Laquelle des affirmations est une règle?"
@@ -49,12 +47,12 @@ interact.s4_multi_question = {
 
 --The answers to the multiple choice questions. Only one of these should be true.
 interact.s4_multi1 = {
-	en = "prohibition of eating frogs",
+	en = "Prohibition of eating frogs",
 	fr = "Interdiction de manger des grenouilles"
 }
 interact.s4_multi2 = {
-	en = "Kill unicorns",
-	fr = "Tuez des licornes"
+	en = "Prohibition of killing unicorns",
+	fr = "Interdiction de tuez des licornes"
 }
 interact.s4_multi3 = {
 	en = "No swearing and racism",
