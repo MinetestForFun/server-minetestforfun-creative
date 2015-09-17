@@ -312,8 +312,8 @@ function default.register_ores()
 		clust_scarcity = 40 * 40 * 40,
 		clust_num_ores = 3,
 		clust_size     = 2,
-		y_min          = 0,
-		y_max          = 64,
+		y_min          = -50,
+		y_max          = -10,
 		flags          = "absheight",
 	})
 
