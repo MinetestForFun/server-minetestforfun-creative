@@ -26,7 +26,7 @@ Cliquez sur le bouton "Accepter" pour pouvoir construire et interagir sur le ser
 --The checkboxes for the first 4 questions are in config.lua
 interact.s4_question1 = {
 	en = "Can I use a bug to crash the server so it restarts?",
-	fr = "Puis-je utiliser un bug pour faire crasher le serveur afin qu'il redémarre?"
+	fr = "Puis-je utiliser un bug pour faire crasher le serveur afin qu'il redémarre ?"
 }
 --interact.s4_question2 = {
 --	en = "Can I ask to be a member of the staff?",
