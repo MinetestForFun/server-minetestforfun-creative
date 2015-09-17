@@ -11,10 +11,10 @@
 
 -- minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
 
-minetest.register_alias("air", "cavestuff:pebble_1")
-minetest.register_alias("air", "cavestuff:pebble_2")
-minetest.register_alias("air", "cavestuff:desert_pebble_1")
-minetest.register_alias("air", "cavestuff:desert_pebble_2")
-minetest.register_alias("air", "cavestuff:stalactite_1")
-minetest.register_alias("air", "cavestuff:stalactite_2")
-minetest.register_alias("air", "cavestuff:stalactite_3")
+minetest.register_alias("cavestuff:pebble_1", "default:grass_2")
+minetest.register_alias("cavestuff:pebble_2", "default:grass_2")
+minetest.register_alias("cavestuff:desert_pebble_1", "default:grass_2")
+minetest.register_alias("cavestuff:desert_pebble_2", "default:grass_2")
+minetest.register_alias("cavestuff:stalactite_1", "default:grass_2")
+minetest.register_alias("cavestuff:stalactite_2", "default:grass_2")
+minetest.register_alias("cavestuff:stalactite_3", "default:grass_2")
