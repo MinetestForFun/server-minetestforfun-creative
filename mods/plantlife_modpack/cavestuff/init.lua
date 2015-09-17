@@ -11,10 +11,11 @@
 
 -- minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
 
-minetest.register_alias("cavestuff:pebble_1", "default:grass_2")
-minetest.register_alias("cavestuff:pebble_2", "default:grass_2")
-minetest.register_alias("cavestuff:desert_pebble_1", "default:grass_2")
-minetest.register_alias("cavestuff:desert_pebble_2", "default:grass_2")
-minetest.register_alias("cavestuff:stalactite_1", "default:grass_2")
-minetest.register_alias("cavestuff:stalactite_2", "default:grass_2")
-minetest.register_alias("cavestuff:stalactite_3", "default:grass_2")
+minetest.register_abm({
+	nodes = {"cavestuff:pebble_1", "cavestuff:pebble_2", "cavestuff:desert_pebble_1", "cavestuff:desert_pebble_2", "cavestuff:stalactite_1", "cavestuff:stalactite_2", "cavestuff:stalactite_3"},
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		minetest.set_node(pos, {name = "default:grass_2"})
+	end,
+})
