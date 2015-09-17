@@ -136,3 +136,4 @@ load_mod_worldedit_shortcommands = true
 load_mod_xban2 = true
 load_mod_xpanes_custom  = true
 load_mod_youngtrees = true
+load_mod_carpet3d_only22 = true
