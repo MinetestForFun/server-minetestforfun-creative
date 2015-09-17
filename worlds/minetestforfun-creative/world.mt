@@ -137,3 +137,4 @@ load_mod_xban2 = true
 load_mod_xpanes_custom  = true
 load_mod_youngtrees = true
 load_mod_carpet3d = true
+load_mod_mff_hud = true
