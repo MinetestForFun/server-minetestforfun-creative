@@ -1,11 +1,11 @@
 -----------------------------------------------------------------------------------------------
-local title		= "Mole Hills"
-local version 	= "0.0.3"
-local mname		= "molehills"
+-- local title		= "Mole Hills"
+-- local version 	= "0.0.3"
+-- local mname		= "molehills"
 -----------------------------------------------------------------------------------------------
 -- Idea by Sokomine
 -- Code & textures by Mossmanikin
-
+--[[
 abstract_molehills = {}
 
 dofile(minetest.get_modpath("molehills").."/molehills_settings.txt")
@@ -66,7 +66,7 @@ biome_lib:register_generate_plant({
     rarity = Molehills_Rarity,
     min_elevation = 1,
 	max_elevation = 40,
-	avoid_nodes = {"group:tree","group:liquid","group:stone","group:falling_node"--[[,"air"]]},
+	avoid_nodes = {"group:tree","group:liquid","group:stone","group:falling_node"--[[,"air"},
 	avoid_radius = 4,
     plantlife_limit = -0.3,
   },
@@ -79,7 +79,7 @@ biome_lib:register_generate_plant({
     rarity = 97,
     min_elevation = 1,
 	max_elevation = 40,
-	avoid_nodes = {"group:tree","group:liquid","group:stone","group:falling_node"--[[,"air"]]},
+	avoid_nodes = {"group:tree","group:liquid","group:stone","group:falling_node"--[[,"air"},
 	avoid_radius = 4,
     plantlife_limit = -0.3,
   },
@@ -89,3 +89,6 @@ biome_lib:register_generate_plant({
 -----------------------------------------------------------------------------------------------
 minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
 -----------------------------------------------------------------------------------------------
+]]
+
+minetest.register_alias("air", "molehills:molehill")
