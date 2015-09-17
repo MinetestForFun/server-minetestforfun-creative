@@ -112,12 +112,12 @@ interact.s4_header = {
 --The trues are limited to 24 characters. The falses can have 36 characters.
 interact.s4_question1_true = {en="Yes.",fr="Oui."}
 interact.s4_question1_false = {en="No.",fr="Non."}
-interact.s4_question2_true = {en="Yes.",fr="Oui."}
-interact.s4_question2_false = {en="No.",fr="Non."}
-interact.s4_question3_true = {en="Yes.",fr="Oui."}
-interact.s4_question3_false = {en="No.",fr="Non."}
-interact.s4_question4_true = {en="Yes.",fr="Oui."}
-interact.s4_question4_false = {en="No.",fr="Non."}
+--interact.s4_question2_true = {en="Yes.",fr="Oui."}
+--interact.s4_question2_false = {en="No.",fr="Non."}
+--interact.s4_question3_true = {en="Yes.",fr="Oui."}
+--interact.s4_question3_false = {en="No.",fr="Non."}
+--interact.s4_question4_true = {en="Yes.",fr="Oui."}
+--interact.s4_question4_false = {en="No.",fr="Non."}
 
 interact.s4_submit = {
 	en = "Submit!",
@@ -140,7 +140,7 @@ interact.quiz_rules_msg = {
 --The kick reason if kick is the on_wrong_quiz option.
 interact.wrong_quiz_kick_msg = {
 	en = "Pay more attention next time!",
-	fr = "Lisez mieux la prochaine fois!"
+	fr = "Lisez mieux la prochaine fois !"
 }
 --The message sent to the player if nothing is the on_wrong_quiz option.
 interact.quiz_fail_msg = {
