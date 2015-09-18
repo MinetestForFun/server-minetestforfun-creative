@@ -34,7 +34,12 @@ mobs:register_mob("mobs:npc_female", {
 	},
 	-- sounds
 	makes_footstep_sound = true,
-	sounds = {},
+	sounds = {
+		random = "mobs_fnpc",			-- 2 sounds
+		damage = "mobs_fnpc_hit", 		-- 2 sounds
+		attack = "mobs_fnpc_attack",		-- 1 sound
+		death = "mobs_fnpc_death",		-- 1 sound
+	},
 	-- speed and jump
 	walk_velocity = 3,
 	run_velocity = 3,
