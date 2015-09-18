@@ -92,7 +92,7 @@ minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded..
 ]]
 
 minetest.register_abm({
-	names = {"molehills:molehill"},
+	nodes = {"molehills:molehill"},
 	interval = 1,
 	chance = 1,
 	action = function(pos)
