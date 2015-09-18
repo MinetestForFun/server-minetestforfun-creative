@@ -287,7 +287,7 @@ function default.register_ores()
 		clust_num_ores = 3,
 		clust_size     = 2,
 		y_min          = -1024,
-		y_max          = 64,
+		y_max          = -10,
 		flags          = "absheight",
 	})
 
@@ -299,7 +299,7 @@ function default.register_ores()
 		clust_num_ores = 3,
 		clust_size     = 2,
 		y_min          = -1024,
-		y_max          = 64,
+		y_max          = -10,
 		flags          = "absheight",
 	})
 
