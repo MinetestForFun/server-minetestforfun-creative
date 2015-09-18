@@ -2,9 +2,9 @@ dofile(minetest.get_modpath("interact") .. "/config.lua")
 dofile(minetest.get_modpath("interact") .. "/rules.lua") --I put the rules in their own file so that they don't get lost/overlooked!
 
 local rule1 = 0
-local rule2 = 0
-local rule3 = 0
-local rule4 = 0
+--local rule2 = 0
+--local rule3 = 0
+--local rule4 = 0
 local multi = 0
 
 function table.length(T)
@@ -75,23 +75,23 @@ interact.forms = {
 		if interact.s4_to_rules_button == true then
 			table.insert(size, "button_exit[7.75,0.25;2.1,0.1;rules;" ..interact.s4_to_rules[lang].. "]")
 		end
-		table.insert(size, "label[0.25,0;" ..interact.s4_header[lang].."]")
-		table.insert(size, "label[0.5,0.5;" ..interact.s4_question1[lang].."]")
-		table.insert(size, "checkbox[0.25,1;rule1_true;" ..interact.s4_question1_true[lang].."]")
-		table.insert(size, "checkbox[4,1;rule1_false;" ..interact.s4_question1_false[lang].. "]")
-		table.insert(size, "label[0.5,2;" ..interact.s4_question2[lang].. "]")
-		table.insert(size, "checkbox[0.25,2.5;rule2_true;" ..interact.s4_question2_true[lang].. "]")
-		table.insert(size, "checkbox[4,2.5;rule2_false;" ..interact.s4_question2_false[lang].. "]")
-		table.insert(size, "label[0.5,3.5;" ..interact.s4_question3[lang].. "]")
-		table.insert(size, "checkbox[0.25,4;rule3_true;" ..interact.s4_question3_true[lang].. "]")
-		table.insert(size, "checkbox[4,4;rule3_false;" ..interact.s4_question3_false[lang].. "]")
-		table.insert(size, "label[0.5,5;" ..interact.s4_question4[lang].. "]")
-		table.insert(size, "checkbox[0.25,5.5;rule4_true;" ..interact.s4_question4_true[lang].. "]")
-		table.insert(size, "checkbox[4,5.5;rule4_false;" ..interact.s4_question4_false[lang].."]")
-		table.insert(size, "label[0.5,6.5;" ..interact.s4_multi_question[lang].. "]")
-		table.insert(size, "checkbox[4.75,6.25;multi_choice1;" ..interact.s4_multi1[lang].. "]")
-		table.insert(size, "checkbox[0.25,7;multi_choice2;" ..interact.s4_multi2[lang].. "]")
-		table.insert(size, "checkbox[4.75,7;multi_choice3;" ..interact.s4_multi3[lang].."]")
+		table.insert(size, "label[0.25,1.2;" ..interact.s4_header[lang].."]")
+		table.insert(size, "label[0.5,2;" ..interact.s4_question1[lang].."]")
+		table.insert(size, "checkbox[0.25,2.5;rule1_true;" ..interact.s4_question1_true[lang].."]")
+		table.insert(size, "checkbox[4,2.5;rule1_false;" ..interact.s4_question1_false[lang].. "]")
+--		table.insert(size, "label[0.5,2;" ..interact.s4_question2[lang].. "]")
+--		table.insert(size, "checkbox[0.25,2.5;rule2_true;" ..interact.s4_question2_true[lang].. "]")
+--		table.insert(size, "checkbox[4,2.5;rule2_false;" ..interact.s4_question2_false[lang].. "]")
+--		table.insert(size, "label[0.5,3.5;" ..interact.s4_question3[lang].. "]")
+--		table.insert(size, "checkbox[0.25,4;rule3_true;" ..interact.s4_question3_true[lang].. "]")
+--		table.insert(size, "checkbox[4,4;rule3_false;" ..interact.s4_question3_false[lang].. "]")
+--		table.insert(size, "label[0.5,5;" ..interact.s4_question4[lang].. "]")
+--		table.insert(size, "checkbox[0.25,5.5;rule4_true;" ..interact.s4_question4_true[lang].. "]")
+--		table.insert(size, "checkbox[4,5.5;rule4_false;" ..interact.s4_question4_false[lang].."]")
+		table.insert(size, "label[0.5,4.3;" ..interact.s4_multi_question[lang].. "]")
+		table.insert(size, "checkbox[4.75,5;multi_choice1;" ..interact.s4_multi1[lang].. "]")
+		table.insert(size, "checkbox[0.25,5;multi_choice2;" ..interact.s4_multi2[lang].. "]")
+		table.insert(size, "checkbox[0.25,6;multi_choice3;" ..interact.s4_multi3[lang].."]")
 		table.insert(size, "background[0,0;10,9;background.jpg]")
 		table.insert(size, "button_exit[3,8.4;3.5,0.5;submit;" ..interact.s4_submit[lang].."]")
 		return table.concat(size)
@@ -203,28 +203,27 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 	if fields.rule1_true then rule1 = true
 	elseif fields.rule1_false then rule1 = false
-	elseif fields.rule2_true then rule2 = true
-	elseif fields.rule2_false then rule2 = false
-	elseif fields.rule3_true then rule3 = true
-	elseif fields.rule3_false then rule3 = false
-	elseif fields.rule4_true then rule4 = true
-	elseif fields.rule4_false then rule4 = false
+--	elseif fields.rule2_true then rule2 = true
+--	elseif fields.rule2_false then rule2 = false
+--	elseif fields.rule3_true then rule3 = true
+--	elseif fields.rule3_false then rule3 = false
+--	elseif fields.rule4_true then rule4 = true
+--	elseif fields.rule4_false then rule4 = false
 	elseif fields.multi_choice1 then multi = 1
 	elseif fields.multi_choice2 then multi = 2
 	elseif fields.multi_choice3 then multi = 3 end
-	if fields.submit and rule1 == interact.quiz1 and rule2 == interact.quiz2 and
-	rule3 == interact.quiz3 and rule4 == interact.quiz4 and multi == interact.quiz_multi then
+	if fields.submit and rule1 == interact.quiz1 and multi == interact.quiz_multi then
 		rule1 = 0
-		rule2 = 0
-		rule3 = 0
-		rule4 = 0
+--		rule2 = 0
+--		rule3 = 0
+--		rule4 = 0
 		multi = 0
 		interact.show_next_form(player, formname)
 	elseif fields.submit then
 		rule1 = 0
-		rule2 = 0
-		rule3 = 0
-		rule4 = 0
+--		rule2 = 0
+--		rule3 = 0
+--		rule4 = 0
 		multi = 0
 		local lang = interact.get_player_language(player)
 		if interact.on_wrong_quiz == "kick" then
