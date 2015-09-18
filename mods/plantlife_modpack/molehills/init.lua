@@ -91,4 +91,11 @@ minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded..
 -----------------------------------------------------------------------------------------------
 ]]
 
-minetest.register_alias("air", "molehills:molehill")
+minetest.register_abm({
+	names = {"molehills:molehill"},
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		minetest.set_node(pos, {name = "air"})
+	end
+})
