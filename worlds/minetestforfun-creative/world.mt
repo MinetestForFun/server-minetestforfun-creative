@@ -11,6 +11,7 @@ load_mod_automappercolors = true
 load_mod_bakedclay = true
 load_mod_biome_lib = true
 load_mod_bobblocks = true
+load_mod_bonemeal = true
 load_mod_builtin_falling = true
 load_mod_bushes = true
 load_mod_bushes_classic = true
