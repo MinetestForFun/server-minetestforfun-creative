@@ -62,7 +62,7 @@ local function save_liquid(loop)
 	end
 	if loop then
 		minetest.log("action", "[LiquidSecurity] Data saved")
-		minetest.after(120, save_liquid, true)
+		minetest.after(1200, save_liquid, true)
 	end
 end
 
