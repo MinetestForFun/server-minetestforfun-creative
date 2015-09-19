@@ -69,6 +69,7 @@ local function grow(itemstack, user, pointed_thing)
 	-- Tree
 	if minetest.get_item_group(node.name, "sapling") >= 1
 	or node.name:find("farming_plus:") and node.name:find("sapling") then
+		print(can_grow(pos))
 		if can_grow(pos) then
 			if random(1, 3) == 1 then
 				tree_grow(pos, node)

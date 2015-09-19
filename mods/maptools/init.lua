@@ -25,7 +25,7 @@ dofile(modpath .. "/aliases.lua")
 dofile(modpath .. "/craftitems.lua")
 dofile(modpath .. "/default_nodes.lua")
 dofile(modpath .. "/nodes.lua")
-dofile(modpath .. "/tools.lua")
+-- dofile(modpath .. "/tools.lua")
 
 --[[
 Map Tools by Calinou
