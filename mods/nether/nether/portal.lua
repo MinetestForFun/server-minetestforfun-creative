@@ -79,7 +79,7 @@ function nether.player_from_nether(player)
 end
 
 
-if damage_enabled then
+--if damage_enabled then
 local function player_exists(name)
 	for _,player in pairs(minetest.get_connected_players()) do
 		if player:get_player_name() == name then
@@ -88,7 +88,6 @@ local function player_exists(name)
 	end
 	return false
 end
-
 
 -- Chatcommands removed
 --[[ Chatcommands (edited) written by sss
@@ -459,7 +458,7 @@ minetest.after(0.1, function()
 		end
 	})
 end)
-end
+--end
 
 
 vector.square = vector.square or
