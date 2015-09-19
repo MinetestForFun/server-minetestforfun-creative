@@ -1377,6 +1377,7 @@ minetest.register_node("default:water_source", {
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
 	liquid_viscosity = 1,
+	liquid_range = 3,
 	post_effect_color = {a = 120, r = 20, g = 60, b = 80},
 	groups = {water = 3, liquid = 3, puts_out_fire = 1},
 })
@@ -1422,6 +1423,7 @@ minetest.register_node("default:water_flowing", {
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
 	liquid_viscosity = 1,
+	liquid_range = 3
 	post_effect_color = {a = 120, r = 20, g = 60, b = 80},
 	groups = {water = 3, liquid = 3, puts_out_fire = 1,
 		not_in_creative_inventory=1},
@@ -1467,6 +1469,7 @@ minetest.register_node("default:river_water_source", {
 	liquid_alternative_flowing = "default:river_water_flowing",
 	liquid_alternative_source = "default:river_water_source",
 	liquid_viscosity = 1,
+	liquid_range = 3
 	liquid_renewable = false,
 	liquid_range = 2,
 	post_effect_color = {a = 64, r = 100, g = 100, b = 200},
@@ -1514,12 +1517,14 @@ minetest.register_node("default:river_water_flowing", {
 	liquid_alternative_flowing = "default:river_water_flowing",
 	liquid_alternative_source = "default:river_water_source",
 	liquid_viscosity = 1,
+	liquid_range = 3
 	liquid_renewable = false,
 	liquid_range = 2,
 	post_effect_color = {a = 64, r = 100, g = 100, b = 200},
 	groups = {water = 3, liquid = 3, puts_out_fire = 1,
 		not_in_creative_inventory = 1},
 })
+
 
 minetest.register_node("default:lava_source", {
 	description = "Lava Source",
@@ -1562,6 +1567,7 @@ minetest.register_node("default:lava_source", {
 	liquid_alternative_flowing = "default:lava_flowing",
 	liquid_alternative_source = "default:lava_source",
 	liquid_viscosity = 7,
+	liquid_range = 3
 	liquid_renewable = false,
 	damage_per_second = 4 * 2,
 	post_effect_color = {a = 220, r = 250, g = 70, b = 20},
@@ -1609,6 +1615,7 @@ minetest.register_node("default:lava_flowing", {
 	liquid_alternative_flowing = "default:lava_flowing",
 	liquid_alternative_source = "default:lava_source",
 	liquid_viscosity = 7,
+	liquid_range = 3
 	liquid_renewable = false,
 	damage_per_second = 4 * 2,
 	post_effect_color = {a = 220, r = 250, g = 70, b = 20},
