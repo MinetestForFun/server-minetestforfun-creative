@@ -52,6 +52,41 @@ local function tree_grow(pos, node)
 		farming.generate_tree(pos, "default:tree", "farming_plus:banana_leaves", {"default:dirt", "default:dirt_with_grass"}, {["farming_plus:banana"]=20})
 	elseif sapling == "farming_plus:cocoa_sapling" then
 		farming.generate_tree(pos, "default:tree", "farming_plus:cocoa_leaves", {"default:sand", "default:desert_sand"}, {["farming_plus:cocoa"]=20})
+	elseif sapling == "default:cherry_sapling" then
+		default.grow_cherry_tree(pos, math.random(1, 4) == 1, "default:cherry_tree", "default:cherry_blossom_leaves")
+	elseif sapling == "moretrees:apple_tree_sapling" then
+		minetest.remove_node(pos)
+		minetest.spawn_tree(pos, moretrees["apple_tree_model"])
+	elseif sapling == "moretrees:beech_sapling" then
+		minetest.remove_node(pos)
+		minetest.spawn_tree(pos, moretrees["beech_model"])
+	elseif sapling == "moretrees:birch_sapling" then
+		moretrees.grow_birch(pos)
+	elseif sapling == "moretrees:fir_sapling" then
+		if minetest.find_node_near(pos, 2, {"default:snow", "default:dirt_with_snow"}) and math.random(1,3) ~= 1 then
+			moretrees.grow_fir_snow(pos)
+		else
+			moretrees.grow_fir(pos)
+		end
+	elseif sapling == "moretrees:oak_sapling" then
+		minetest.remove_node(pos)
+		minetest.spawn_tree(pos, moretrees["oak_model"])
+	elseif sapling == "moretrees:palm_sapling" then
+		minetest.remove_node(pos)
+		minetest.spawn_tree(pos, moretrees["palm_model"])
+	elseif sapling == "moretrees:rubber_tree_sapling" then
+		minetest.remove_node(pos)
+		minetest.spawn_tree(pos, moretrees["rubber_tree_model"])
+	elseif sapling == "moretrees:sequoia_sapling" then
+		minetest.remove_node(pos)
+		minetest.spawn_tree(pos, moretrees["sequoia_model"])
+	elseif sapling == "moretrees:spruce_sapling" then
+		moretrees.grow_spruce(pos)
+	elseif sapling == "moretrees:willow_sapling" then
+		minetest.remove_node(pos)
+		minetest.spawn_tree(pos, moretrees["willow_model"])
+	elseif sapling == "nether:tree_sapling" then
+		nether.grow_tree(pos, math.random(1, 4) == 1)
 	end
 end
 
@@ -68,12 +103,10 @@ local function grow(itemstack, user, pointed_thing)
 
 	-- Tree
 	if minetest.get_item_group(node.name, "sapling") >= 1
-	or node.name:find("farming_plus:") and node.name:find("sapling") then
-		print(can_grow(pos))
+	or node.name:find("farming_plus:") and node.name:find("sapling")
+	or node.name == "nether:tree_sapling" then
 		if can_grow(pos) then
-			if random(1, 3) == 1 then
-				tree_grow(pos, node)
-			end
+			tree_grow(pos, node)
 			itemstack:take_item()
 		end
 
