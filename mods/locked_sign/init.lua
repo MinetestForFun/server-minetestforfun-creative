@@ -47,7 +47,7 @@ minetest.register_node("locked_sign:sign_wall_locked", {
 		end
 		local meta = minetest.get_meta(pos)
 		fields.text = fields.text or ""
-		print((sender:get_player_name() or "").." wrote \""..fields.text..
+		minetest.log("action", (sender:get_player_name() or "").." wrote \""..fields.text..
 				"\" to sign at "..minetest.pos_to_string(pos))
 		meta:set_string("text", fields.text)
 		meta:set_string("infotext", "\"" .. fields.text .. "\" (owned by " .. sender:get_player_name() .. ")")
