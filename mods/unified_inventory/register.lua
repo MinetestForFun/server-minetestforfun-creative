@@ -128,7 +128,6 @@ unified_inventory.register_button("clear_inv", {
 	type = "image",
 	image = "ui_trash_icon.png",
 	tooltip = S("Clear inventory"),
-	show_with = "creative", --Modif MFF (Crabman 30/06/2015)
 	action = function(player)
 		local player_name = player:get_player_name()
 		if not unified_inventory.is_creative(player_name) then
