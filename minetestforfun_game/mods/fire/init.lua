@@ -16,11 +16,13 @@ minetest.register_node("fire:basic_flame", {
 			aspect_w = 16, aspect_h = 16, length = 1},
 	}},
 	inventory_image = "fire_basic_flame.png",
+	paramtype = "light",
 	light_source = 14,
 	groups = {igniter = 2, dig_immediate = 3, hot = 3},
 	drop = '',
 	walkable = false,
 	buildable_to = true,
+	sunlight_propagates = true,
 	damage_per_second = 4,
 
 	on_construct = function(pos)
@@ -31,8 +33,7 @@ minetest.register_node("fire:basic_flame", {
 		minetest.after(0, fire.on_flame_remove_at, pos)
 	end,
 
-	-- unaffected by explosions
-	on_blast = function() end,
+	on_blast = function() end, -- unaffected by explosions
 })
 
 
