@@ -1523,7 +1523,6 @@ minetest.register_node("default:river_water_flowing", {
 		not_in_creative_inventory = 1},
 })
 
-
 minetest.register_node("default:lava_source", {
 	description = "Lava Source",
 	inventory_image = minetest.inventorycube("default_lava.png"),
@@ -2237,7 +2236,8 @@ minetest.register_node("default:glass", {
 minetest.register_node("default:obsidian_glass", {
 	description = "Obsidian Glass",
 	drawtype = "glasslike_framed_optional",
-	tiles = {"default_obsidian_glass_frame.png", "default_obsidian_glass_detail.png"},
+	tiles = {"default_obsidian_glass.png", "default_obsidian_glass_detail.png"},
+	inventory_image = minetest.inventorycube("default_obsidian_glass.png"),
 	paramtype = "light",
 	is_ground_content = false,
 	sunlight_propagates = true,
