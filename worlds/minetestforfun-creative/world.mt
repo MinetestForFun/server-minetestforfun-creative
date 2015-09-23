@@ -3,6 +3,7 @@ backend = sqlite3
 
 load_mod_3dmushrooms = true
 load_mod__misc = true
+load_mod_advertising = true
 load_mod_along_shore = true
 load_mod_ambience = true
 load_mod_areas = true
