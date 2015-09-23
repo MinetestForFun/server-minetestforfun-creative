@@ -27,6 +27,7 @@ load_mod_colouredstonebricks = true
 load_mod_columnia = true
 load_mod_connected_chests = true
 load_mod_darkage = true
+load_mod_diplazer = true
 load_mod_dryplants = true
 load_mod_fail = true
 load_mod_fences = true

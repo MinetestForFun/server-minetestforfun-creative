@@ -1,0 +1,135 @@
+[][][][][][][][]	= Inventory (example) 
+B		= some kind of block / node
+I		= some kind of item (not a block)
+?		= does not mather what is front of the tool
+D		= Diplazer
+Dc		= Diplazer:com / di_com (yelow)
+Dg		= Diplazer:gun / di_gun (red)
+Da		= Diplazer:admin / di_ad (purple)
+Dan		= Diplazer:adminno / di_adno (orange)
+
+It does not mather where you have dipalzer in the inventory, as long you have a block/item left of it
+The amount of the item/stack sets how many to place / dig in next to all modes
+When placing , it will automacly stop when hit a node with colision / walkable, or it will be replaced (like grass air water lava...) but not maptools nodes if using Dc
+You can hold rightclick+leftclick to use next mode instand of change modes in 1,3,11
+
+point a player / mob
+Dc: hurts 10hp if pvp is off
+Dg: always hurts 10hp
+Da: always kills
+Dan: always kills
+
+Dc: lost power on use
+Dg: autorepair on use
+Da: sets full health on use / autorepair on use
+Dan: sets full health on use / autorepair on use
+
+Hold shift+leftclick to change modes
+Hold shift+jump+leftclick to change modes backwards
+
+or / if you not have a keyboard, use switcher:  dipalzer:box / di_box
+
+================Mode1================
+
+Place:
+Place nodes front of you
+if there is atleast 1 block over the pointed, it will place backwards
+Dc: taking from inventory
+Dg: taking from inventory if not have give
+Da: 
+Dan: 
+[][B][D][][][][][]
+
+Shoot lazer:
+Dc: hurts 10hp if pvp is off 	/ can pick up droped stuff / taking from inventory
+Dg: always hurts 10hp	/ can pick up droped stuff / taking from inventory if not have give
+Da: always kills		/ can pick up droped stuff
+Dan: always kills		/ destroy droped stuff
+[][?][D][][][][][]
+
+
+================Mode2================
+
+Dig nodes front
+
+Dc: keep stuff on dig, cant break unbreakable blocks
+Dg: keep stuff on dig
+Da: keep stuff on dig
+Dan: destroying any kind of node
+[][I][D][][][][][] or [][B][D][][][][][]
+
+================Mode3================
+Place nodes up
+[][B][D][][][][][]
+
+================Mode4================
+Dig nodes down
+[][B][D][][][][][] or [][I][D][][][][][]
+
+================Mode5================
+Dig nodes 3x3 (up & down)
+it does not mather wht you have front of the
+[][?][D][][][][][]
+
+================Mode6================
+Teleport you to a pinted block point a player / mob / droped ting hurts
+[][?][D][][][][][]
+
+================Mode7================
+select a player / mobs / droped ting, then point a node to teleport it
+[][?][D][][][][][]
+
+================Mode8================
+Dc is disable as default in this, or it can only hold a thing in 10s
+point something to pick it up
+point again to drop (single block will be placed a node, [do jump+point] to drop it)
+rightclick+leftclick to throw away
+if that you throwed hit someting it will be hurted 20hp (kills a player) even the hited object will be hurted
+[][?][D][][][][][]
+
+================Mode9================
+Replacing block to left with block to right
+[][B][D][B][][][][]
+
+================Mode10================
+Autoswitsh: will use from all slots in hotbar, until it hit a tool or emty slot from left to right
+[B][B][B][B][D][][][]
+
+================Mode11================
+Place platform:
+this will always palce stack x stack (like 2=4, 5=25, 10=100 ...)
+to use more then 10 do /di_1112 to get access until next time you change mods or if someone leaves the game
+It will always place front then the other to left, this mking it automacly fill able space.
+[][B][D][][][][][]
+
+================Mode12================
+Place platform:
+this will always palce stack x stack (like 2=4, 5=25, 10=100 ...)
+to use more then 10 do /di_1112 to get access until next time you change mods or if someone leaves the game
+[][B][D][][][][][]
+
+
+==================================================
+================Using pipeworks:nodebreaker================
+==================================================
+
+
+Nodebreakers will use the tool like player, but becaouse it not have space to add blocks, its limeted.
+Point somewhere in air to save info inside the tool, that can be used with a breaker.
+[][I/B][D][I/B][][][][]
+
+The tool wont work in a breaker if there is no block fronf of it [Point]
+To make the breakers as usefull as possable, it will (place/dig 2 blocks front, and 1 block up) [Start] from the breaker like this
+
+[Start][Node][Node]
+[Node][Point][nBrek]
+
+Possable modes to use:
+
+(1l = laer)
+
+Dc: 1l,2,4,5,12
+Dg: 1l,2,4,5,12
+Dg: 1/1l,2,3,4,5,9,11,12 (with give)
+Da: 1/1l,2,3,4,5,9,11,12
+Dan: 1/1l,2,3,4,5,9,11,12
