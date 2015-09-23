@@ -84,6 +84,7 @@ load_mod_metatools = true
 load_mod_mobs = true
 load_mod_molehills = true
 load_mod_moreblocks = true
+load_mod_morecobblenodes = true
 load_mod_moreores = true
 load_mod_moretrees = true
 load_mod_multitest = true
