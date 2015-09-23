@@ -45,6 +45,7 @@ load_mod_junglegrass = true
 load_mod_lantern = true
 load_mod_liquid_security = true
 load_mod_locked_sign = true
+load_mod_lottspecial = true
 load_mod_mapfix = true
 load_mod_maptools = true
 load_mod_markers = true
