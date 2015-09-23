@@ -57,7 +57,7 @@ local update_item = function(pos, node)
 	local meta = minetest.get_meta(pos)
 	local str_item = meta:get_string("item")
 	if str_item == "" then return end
-	
+
 	local posad = facedir[node.param2]
 	if not posad then return end
 	pos.x = pos.x + posad.x * 6.5/16
@@ -91,7 +91,7 @@ xdecor.register("frame", {
 	tiles = {
 		"xdecor_wood.png", "xdecor_wood.png", "xdecor_wood.png",
 		"xdecor_wood.png", "xdecor_wood.png", "xdecor_frame.png"
-	}, 
+	},
 	inventory_image = "xdecor_frame.png",
 	after_place_node = function(pos, placer, itemstack)
 		local meta = minetest.get_meta(pos)

@@ -388,7 +388,7 @@ function mobs:register_mob(name, def)
 					self.jumptimer = 0
 				end
 			end
-	
+
 			-- environmental damage timer (every 1 second)
 			self.env_damage_timer = self.env_damage_timer + dtime
 			if self.state == "attack"

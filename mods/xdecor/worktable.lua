@@ -7,7 +7,7 @@ local material = {
 	"cobble", "mossycobble", "desert_cobble",
 	"stone", "sandstone", "desert_stone", "obsidian",
 	"stonebrick", "sandstonebrick", "desert_stonebrick", "obsidianbrick",
-	"coalblock", "copperblock", "steelblock", "goldblock", 
+	"coalblock", "copperblock", "steelblock", "goldblock",
 	"bronzeblock", "mese", "diamondblock",
 	"brick", "cactus", "ice", "meselamp",
 	"glass", "obsidian_glass"

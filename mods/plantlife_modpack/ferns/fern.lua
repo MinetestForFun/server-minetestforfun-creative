@@ -6,7 +6,7 @@
 -- Contains code from: 		biome_lib
 -- Looked at code from:		default, flowers, painting, trees
 -- Dependencies: 			biome_lib
--- Supports:				dryplants, stoneage, sumpf		
+-- Supports:				dryplants, stoneage, sumpf
 -----------------------------------------------------------------------------------------------
 -- some inspiration from here
 -- https://en.wikipedia.org/wiki/Athyrium_yokoscense

@@ -80,7 +80,7 @@ minetest.register_node("mobs:beehive", {
 			minetest.add_entity(pos, "mobs:bee")
 		end
 	end,
-	
+
 })
 
 minetest.register_craft({

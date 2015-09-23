@@ -1,10 +1,10 @@
-minetest.register_craft({ 
+minetest.register_craft({
 	output = "xdecor:baricade",
 	recipe = {
 		{"group:stick", "", "group:stick"},
 		{"", "default:steel_ingot", ""},
 		{"group:stick", "", "group:stick"}
-	} 
+	}
 })
 
 minetest.register_craft({
@@ -16,11 +16,11 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({ 
+minetest.register_craft({
 	output = "xdecor:candle",
 	recipe = {
 		{"default:torch"}
-	} 
+	}
 })
 
 minetest.register_craft({
@@ -71,7 +71,7 @@ minetest.register_craft({
 		{"group:stick", "", "group:stick"}
 	}
 })
-	
+
 minetest.register_craft({
 	output = "xdecor:chandelier",
 	recipe = {
@@ -120,7 +120,7 @@ minetest.register_craft({
 		{"default:desert_cobble", "default:desert_cobble"}
 	}
 })
-	
+
 minetest.register_craft({
 	output = "xdecor:empty_shelf",
 	recipe = {
@@ -163,7 +163,7 @@ minetest.register_craft({
 		{"group:stick", "group:stick", "group:stick"}
 	}
 })
-	
+
 minetest.register_craft({
 	output = "xdecor:hammer",
 	recipe = {
@@ -212,7 +212,7 @@ minetest.register_craft({
 		{"group:wood", "default:paper"}
 	}
 })
-	
+
 minetest.register_craft({
 	output = "xdecor:lantern",
 	recipe = {
@@ -324,7 +324,7 @@ minetest.register_craft({
 		{"group:wood", "group:wood"}
 	}
 })
-	
+
 minetest.register_craft({
 	output = "xdecor:stereo",
 	recipe = {
@@ -333,7 +333,7 @@ minetest.register_craft({
 		{"default:steel_ingot", "default:copper_ingot", "default:steel_ingot"}
 	}
 })
-	
+
 minetest.register_craft({
 	output = "xdecor:stone_tile 2",
 	recipe = {
@@ -341,7 +341,7 @@ minetest.register_craft({
 		{"default:cobble", "default:cobble"}
 	}
 })
-	
+
 minetest.register_craft({
 	output = "xdecor:stone_rune 4",
 	recipe = {
@@ -369,11 +369,11 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({ 
+minetest.register_craft({
 	output = "xdecor:tatami",
 	recipe = {
 		{"farming:wheat", "farming:wheat", "farming:wheat"}
-	} 
+	}
 })
 
 minetest.register_craft({
@@ -393,7 +393,7 @@ minetest.register_craft({
 		{"group:wood", "group:wood", "group:wood"}
 	}
 })
-	
+
 minetest.register_craft({
 	output = "xdecor:woodframed_glass",
 	recipe = {

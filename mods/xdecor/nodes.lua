@@ -89,7 +89,7 @@ xdecor.register("cardboard_box", {
 	inventory = {size=8},
 	infotext = "Cardboard Box",
 	groups = {snappy=3, flammable=3},
-	tiles = {"xdecor_cardbox_top.png", "xdecor_cardbox_top.png", 
+	tiles = {"xdecor_cardbox_top.png", "xdecor_cardbox_top.png",
 		"xdecor_cardbox_sides.png"},
 	node_box = {
 		type = "fixed", fixed = {{-0.3125, -0.5, -0.3125, 0.3125, 0, 0.3125}}
@@ -359,7 +359,7 @@ xdecor.register("lantern", {
 	light_source = 12,
 	drawtype = "torchlike",
 	inventory_image = "xdecor_lantern_floor.png",
-	wield_image = "xdecor_lantern_floor.png", 
+	wield_image = "xdecor_lantern_floor.png",
 	paramtype2 = "wallmounted",
 	legacy_wallmounted = true,
 	walkable = false,

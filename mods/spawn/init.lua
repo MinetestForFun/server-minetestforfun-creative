@@ -15,5 +15,5 @@ minetest.register_chatcommand("spawn", {
 			minetest.chat_send_player(player:get_player_name(), "ERROR: No spawn point is set on this server!")
 			return false
 		end
-	end		
+	end
 })

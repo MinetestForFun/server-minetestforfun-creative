@@ -131,7 +131,7 @@ function xwall.construct_node_box_data(node_box_list, center_node_box_list, node
 		res.c2[#res.c2+1] = v
 		res.c3[#res.c3+1] = v
 		res.c4[#res.c4+1] = v
-	end	
+	end
 
 	if #res.c0 < 1 then res.c0 = nil end
 
@@ -146,7 +146,7 @@ function xwall.register_wall(name, tiles, def)
 	)
 
 	if def then return end
-	def = { 
+	def = {
 		description = string.sub(name:gsub("%l", string.upper, 7), 8, -6).." Wall",
 		textures = {tiles, tiles, tiles, tiles},
 		sounds = default.node_sound_stone_defaults(),

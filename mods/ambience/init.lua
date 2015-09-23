@@ -177,7 +177,7 @@ local get_ambience = function(player)
 	if num_desert > 150 then
 		return {desert=desert}
 	end
-	
+
 	if pos.y > 60 then
 		return {high_up=high_up}
 	end

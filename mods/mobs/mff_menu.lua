@@ -20,14 +20,14 @@ end
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	local player_name = player:get_player_name()
 	if not player_name then return end
-	if formname == "mobs:spawner" then	
+	if formname == "mobs:spawner" then
 		for f in pairs(fields) do
 			if string.find(f, "mobs:") then
 				local pos = player:getpos()
 				pos.y = pos.y+1
 				minetest.add_entity(pos, f)
 				return
-			end	
+			end
 		end
 	end
 end)
@@ -55,5 +55,5 @@ else
 		func = function(name, param)
 			mobs.shown_spawner_menu(name)
 		end,
-	})	
+	})
 end

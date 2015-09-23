@@ -67,5 +67,5 @@ local function save_liquid(loop)
 end
 
 save_liquid(true)
-		
+
 minetest.register_on_shutdown(save_liquid)
