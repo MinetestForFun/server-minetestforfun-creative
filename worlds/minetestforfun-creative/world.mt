@@ -34,6 +34,7 @@ load_mod_flowers_plus = true
 load_mod_framedglass = true
 load_mod_give_initial_stuff = true
 load_mod_glow = true
+load_mod_head = true
 load_mod_interact = true
 load_mod_invtweak = true
 load_mod_irc = true
