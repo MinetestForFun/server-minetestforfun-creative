@@ -1541,6 +1541,7 @@ function mobs:register_egg(mob, desc, background, addegg)
 	minetest.register_craftitem(mob, {
 		description = desc,
 		inventory_image = invimg,
+		groups = {not_in_creative_inventory = 1},
 		on_place = function(itemstack, placer, pointed_thing)
 			local pos = pointed_thing.above
 			if pos and within_limits(pos, 0)
