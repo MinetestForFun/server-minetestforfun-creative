@@ -140,6 +140,10 @@ function chatplus.send(from, msg)
 		return false
 	end
 
+	if not minetest.get_player_privs(from).shout then
+		return false
+	end
+
 	-- Log chat message
 	if chatplus.log_handle ~= nil then
 		chatplus.log_handle:write(

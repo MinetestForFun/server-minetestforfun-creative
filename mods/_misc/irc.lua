@@ -59,15 +59,15 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "irc" then return end
 	local name = player:get_player_name()
 	if fields.accept then
-			minetest.chat_send_player(name, "Merci d'avoir accepte les regles, vous etes maintenant capable de parler.")
-			minetest.chat_send_player(name, "Pour plus d'informations tapez /news")
+			minetest.chat_send_player(name, "Thank you for agreeing, have a nice time playing!")
+			minetest.chat_send_player(name, "For more informations type /news")
 			local privs = minetest.get_player_privs(name)
 			privs.shout = true
 			minetest.set_player_privs(name, privs)
 		--end
 		return
 	elseif fields.decline then
-		minetest.kick_player(name, "Aurevoir ! Vous devez accepter les regles de l'irc pour jouer sur le serveur (revennez si vous changez d'avis).")
+		minetest.kick_player(name, "Good bye ! You need to accept the irc's rules to player on the server (come back if you change your mind).")
 		return
 	end
 end)
@@ -75,7 +75,6 @@ end)
 minetest.register_chatcommand("irc",{
 	params = "",
 	description = "Montre les regles de l'irc",
-	privs = {spawn=true},
 	func = function (name,params)
 	local player = minetest.get_player_by_name(name)
 		minetest.after(1, function()
