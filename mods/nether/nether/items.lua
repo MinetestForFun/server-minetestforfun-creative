@@ -23,7 +23,7 @@ local function digging_allowed(player, v)
 	if not player then
 		return false
 	end
-	local tool = minetest.registered_tools[player:get_wielded_item():get_name()]
+	--[[local tool = minetest.registered_tools[player:get_wielded_item():get_name()]
 	if not tool then
 		return false
 	end
@@ -42,7 +42,8 @@ local function digging_allowed(player, v)
 	if nether.times[v] then
 		return true
 	end
-	return false
+	return false]]
+	return true
 end
 
 -- Netherrack
