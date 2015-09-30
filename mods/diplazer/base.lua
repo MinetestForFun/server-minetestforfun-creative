@@ -1206,9 +1206,9 @@ end
 
 	if mode==7 then
 
-		local tp2node1=minetest.registered_nodes[minetest.get_node({ x=pos.x, y=pos.y+1, z=pos.z}).name].walkable
-		local tp2node2=minetest.registered_nodes[minetest.get_node({ x=pos.x, y=pos.y+2, z=pos.z}).name].walkable
-		if (tp2node1==false and tp2node2==false and admin<0) or admin>=0 then
+		local tp2node1=minetest.registered_nodes[minetest.get_node({ x=pos.x, y=pos.y+1, z=pos.z}).name]
+		local tp2node2=minetest.registered_nodes[minetest.get_node({ x=pos.x, y=pos.y+2, z=pos.z}).name]
+		if (tp2node1.walkable==false and tp2node2.walkabe==false and admin<0) or admin>=0 then
 		if (tp2node1.name=="diplazer:vacuum" or tp2node1.name=="diplazer:vacuum") and admin<0 then return end
 
 			if admin<0 and player:getpos().y<=pos.y then
