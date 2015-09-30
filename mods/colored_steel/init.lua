@@ -19,6 +19,15 @@ function colored_steel.register_steel(color)
 		sounds = default.node_sound_stone_defaults(),
 	})
 
+	minetest.register_node("colored_steel:trap_block_"..color, {
+		description =  color .. " Steel Block (Trap)",
+		tiles = {"default_steel_block.png^[colorize:"..color..":100"},
+		is_ground_content = false,
+		walkable = false,
+		groups = {cracky=1,level=2},
+		sounds = default.node_sound_stone_defaults(),
+	})
+
 	minetest.register_craftitem("colored_steel:steel_ingot_"..color, {
 		description = color.." Steel Ingot",
 		inventory_image = "default_steel_ingot.png^[colorize:"..color..":100",
@@ -51,6 +60,13 @@ function colored_steel.register_steel(color)
 		output = "colored_steel:glowing_block_"..color.." 9",
 		recipe = {
 			{"colored_steel:block_"..color, "default:mese"},
+		}
+	})
+
+	minetest.register_craft({
+		output = "colored_steel:trap_block_"..color.." 9",
+		recipe = {
+			{"colored_steel:block_"..color, "default:grass_1"},
 		}
 	})
 
