@@ -56,8 +56,8 @@ mobs:register_mob("mobs:npc_female", {
 		chance = 4, min = 1, max = 2},
 		{name = "default:axe_stone",
 		chance = 6, min = 1, max = 1},
-		{name = "maptools:silver_coin",
-		chance = 10, min = 1, max = 1,},
+--		{name = "maptools:silver_coin",
+--		chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,

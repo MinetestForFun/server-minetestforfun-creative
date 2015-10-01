@@ -238,7 +238,6 @@ minetest.register_node("default:mossycobble", {
 	drop = {
 		items = {
 			{items = {"default:mossycobble"}},
-			--{items = {"maptools:silver_coin"}, rarity = 64},
 		},
 	},
 	groups = {cracky = 3},
@@ -254,7 +253,6 @@ minetest.register_node("default:desert_stone", {
 	drop = {
 		items = {
 			{items = {"default:desert_cobble"}},
-			{items = {"maptools:copper_coin"}, rarity = 20},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
@@ -329,7 +327,6 @@ minetest.register_node("default:dirt", {
 	drop = {
 		items = {
 			{items = {"default:dirt"}},
-			{items = {"maptools:copper_coin"}, rarity = 32},
 		},
 	},
 	sounds = default.node_sound_dirt_defaults(),
@@ -922,7 +919,6 @@ minetest.register_node("default:stone_with_coal", {
 		items = {
 			{items = {"default:cobble"}},
 			{items = {"default:coal_lump"}},
-			{items = {"maptools:copper_coin"}},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
@@ -937,7 +933,6 @@ minetest.register_node("default:desert_stone_with_coal", {
 		items = {
 			{items = {"default:desert_cobble"}},
 			{items = {"default:coal_lump"}},
-			{items = {"maptools:copper_coin"}},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
@@ -960,7 +955,6 @@ minetest.register_node("default:stone_with_iron", {
 		items = {
 			{items = {"default:cobble"}},
 			{items = {"default:iron_lump"}},
-			{items = {"maptools:copper_coin 3"}},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
@@ -984,7 +978,6 @@ minetest.register_node("default:stone_with_copper", {
 		items = {
 			{items = {"default:cobble"}},
 			{items = {"default:copper_lump"}},
-			{items = {"maptools:copper_coin 3"}},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
@@ -999,7 +992,6 @@ minetest.register_node("default:desert_stone_with_copper", {
 		items = {
 			{items = {"default:desert_cobble"}},
 			{items = {"default:copper_lump"}},
-			{items = {"maptools:copper_coin 3"}},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
@@ -1032,7 +1024,6 @@ minetest.register_node("default:stone_with_mese", {
 		items = {
 			{items = {"default:cobble"}},
 			{items = {"default:mese_crystal"}},
-			{items = {"maptools:silver_coin 2", rarity = 75}},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
@@ -1047,7 +1038,6 @@ minetest.register_node("default:mese", {
 	drop = {
 		items = {
 			{items = {"default:mese"}},
-		--	{items = {"maptools:silver_coin"}, rarity = 32},
 		},
 	},
 	groups = {cracky = 1, level = 2, fall_damage_add_percent = -75},
@@ -1088,7 +1078,6 @@ minetest.register_node("default:stone_with_gold", {
 		items = {
 			{items = {"default:cobble"}},
 			{items = {"default:gold_lump"}},
-			{items = {"maptools:silver_coin", rarity = 80}},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
@@ -1113,7 +1102,6 @@ minetest.register_node("default:stone_with_diamond", {
 		items = {
 			{items = {"default:cobble"}},
 			{items = {"default:diamond"}},
-			{items = {"maptools:silver_coin 1"}},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
@@ -1136,7 +1124,6 @@ minetest.register_node("default:stone_with_coin", {
 	drop = {
 		items = {
 			{items = {"default:cobble"}},
-			{items = {"maptools:gold_coin"}},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
