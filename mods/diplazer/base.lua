@@ -1412,14 +1412,14 @@ end
 	if com==2 then u3=65535/(diplazer_Enable_com_limeted_uses*2) end
 	if com==3 then u3=65535/(diplazer_Enable_com_limeted_uses*8) end
 
-	if wer+u3>=65535 then
-		minetest.chat_send_player(player_name, "You have to load your diplazer, craft the diplazer with a Meseblock")
-	itemstack:set_wear(65534)
-	return false
-	else
+--	if wer+u3>=65535 then
+--		minetest.chat_send_player(player_name, "You have to load your diplazer, craft the diplazer with a Meseblock")
+--	itemstack:set_wear(65534)
+--	return false
+--	else
 
-	itemstack:set_wear(wer+u3)
-	end
+--	itemstack:set_wear(wer+u3)
+--	end
 
 	end
 

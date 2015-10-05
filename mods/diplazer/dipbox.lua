@@ -121,16 +121,16 @@ minetest.register_abm({
 		if item:get_wear()>0 then
 
 
-		if inv:get_stack("diprep", 1):get_name()=="default:mese_crystal" then
-			item:set_wear(0)
-			inv:remove_item("diprep","default:mese_crystal 1")
-		end
-		if inv:get_stack("diprep", 1):get_name()=="default:mese_crystal_fragment" then
-			local wer=item:get_wear()-(65535/9)
-			if wer<0 then wer=0 end
-			item:set_wear(wer)
-			inv:remove_item("diprep","default:mese_crystal_fragment 1")
-		end
+--		if inv:get_stack("diprep", 1):get_name()=="default:mese_crystal" then
+--			item:set_wear(0)
+--			inv:remove_item("diprep","default:mese_crystal 1")
+--		end
+--		if inv:get_stack("diprep", 1):get_name()=="default:mese_crystal_fragment" then
+--			local wer=item:get_wear()-(65535/9)
+--			if wer<0 then wer=0 end
+--			item:set_wear(wer)
+--			inv:remove_item("diprep","default:mese_crystal_fragment 1")
+--		end
 
 		inv:remove_item("diprep","default:mese_crystal 1")
 		inv:set_stack("dipinv", 1,item)
