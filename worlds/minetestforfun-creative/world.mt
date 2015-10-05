@@ -117,6 +117,7 @@ load_mod_seawrecks = true
 load_mod_shutdown = true
 load_mod_signs_lib = true
 load_mod_snow = true
+load_mod_soccer = true
 load_mod_soundset = true
 load_mod_spawn = true
 load_mod_sponge = true
