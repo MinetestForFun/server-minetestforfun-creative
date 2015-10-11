@@ -36,8 +36,9 @@ xdecor.register("mailbox", {
 		local owner = meta:get_string("owner")
 		local inv = meta:get_inventory()
 
-		if not inv:is_empty("main") then return false end
-		return player:get_player_name() == owner
+		if not inv:is_empty("main") or not player or
+			player:get_player_name() ~= owner then return false end
+		return true
 	end,
 	on_metadata_inventory_put = function(pos, listname, _, stack, _)
 		local inv = minetest.get_meta(pos):get_inventory()
@@ -60,17 +61,13 @@ xdecor.register("mailbox", {
 function mailbox.get_formspec(pos)
 	local spos = pos.x..","..pos.y..","..pos.z
 	local formspec = "size[8,9]"..xbg..
-		"label[0,0;You received...]"..
-		"list[nodemeta:"..spos..";main;0,0.75;8,4;]"..
-		"list[current_player;main;0,5.25;8,4;]"
+		"label[0,0;You received...]list[nodemeta:"..spos..";main;0,0.75;8,4;]list[current_player;main;0,5.25;8,4;]"
 	return formspec
 end
 
 function mailbox.get_insert_formspec(pos, owner)
 	local spos = pos.x..","..pos.y..","..pos.z
 	local formspec = "size[8,5]"..xbg..
-		"label[0.5,0;Send your goods\nto "..owner.." :]"..
-		"list[nodemeta:"..spos..";drop;3.5,0;1,1;]"..
-		"list[current_player;main;0,1.25;8,4;]"
+		"label[0.5,0;Send your goods\nto "..owner.." :]list[nodemeta:"..spos..";drop;3.5,0;1,1;]list[current_player;main;0,1.25;8,4;]"
 	return formspec
 end

@@ -6,12 +6,7 @@ function hive.construct(pos)
 	local xbg = default.gui_bg..default.gui_bg_img..default.gui_slots
 
 	local formspec = "size[8,5;]"..xbg..
-		"label[1.35,0;Bees are making honey\nwith pollen around...]"..
-		"image[0.2,-0.1;1,1;flowers_dandelion_white.png]"..
-		"image[7,0.1;1,1;flowers_viola.png]"..
-		"image[6,0;1,1;xdecor_bee.png]"..
-		"list[current_name;honey;5,0;1,1;]"..
-		"list[current_player;main;0,1.35;8,4;]"
+		"label[1.35,0;Bees are making honey\nwith pollen around...]image[6,0;1,1;hive_bee.png]image[5,0;1,1;hive_layout.png]list[current_name;honey;5,0;1,1;]list[current_player;main;0,1.35;8,4;]"
 
 	meta:set_string("formspec", formspec)
 	meta:set_string("infotext", "Artificial Hive")
@@ -37,6 +32,10 @@ xdecor.register("hive", {
 	on_punch = function(_, _, puncher, _)
 		local health = puncher:get_hp()
 		puncher:set_hp(health - 4)
+	end,
+	on_rightclick = function(_, _, clicker)
+		local health = clicker:get_hp()
+		clicker:set_hp(health - 1)
 	end,
 	allow_metadata_inventory_put = function(_, listname, _, stack, _)
 		if listname == "honey" then return 0 end
