@@ -1,3 +1,5 @@
+diplazer_vesrion=16
+
 diplazer_Tele={}
 diplazer_UserTele={}
 diplazer_1112access={}
@@ -25,12 +27,13 @@ if minetest.get_modpath("pipeworks") then diplazer_pipeworks=1 end
 dofile(minetest.get_modpath("diplazer") .. "/settings.lua")
 dofile(minetest.get_modpath("diplazer") .. "/base.lua")
 dofile(minetest.get_modpath("diplazer") .. "/dipbox.lua")
+dofile(minetest.get_modpath("diplazer") .. "/di3dt.lua")
 
 if diplazer_Enable_gravity==true then
 dofile(minetest.get_modpath("diplazer") .. "/digrav.lua")
 end
 
-
+minetest.register_alias("di_3dt", "diplazer:di3dt")
 minetest.register_alias("di_vac", "diplazer:vacuum")
 minetest.register_alias("di_grav", "diplazer:grav")
 minetest.register_alias("di_com", "diplazer:com")

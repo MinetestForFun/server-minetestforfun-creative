@@ -1,6 +1,7 @@
 --priv for moderator: diplazer_gun
 --priv for admin: diplazer_admin
 
+diplazer_Enable_di3Dt_for_all=true	
 diplazer_Enable_mode8=true		--gravitygun takes little more when used, then its off again
 diplazer_Enable_mode11=true	-- place platfom, can make massive effects at 1 use
 diplazer_Enable_mode12=true	-- dig platfom, can make massive effects at 1 use

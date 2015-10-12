@@ -3,7 +3,7 @@ B		= some kind of block / node
 I		= some kind of item (not a block)
 ?		= does not mather what is front of the tool
 D		= Diplazer
-Dc		= Diplazer:com / di_com (yelow)
+Dc		= Diplazer:com / di_com (yelow / green / cyan)
 Dg		= Diplazer:gun / di_gun (red)
 Da		= Diplazer:admin / di_ad (purple)
 Dan		= Diplazer:adminno / di_adno (orange)
@@ -108,6 +108,31 @@ this will always palce stack x stack (like 2=4, 5=25, 10=100 ...)
 to use more then 10 do /di_1112 to get access until next time you change mods or if someone leaves the game
 [][B][D][][][][][]
 
+==================================================
+================Diplazer 3D Transfer================
+==================================================
+The stack front of the tool will set how much to copy (woks like otehr diplazes)
+So a stack with 2, will make it copy 2x2x2 (8 blocks)
+
+There are only 1 kind of this tool, but will work diference on who are using it.
+Have diplazer_admin: can copy / place up to 30x30x30 (27000 blocks)
+Have diplazer_gun: can copy / place up to 15x15x15 (3375 blocks)
+Have no diplazer priv: can copy / place up to 10x10x10 (1000 blocks)
+
+Players with: creative or give or diplazer_admin can place without it effects ther inventory.
+The copyed data saves in the tool.
+Players without diplazer_admin diplazer_gun priv cant place on stuff like water, grass, flowers, and cant copy unbreakable blocks (will be returnend as air).
+Stuff that have titles / owned / doors wont be copyed.
+
+Right click to copy
+Left to place
+
+It will always start from the pointed block and to left in a 3D cube.
+<<<<<<<^
+<<<<<<<^
+<<<<<<<P
+
+[][?][D][][][][][]
 
 ==================================================
 ================Using pipeworks:nodebreaker================

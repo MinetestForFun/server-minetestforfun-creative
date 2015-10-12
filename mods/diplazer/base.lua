@@ -67,7 +67,7 @@ minetest.register_chatcommand("dihelp", {
 	params = "",
 	description = "Diplazer Help",
 	func = function(name, param)
-		minetest.chat_send_player(name, "/dihelp ... Use while sneaking / hold shift and left-click / use the switcherbox")
+		minetest.chat_send_player(name, "/dihelp (V" ..diplazer_vesrion ..") ... Use while sneaking / hold shift and left-click / use the switcherbox")
 		minetest.chat_send_player(name, "Set a [stack] of blocks [left of the tool], the [amount of stack] sets how many to place/dig")
 		minetest.chat_send_player(name, "If someone keep teleporting or wear you, type /di_dropme (for admins /di_dropall)")
 		if diplazer_pipeworks==1 then minetest.chat_send_player(name, "dipalzer also works with pipeworks:nodebreaker") end
@@ -597,7 +597,7 @@ local function diplazer_dig(pos,player,drops,admin)
 	end
 	end
 
-local function diplazer_getdir (player)
+function diplazer_getdir (player)
 	local dir=player:get_look_dir()
 	if math.abs(dir.x)>math.abs(dir.z) then 
 		if dir.x>0 then return 0 end
@@ -1208,10 +1208,10 @@ end
 
 		local tp2node1=minetest.registered_nodes[minetest.get_node({ x=pos.x, y=pos.y+1, z=pos.z}).name]
 		local tp2node2=minetest.registered_nodes[minetest.get_node({ x=pos.x, y=pos.y+2, z=pos.z}).name]
-		if (tp2node1.walkable==false and tp2node2.walkabe==false and admin<0) or admin>=0 then
-		if (tp2node1.name=="diplazer:vacuum" or tp2node1.name=="diplazer:vacuum") and admin<0 then return end
-
+		if (tp2node1.walkable==false and tp2node2.walkable==false and admin<0) or admin>=0 then
+		if (tp2node1.name=="diplazer:vacuum" or tp2node2.name=="diplazer:vacuum") and admin<0 then return end
 			if admin<0 and player:getpos().y<=pos.y then
+
 				local walkable=0
 				local tp2node1=minetest.registered_nodes[minetest.get_node({ x=pos.x, y=pos.y, z=pos.z}).name].walkable==false
 				local tp2node2=minetest.registered_nodes[minetest.get_node({ x=pos.x+1, y=pos.y, z=pos.z}).name].walkable==false

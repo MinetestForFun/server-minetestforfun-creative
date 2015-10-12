@@ -3,7 +3,7 @@
 Copyright (C) UjEdwin 2015
 
 Mod by UjEdwin
-Version: 15
+See the version in the init.lua or type /dihelp in game
 
 Rename this folder to diplazer
 
@@ -121,9 +121,21 @@ diplazer:vaccum / di_vac
 Just vaccum, at same time it prevents players to teleport to inside.
 The blocks are invisible, and have to place somethine on it, or dig with any diplazer to remove.
 
+Diplazer 3D Transfer
+diplazer:di3dt / di_3dt
+left click top copy, right to place your place.
+see Help-Controls.txt for more info
+
 You can easy toogle / functions in the init.lua
 
 Changes log:
+
+V16
+Added:	diplazer:3dt
+V15.2
+Added:	in /dihelp info
+V15.1
+Fixed:	crash in mode7
 V15
 Added:	vaccumblock / anti teleportblock (diplazer:vaccum / di_vac)
 V14
