@@ -107,7 +107,6 @@ local function grow(itemstack, user, pointed_thing)
 	if minetest.get_item_group(node.name, "sapling") >= 1
 	or node.name:find("farming_plus:") and node.name:find("sapling")
 	or node.name:find("nether:tree") then
-		print(can_grow(pos))
 		if can_grow(pos) then
 			tree_grow(pos, node)
 			itemstack:take_item()
