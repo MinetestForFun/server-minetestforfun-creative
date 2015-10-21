@@ -14,33 +14,42 @@ home.sethome = function(name)
 		p_status = "nether"
 	end
 
-	home.homepos[p_status][name] = pos
-	minetest.chat_send_player(name, "Home set!")
-	local output = io.open(home.homes_file[p_status], "w")
-	output:write(minetest.serialize(home.homepos[p_status]))
-	io.close(output)
-	return true
+	local function assign_home()
+			home.homepos[p_status][name] = pos
+			minetest.chat_send_player(name, "Home set!")
+			local output = io.open(home.homes_file[p_status], "w")
+			output:write(minetest.serialize(home.homepos[p_status]))
+			io.close(output)
+			return true
+	end
+
+	action_timers.wrapper(name, "sethome", "sethome_" .. name, home.time, assign_home, {})
 end
 
 home.tohome = function(name)
-    	local player = minetest.get_player_by_name(name)
-    	if player == nil then
-        	-- just a check to prevent the server crashing
-        	return false
-	end
+    local player = minetest.get_player_by_name(name)
+    if player == nil then
+        -- just a check to prevent the server crashing
+        return false
+    end
 	local p_status = "real"
 	if player:getpos().y < -19600 then
 		p_status = "nether"
 	end
 	if home.homepos[p_status][name] then
-		player:setpos(home.homepos[p_status][player:get_player_name()])
-       		minetest.chat_send_player(name, "Teleported to home!")
-       		minetest.log("action","Player ".. name .." teleported to home. Next teleportation allowed in ".. home.time .." seconds.")
-	        return true
-	else
+
+		local function go_to_home()
+        		player:setpos(home.homepos[p_status][player:get_player_name()])
+        		minetest.chat_send_player(name, "Teleported to home!")
+        		minetest.log("action","Player ".. name .." teleported to home. Next teleportation allowed in ".. home.time .." seconds.")
+		        return true
+		end
+
+		action_timers.wrapper(name, "home", "home_" .. name, home.time, go_to_home, {})
+    else
 		minetest.chat_send_player(name, "Set a home using /sethome")
 		return false
-    	end
+    end
 end
 
 local function loadhomes()
