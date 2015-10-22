@@ -14,16 +14,12 @@ home.sethome = function(name)
 		p_status = "nether"
 	end
 
-	local function assign_home()
-			home.homepos[p_status][name] = pos
-			minetest.chat_send_player(name, "Home set!")
-			local output = io.open(home.homes_file[p_status], "w")
-			output:write(minetest.serialize(home.homepos[p_status]))
-			io.close(output)
-			return true
-	end
-
-	action_timers.wrapper(name, "sethome", "sethome_" .. name, home.time, assign_home, {})
+	home.homepos[p_status][name] = pos
+	minetest.chat_send_player(name, "Home set!")
+	local output = io.open(home.homes_file[p_status], "w")
+	output:write(minetest.serialize(home.homepos[p_status]))
+	io.close(output)
+	return true
 end
 
 home.tohome = function(name)
@@ -37,15 +33,10 @@ home.tohome = function(name)
 		p_status = "nether"
 	end
 	if home.homepos[p_status][name] then
-
-		local function go_to_home()
-        		player:setpos(home.homepos[p_status][player:get_player_name()])
-        		minetest.chat_send_player(name, "Teleported to home!")
-        		minetest.log("action","Player ".. name .." teleported to home. Next teleportation allowed in ".. home.time .." seconds.")
-		        return true
-		end
-
-		action_timers.wrapper(name, "home", "home_" .. name, home.time, go_to_home, {})
+       		player:setpos(home.homepos[p_status][player:get_player_name()])
+       		minetest.chat_send_player(name, "Teleported to home!")
+       		minetest.log("action","Player ".. name .." teleported to home. Next teleportation allowed in ".. home.time .." seconds.")
+	        return true
     else
 		minetest.chat_send_player(name, "Set a home using /sethome")
 		return false
