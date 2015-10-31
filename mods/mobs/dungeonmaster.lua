@@ -10,14 +10,15 @@ mobs:register_mob("mobs:dungeon_master", {
 	-- aggressive, shoots fireballs at player, deal 13 damages
 	passive = false,
 	damage = 12,
-	attack_type = "shoot",
+	attack_type = "dogshoot",
+	reach = 3,
 	shoot_interval = 2.5,
 	arrow = "mobs:fireball",
 	shoot_offset = 1,
 	-- health & armor
-	hp_min = 60,
-	hp_max = 80,
-	armor = 70,
+	hp_min = 50,
+	hp_max = 60,
+	armor = 80,
 	-- textures and model
 	collisionbox = {-0.7, -1, -0.7, 0.7, 1.6, 0.7},
 	visual = "mesh",
@@ -32,7 +33,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_dungeonmaster",
-		attack = "mobs_fireball",
+		shoot_attack = "mobs_fireball",
 	},
 	-- speed and jump
 	walk_velocity = 1,
@@ -52,7 +53,7 @@ mobs:register_mob("mobs:dungeon_master", {
 		chance = 6, min = 1, max = 1,},
 		{name = "maptools:gold_coin",
 		chance = 20, min = 1, max = 1,},
-		{name = "default:diamond_block",
+		{name = "default:diamondblock",
 		chance = 33, min = 1, max = 1,},
 	},
 	-- damaged by

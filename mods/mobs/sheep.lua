@@ -68,7 +68,7 @@ for _, col in ipairs(all_colours) do
 			end
 
 			--are we feeding?
-			if mobs:feed_tame(self, clicker, 8, true) then
+			if mobs:feed_tame(self, clicker, 8, true, true) then
 				--if full grow fuzz
 				if self.gotten == false then
 					self.object:set_properties({
@@ -155,15 +155,28 @@ minetest.register_entity("mobs:sheep", {
 	visual = "mesh",
 	mesh = "mobs_sheep.b3d",
 	visual_size = {x = 1, y = 1},
-	textures = {"mobs_sheep.png"},
+	textures = {"mobs_sheep_white.png"},
 	velocity = {x = 0, y = 0, z = 0},
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.3, 0.4},
 	is_visible = true,
 	speed = 0,
+	timer = 0,
 
 	on_rightclick = function(self, clicker)
 		clicker:get_inventory():add_item("main", "mobs:sheep_white")
 		self.object:remove()
+	end,
+
+	on_step = function(self, dtime)
+		self.timer = self.timer + dtime
+		if self.timer >= 1 then
+			self.timer = 0
+			self.object:setacceleration({
+				x = 0,
+				y = -10,
+				z = 0
+			})
+		end
 	end,
 
 })

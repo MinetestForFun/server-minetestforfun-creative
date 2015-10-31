@@ -8,6 +8,7 @@ mobs:register_mob("mobs:pumba", {
 	passive = true,
 	group_attack = true,
 	attack_type = "dogfight",
+	reach = 2,
 	damage = 4,
 	-- health & armor
 	hp_min = 15,
@@ -55,7 +56,7 @@ mobs:register_mob("mobs:pumba", {
 	},
 	-- can be tamed by feeding 8 wheat (will not attack when tamed)
 	on_rightclick = function(self, clicker)
-		mobs:feed_tame(self, clicker, 8, true)
+		mobs:feed_tame(self, clicker, 8, true, true)
 		mobs:capture_mob(self, clicker, 0, 5, 50, false, nil)
 	end,
 })
