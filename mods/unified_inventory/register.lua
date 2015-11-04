@@ -114,6 +114,26 @@ unified_inventory.register_button("misc_set_night", {
 	end,
 })
 
+unified_inventory.register_button("nether_to_hell", {
+	type = "image",
+	image = "ui_to_hell.png",
+	tooltip = S("Go to the Nether"),
+	action = function(player)
+		nether.player_to_nether(player, true)
+		player:moveto({x = 0, y = -20000, z = 0})
+	end,
+})
+
+unified_inventory.register_button("nether_from_hell", {
+	type = "image",
+	image = "ui_from_hell.png",
+	tooltip = S("Go back from the Nether"),
+	action = function(player)
+		nether.player_from_nether(player)
+		player:moveto((minetest.string_to_pos(minetest.setting_get("static_spawnpoint")) or {x = 0, y = 10, z = 0}))
+	end,
+})
+
 unified_inventory.register_button("clear_inv", {
 	type = "image",
 	image = "ui_trash_icon.png",
