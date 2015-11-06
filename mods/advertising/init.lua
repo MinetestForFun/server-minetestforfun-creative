@@ -63,12 +63,33 @@ minetest.register_node("advertising:michel", {
 		sunlight_propagates = true,
 		light_source = 15,
 })
+
 minetest.register_node("advertising:avivas", {
 	description = "Avivas Advertising",
 	tile_images = {"avivas_side.bmp", "avivas.bmp"},
 	groups = {cracky=3, stone=2},
-    paramtype2 = "facedir",
-    paramtype = "light",
-		sunlight_propagates = true,
-		light_source = 15,
+    	paramtype2 = "facedir",
+    	paramtype = "light",
+	sunlight_propagates = true,
+	light_source = 15,
+})
+
+minetest.register_node("advertising:minetestforfun", {
+	description = "MinetestForFun Advertising",
+	tile_images = {"advertising_mff.png"},
+	groups = {cracky=3, stone=2},
+    	paramtype2 = "facedir",
+    	paramtype = "light",
+	sunlight_propagates = true,
+	light_source = 15,
+})
+
+minetest.register_node("advertising:cyberpangolin", {
+	description = "Cyberpangolin Advertising",
+	tile_images = {"advertising_cyberpangolin.png"},
+	groups = {cracky=3, stone=2},
+    	paramtype2 = "facedir",
+    	paramtype = "light",
+	sunlight_propagates = true,
+	light_source = 15,
 })
