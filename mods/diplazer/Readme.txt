@@ -1,8 +1,10 @@
-
-
 Copyright (C) UjEdwin 2015
 
-Mod by UjEdwin
+Your rights: 
+1: Use it / for public/servers
+2: Take parts of the code
+3: Edit the mod
+
 See the version in the init.lua or type /dihelp in game
 
 Rename this folder to diplazer
