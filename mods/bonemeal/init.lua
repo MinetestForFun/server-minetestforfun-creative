@@ -20,11 +20,11 @@ local function can_grow(pos)
 	if not node_under then
 		return false
 	end
-	if minetest.get_item_group(node_under.name, "soil") > 0 then
+--	if minetest.get_item_group(node_under.name, "soil") > 0 then
 		return true
-	else
-		return false
-	end
+--	else
+--		return false
+--	end
 end
 
 local function tree_grow(pos, node)
