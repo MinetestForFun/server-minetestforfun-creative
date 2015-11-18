@@ -1,7 +1,7 @@
 --priv for moderator: diplazer_gun
 --priv for admin: diplazer_admin
 
-diplazer_Enable_di3Dt_for_all=true	
+diplazer_Enable_di3Dt_for_all=true
 diplazer_Enable_mode8=true		--gravitygun takes little more when used, then its off again
 diplazer_Enable_mode11=true	-- place platfom, can make massive effects at 1 use
 diplazer_Enable_mode12=true	-- dig platfom, can make massive effects at 1 use
@@ -29,6 +29,6 @@ diplazer_Enable_gun_limitation=true	-- removes stuff from inventory from :gun us
 
 diplazer_orb={admin=150, gun=250,com=500, atime=0, gtime=0, ctime=0}
 diplazer_restore_gravity_to=1
-diplazer_UpdateGGun=3 -- (from 1 to 10 [interval])
+diplazer_UpdateGGun=0.1
 diplazer_amount=15
 diplazer_com_amount=7

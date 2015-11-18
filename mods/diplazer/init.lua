@@ -23,7 +23,6 @@ if minetest.get_modpath("pipeworks") then diplazer_pipeworks=1 end
 
 
 
-
 dofile(minetest.get_modpath("diplazer") .. "/settings.lua")
 dofile(minetest.get_modpath("diplazer") .. "/base.lua")
 dofile(minetest.get_modpath("diplazer") .. "/dipbox.lua")
