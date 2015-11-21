@@ -3,6 +3,7 @@
 -- Optimized by kilbith
 
 local xwall = {}
+screwdriver = screwdriver or {}
 
 xwall.get_candidate = {}
 local profiles = {
@@ -141,8 +142,8 @@ end
 
 function xwall.register_wall(name, tiles, def)
 	local node_box_data = xwall.construct_node_box_data(
-		{{-.1875,-.5,0,.1875,.3125,.5}},{{-.25,-.5,-.25,.25,.5,.25}},
-		{{-.1875,-.5,-.5,.1875,.3125,.5}}
+		{{-.1875,-.6875,0,.1875,.3125,.5}},{{-.25,-.6875,-.25,.25,.5,.25}},
+		{{-.1875,-.6875,-.5,.1875,.3125,.5}}
 	)
 
 	if def then return end
@@ -152,6 +153,7 @@ function xwall.register_wall(name, tiles, def)
 		sounds = default.node_sound_stone_defaults(),
 		groups = {cracky=3, stone=1, pane=1},
 		sunlight_propagates = true,
+		on_rotate = screwdriver.disallow,
 		collision_box = {
 			type = "fixed",
 			fixed = {-.5, -.5, -.25, .5, 1, .25}
