@@ -100,15 +100,10 @@ end
 
 
 
-
-minetest.register_abm({
-	nodenames = {"diplazer:box"},
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-
+dibox_update = function (pos, elapsed)
 		if diaplzer_loadbox==0 then return 0 end
 		diaplzer_loadbox=0
+		minetest.get_node_timer(pos):stop()
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
 
@@ -156,12 +151,7 @@ minetest.register_abm({
 		else
 		return false
 		end
-	end
-})
-
-
-
-
+end
 
 
 
@@ -173,7 +163,6 @@ fmeta:set_string("formspec",
 	"list[context;diprep;2,2.5;1,1;]" ..
 	"button[1.8,3.5; 1.5,1;dip_rep;Load]" ..
 	"button[0,0; 1.5,1;dip_hlp;Help]" ..
-	"list[context;main;0,0;8,4;]" ..
 	"list[current_player;main;0,5;8,4;]" ..
 	"button[5,0; 1.5,1;dip_cm1;Mode 1]" ..
 	"button[6.5,0; 1.5,1;dip_cm2;Mode 2]" ..
@@ -204,21 +193,19 @@ minetest.register_node("diplazer:box", {
 	"default_steel_block.png^diplazer_boxside.png",
 	"default_steel_block.png^diplazer_boxside.png",
 	"default_steel_block.png^diplazer_boxpanel.png",},
-	groups = {cracky=3,oddly_breakable_by_hand=3},
+	groups = {fleshy = 3, dig_immediate = 3,},
+	paramtype2 = "facedir",
 	sounds=default.node_sound_stone_defaults(),
 after_place_node = function(pos, placer, itemstack)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name())
 		meta:set_string("rep", "0")
 		meta:set_int("state", 0)
-		diplazer_inv(meta,placer,pos,0)
-		end,
-on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
 		inv:set_size("dipinv", 1)
 		inv:set_size("diprep", 1)
 		meta:set_string("setmode", "0")
+		diplazer_inv(meta,placer,pos,0)
 		end,
 allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		local meta=minetest.get_meta(pos)
@@ -257,25 +244,26 @@ on_receive_fields = function(pos, formname, fields, sender)
 		if sender:get_player_name() ~= meta:get_string("owner") then
 		return false
 		end
-		if fields.dip_rep then meta:set_string("rep", "1") diaplzer_loadbox=1 end
-		if fields.dip_cm1 then meta:set_string("setmode", "1") diaplzer_loadbox=1 end
-		if fields.dip_cm2 then meta:set_string("setmode", "2") diaplzer_loadbox=1 end
-		if fields.dip_cm3 then meta:set_string("setmode", "3") diaplzer_loadbox=1 end
-		if fields.dip_cm4 then meta:set_string("setmode", "4") diaplzer_loadbox=1 end
-		if fields.dip_cm5 then meta:set_string("setmode", "5") diaplzer_loadbox=1 end
-		if fields.dip_cm6 then meta:set_string("setmode", "6") diaplzer_loadbox=1 end
-		if fields.dip_cm7 then meta:set_string("setmode", "7") diaplzer_loadbox=1 end
-		if fields.dip_cm8 then meta:set_string("setmode", "8") diaplzer_loadbox=1 end
-		if fields.dip_cm9 then meta:set_string("setmode", "9") diaplzer_loadbox=1 end
-		if fields.dip_cm10 then meta:set_string("setmode", "10") diaplzer_loadbox=1 end
-		if fields.dip_cm11 then meta:set_string("setmode", "11") diaplzer_loadbox=1 end
-		if fields.dip_cm12 then meta:set_string("setmode", "12") diaplzer_loadbox=1 end
+		if fields.dip_rep then meta:set_string("rep", "1") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm1 then meta:set_string("setmode", "1") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm2 then meta:set_string("setmode", "2") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm3 then meta:set_string("setmode", "3") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm4 then meta:set_string("setmode", "4") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm5 then meta:set_string("setmode", "5") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm6 then meta:set_string("setmode", "6") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm7 then meta:set_string("setmode", "7") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm8 then meta:set_string("setmode", "8") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm9 then meta:set_string("setmode", "9") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm10 then meta:set_string("setmode", "10") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm11 then meta:set_string("setmode", "11") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm12 then meta:set_string("setmode", "12") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
 
 
 		if fields.dip_hlp then
 		minetest.chat_send_player(sender:get_player_name(), "Place a blockstack left of the tool to place or dig with . (The amount of stack sets how many to place / dig [itmes works too if you will dig]) (insert mese crystal or framgents to load the tool)")
 		end
 end,
+on_timer = dibox_update,
 })
 
 minetest.register_craft({

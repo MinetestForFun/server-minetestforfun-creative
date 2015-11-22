@@ -16,7 +16,7 @@ diplazer_Enable_com_mode12=true	--common players can dig up to 7x7 nodes at same
 
 diplazer_Enable_gravity=true
 diplazer_gravity_to_use=0.5
-diplazer_Enable_orbs=true
+diplazer_Enable_orbs=false
 diplazer_Enable_com=true
 diplazer_Enable_com_limeted=true
 diplazer_Enable_com_limeted_uses=150
@@ -29,6 +29,6 @@ diplazer_Enable_gun_limitation=true	-- removes stuff from inventory from :gun us
 
 diplazer_orb={admin=150, gun=250,com=500, atime=0, gtime=0, ctime=0}
 diplazer_restore_gravity_to=1
-diplazer_UpdateGGun=0.1
+diplazer_UpdateGGun=3 -- (from 1 to 10 [interval])
 diplazer_amount=15
 diplazer_com_amount=7
