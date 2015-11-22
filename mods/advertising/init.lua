@@ -93,3 +93,23 @@ minetest.register_node("advertising:cyberpangolin", {
 	sunlight_propagates = true,
 	light_source = 15,
 })
+
+minetest.register_node("advertising:prayforparis_text", {
+	description = "Pray For Paris Text Advertising",
+	tile_images = {"advertising_prayforparis_text.png.png"},
+	groups = {cracky=3, stone=2},
+    	paramtype2 = "facedir",
+    	paramtype = "light",
+	sunlight_propagates = true,
+	light_source = 15,
+})
+
+minetest.register_node("advertising:prayforparis_logo", {
+	description = "Pray For Paris Logo Advertising",
+	tile_images = {"advertising_prayforparis_logo.png"},
+	groups = {cracky=3, stone=2},
+    	paramtype2 = "facedir",
+    	paramtype = "light",
+	sunlight_propagates = true,
+	light_source = 15,
+})
