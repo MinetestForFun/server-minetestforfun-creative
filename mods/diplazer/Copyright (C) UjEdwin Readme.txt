@@ -101,11 +101,21 @@ Switcherbox:
 diplazer:box (di_box)
 Change modes & reload using mese crystal / fragemnts
 
-
 Gravity manipuler:
 diplazer:grav (di_grav)
 change your gravity on use or restore (1 / 0.5 as default)
 
+Plazmashield:
+diplazer:armholder (di_s)
+Spawns a object and protect you for a few secunds from attacks.
+
+The pickaxe:
+A fast and hard pick that is ore usefull then the other tools in some cases.
+diplazer:pick (di_pick)
+
+Same pick but is unlimeted and a bit better.
+Craft it by it self to to repair it.
+diplazer:adpick (di_adpick)
 
 Lazer blocks:
 decoration with light
@@ -129,7 +139,14 @@ see Help-Controls.txt for more info
 You can easy toogle / functions in the init.lua
 
 Changes log:
-
+V17:
+Added:	diplazer:chip
+Added:	diplazer:pick
+Added:	diplazer:adpick
+V16.5
+Added:	diplazer:armholder / di_s
+Fixed:	dibox massive errors / message
+Fixed:	diplazer lazers that makes annoying shadows
 V16
 Added:	diplazer:3dt
 V15.2

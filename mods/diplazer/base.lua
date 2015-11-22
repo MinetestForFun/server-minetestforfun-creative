@@ -514,82 +514,54 @@ minetest.register_globalstep(function(dtime)
 		end
 	end
 
-	if GGunInUse <= 0 then
-		return
-	end
-	GGunTime = GGunTime + dtime
-	if GGunTime < diplazer_UpdateGGun then
-		return
-	end
-	GGunTime = 0
-	for i, player in pairs(minetest.get_connected_players()) do
-		if diplazer_haveGGun(player)==true then
-			local player_name = player:get_player_name()
-			local pos = player:getpos()
-			local len=diplazer_getLength(diplazer_UserTele)
-			for i=1,len,1 do
-				if "8?".. player_name==diplazer_UserTele[i] and (not diplazer_Tele[i]==false) then
-					if diplazer_Tele[i]:is_player()==true then diplazer_Tele[i]:set_physics_override({gravity=0}) end
-					local udir = player:get_look_dir()
+if GGunInUse>0 then 
+	GGunTime = GGunTime + 1
+		if GGunTime >= diplazer_UpdateGGun then
+			GGunTime = 0
+			for i, player in pairs(minetest.get_connected_players()) do
+				if diplazer_haveGGun(player)==true then
+					local user = player
+					local player_name = player:get_player_name()
+					local pos = player:getpos()
+					local len=diplazer_getLength(diplazer_UserTele)
+					for i=1,len,1 do
+						if "8?".. player_name==diplazer_UserTele[i] and (not diplazer_Tele[i]==false) then
+							if diplazer_Tele[i]:is_player()==true then diplazer_Tele[i]:set_physics_override({gravity=0}) end
+							local udir = player:get_look_dir()
+							
+							local xzpos=4
+							local node=""
 
-					local xzpos=4
-					--[[local node=""
+							local tp2node1=minetest.registered_nodes[minetest.get_node({x=pos.x+(udir.x*4), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*4)}).name].walkable
+							local tp2node2=minetest.registered_nodes[minetest.get_node({x=pos.x+(udir.x*3), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*3)}).name].walkable
+							local tp2node3=minetest.registered_nodes[minetest.get_node({x=pos.x+(udir.x*2), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*2)}).name].walkable
+							local tp2node4=minetest.registered_nodes[minetest.get_node({x=pos.x+(udir.x*1), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*1)}).name].walkable
 
-					local tp2node1=minetest.registered_nodes[minetest.get_node({x=pos.x+(udir.x*4), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*4)}).name].walkable
-					local tp2node2=minetest.registered_nodes[minetest.get_node({x=pos.x+(udir.x*3), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*3)}).name].walkable
-					local tp2node3=minetest.registered_nodes[minetest.get_node({x=pos.x+(udir.x*2), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*2)}).name].walkable
-					local tp2node4=minetest.registered_nodes[minetest.get_node({x=pos.x+(udir.x*1), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*1)}).name].walkable
+							if tp2node==true then xzpos=3 end
+							if tp2node==true then xzpos=2 end
+							if tp2node==true then xzpos=1 end
+							if tp2node==true then xzpos=-1 end
+							if not diplazer_Tele[i]:getpos() then
+								diplazer_Tele[i]=false
+								return false
+							end
 
-					if tp2node==true then xzpos=3 end
-					if tp2node==true then xzpos=2 end
-					if tp2node==true then xzpos=1 end
-					if tp2node==true then xzpos=-1 end--]]
-					if not diplazer_Tele[i]:getpos() then
-						diplazer_Tele[i]=false
-						return false
+							diplazer_Tele[i]:moveto({x=pos.x+(udir.x*xzpos), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*xzpos)},false)
+							diplazer_Tele[i]:setvelocity({x=0,y=1,z=0})
+							diplazer_Tele[i]:setyaw(user:get_look_yaw()+(math.pi*1.5))
+
+						end
 					end
-
-					--[[
-					local wantedpos = {x=pos.x+(udir.x*xzpos), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*xzpos)}
-					diplazer_Tele[i]:moveto(wantedpos,false)
-					diplazer_Tele[i]:setvelocity({x=0,y=1,z=0})
-					diplazer_Tele[i]:setyaw(player:get_look_yaw()+(math.pi*1.5))--]]
-
-					--[[
-					x(t) = at²+bt+c
-					x'(t) = 2at+b
-					x''(t) = 2a
-
-					x(0) = c = pos.x
-					x'(0) = b = vel.x
-
-					x(t) = wantedpos.x = at²+vel.xt+pos.x
-					a = (wantedpos.x-pos.x-vel.xt)/t²
-					]]
-
-					local p = diplazer_Tele[i]:getpos()
-					local wantedpos = vector.divide(vector.add({x=pos.x+(udir.x*xzpos), y=pos.y+1.5+(udir.y*4), z=pos.z+(udir.z*xzpos)}, p), 2)
-
-					local t = diplazer_UpdateGGun+0.1
-					local acc = {}
-					local vel = diplazer_Tele[i]:getvelocity()
-					for c,v in pairs(wantedpos) do
-						acc[c] =(v-p[c]-vel[c]*t)/(t*t)
+				else
+					local len=diplazer_getLength(diplazer_UserTele)
+					local player_name = player:get_player_name()
+					for i=1,len,1 do
+						if "8?".. player_name==diplazer_UserTele[i] and (not diplazer_Tele[i]==false) then 
+							if diplazer_Tele[i]:is_player()==true then diplazer_Tele[i]:set_physics_override({gravity=diplazer_restore_gravity_to}) end
+							diplazer_Tele[i]=false
+							GGunInUse=GGunInUse-1
+						end
 					end
-
-					diplazer_Tele[i]:setacceleration(acc)
-					diplazer_Tele[i]:setyaw(player:get_look_yaw()+math.pi*1.5)
-
-				end
-			end
-		else
-			local len=diplazer_getLength(diplazer_UserTele)
-			local player_name = player:get_player_name()
-			for i=1,len,1 do
-				if "8?".. player_name==diplazer_UserTele[i] and (not diplazer_Tele[i]==false) then
-					if diplazer_Tele[i]:is_player()==true then diplazer_Tele[i]:set_physics_override({gravity=diplazer_restore_gravity_to}) end
-					diplazer_Tele[i]=false
-					GGunInUse=GGunInUse-1
 				end
 			end
 		end
@@ -1859,14 +1831,14 @@ minetest.register_node("diplazer:lazer_" .. diplazer_lazer[i], {
 	description = "Diplazer Lazer (temporary)",
 	tiles = {"diplazer_lazer_" .. diplazer_lazer[i] .. ".png",},
 	drop="",
-	light_source = 50,
+	light_source = default.LIGHT_MAX - 1,
 	paramtype = "light",
 	alpha = 50,
 	walkable=false,
 	use_texture_alpha = true,
 	drawtype = "glasslike",
-	sunlight_propagates = true,
-	groups = {not_in_creative_inventory=1},
+	sunlight_propagates = false,
+	groups = {not_in_creative_inventory=1,liquid = 2, hot = 3,igniter = 1},
 can_dig = function(pos, player)
 		return false
 end,
@@ -1877,10 +1849,10 @@ minetest.register_node("diplazer:lazerblock_" .. diplazer_lazer[i], {
 	tiles = {"diplazer_lazer_" .. diplazer_lazer[i] .. ".png",},
 	light_source = 50,
 	paramtype = "light",
-	alpha = 50,
+	alpha = 30,
 	use_texture_alpha = true,
 	drawtype = "glasslike",
-	sunlight_propagates = true,
+	sunlight_propagates = false,
 	groups = {cracky=3,oddly_breakable_by_hand=3},
 	sounds=default.node_sound_stone_defaults(),
 })
