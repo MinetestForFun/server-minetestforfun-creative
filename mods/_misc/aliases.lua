@@ -56,3 +56,11 @@ alias("jumping:cushion", "wool:dark_green")
 for i = 1, 6 do
 	alias("jumping:trampoline_" .. i, "default:wood")
 end
+
+-- Remove ugly default advertising nodes
+alias("advertising:cokecola", "default:stone")
+alias("advertising:noentiendo", "default:stone")
+alias("advertising:pepso", "default:stone")
+alias("advertising:mineyoshi", "default:stone")
+alias("advertising:michel", "default:stone")
+alias("advertising:avivas", "default:stone")
