@@ -144,6 +144,7 @@ local function grow(itemstack, user, pointed_thing)
 
 	-- Grass and others
 	elseif node.name:find("_")
+	and (minetest.get_item_group(node.name, "plant") or minetest.get_item_group(node.name, "flora"))
 	and node.name:find("%d") then
 		local node = node.name:split(":")
 		local name = node[2]:split("_")
