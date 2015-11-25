@@ -1771,7 +1771,7 @@ function mobs:register_egg(mob, desc, background, addegg)
 	minetest.register_craftitem(mob, {
 		description = desc,
 		inventory_image = invimg,
-
+		group = {not_in_creative_inventory = 1}, -- MFF(Mg|11/25/2015)
 		on_place = function(itemstack, placer, pointed_thing)
 
 			local pos = pointed_thing.above
