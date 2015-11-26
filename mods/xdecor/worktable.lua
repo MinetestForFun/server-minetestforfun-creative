@@ -1,9 +1,9 @@
 local worktable = {}
 screwdriver = screwdriver or {}
-local xbg = default.gui_bg..default.gui_bg_img..default.gui_slots
+local xbg = default.gui_bg..default.gui_bg_img..default.gui_slots..default.get_hotbar_bg(0,3.25)
 
 local nodes = { -- Nodes allowed to be cut. Mod name = {node name}.
-	default = {"wood", "junglewood", "pine_wood", "acacia_wood",
+	["default"] = {"wood", "junglewood", "pine_wood", "acacia_wood",
 		"tree", "jungletree", "pine_tree", "acacia_tree",
 		"cobble", "mossycobble", "desert_cobble",
 		"stone", "sandstone", "desert_stone", "obsidian",
@@ -12,11 +12,11 @@ local nodes = { -- Nodes allowed to be cut. Mod name = {node name}.
 		"bronzeblock", "mese", "diamondblock",
 		"brick", "cactus", "ice", "meselamp", "glass", "obsidian_glass"},
 
-	xdecor = {"coalstone_tile", "desertstone_tile", "stone_rune", "stone_tile",
+	["xdecor"] = {"coalstone_tile", "desertstone_tile", "stone_rune", "stone_tile",
 		"cactusbrick", "hard_clay", "packed_ice", "moonbrick",
 		"woodframed_glass", "wood_tile"},
 
-	oresplus = {"emerald_block", "glowstone"},
+	["oresplus"] = {"emerald_block", "glowstone"},
 }
 
 local def = { -- Nodebox name, yield, definition.
@@ -36,27 +36,49 @@ local def = { -- Nodebox name, yield, definition.
 
 function worktable.crafting()
 	return "size[8,7;]"..xbg..
-		"list[current_player;main;0,3.3;8,4;]image[5,1;1,1;gui_furnace_arrow_bg.png^[transformR270]list[current_player;craft;2,0;3,3;]list[current_player;craftpreview;6,1;1,1;]"
+		"list[current_player;main;0,3.3;8,4;]"..
+		"image[5,1;1,1;gui_furnace_arrow_bg.png^[transformR270]"..
+		"list[current_player;craft;2,0;3,3;]"..
+		"list[current_player;craftpreview;6,1;1,1;]"..
+		"listring[current_player;main]"..
+		"listring[current_player;craft]"
 end
 
 function worktable.storage(pos)
 	local inv = minetest.get_meta(pos):get_inventory()
-	local f = "size[8,7]"..xbg.."list[context;storage;0,0;8,2;]list[current_player;main;0,3.25;8,4;]"
 	inv:set_size("storage", 8*2)
-	return f
+	return "size[8,7]"..xbg..
+		"list[context;storage;0,0;8,2;]"..
+		"list[current_player;main;0,3.25;8,4;]"..
+		"listring[context;storage]"..
+		"listring[current_player;main]"
 end
 
 function worktable.construct(pos)
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 
+	local formspec = "size[8,7;]"..xbg..
+			"label[0.9,1.23;Cut]"..
+			"label[0.9,2.23;Repair]"..
+			"box[-0.05,1;2.05,0.9;#555555]"..
+			"box[-0.05,2;2.05,0.9;#555555]"..
+			"image[3,1;1,1;gui_furnace_arrow_bg.png^[transformR270]"..
+			"image[0,1;1,1;worktable_saw.png]"..
+			"image[0,2;1,1;worktable_anvil.png]"..
+			"image[3,2;1,1;hammer_layout.png]"..
+			"list[context;input;2,1;1,1;]"..
+			"list[context;tool;2,2;1,1;]"..
+			"list[context;hammer;3,2;1,1;]"..
+			"list[context;forms;4,0;4,3;]"..
+			"list[current_player;main;0,3.25;8,4;]"..
+			"button[0,0;2,1;craft;Crafting]"..
+			"button[2,0;2,1;storage;Storage]"
+
 	inv:set_size("forms", 4*3)
 	inv:set_size("input", 1)
 	inv:set_size("tool", 1)
 	inv:set_size("hammer", 1)
-
-	local formspec = "size[8,7;]"..xbg..
-		"list[context;forms;4,0;4,3;]label[0.95,1.23;Cut]box[-0.05,1;2.05,0.9;#555555]image[3,1;1,1;gui_furnace_arrow_bg.png^[transformR270]label[0.95,2.23;Repair]box[-0.05,2;2.05,0.9;#555555]image[0,1;1,1;worktable_saw.png]image[0,2;1,1;worktable_anvil.png]image[3,2;1,1;hammer_layout.png]list[current_name;input;2,1;1,1;]list[current_name;tool;2,2;1,1;]list[current_name;hammer;3,2;1,1;]button[0,0;2,1;craft;Crafting]button[2,0;2,1;storage;Storage]list[current_player;main;0,3.25;8,4;]"
 
 	meta:set_string("formspec", formspec)
 	meta:set_string("infotext", "Work Table")
@@ -68,18 +90,15 @@ function worktable.fields(pos, _, fields, sender)
 
 	if fields.storage then
 		minetest.show_formspec(player, "", worktable.storage(pos))
-	end
-	if fields.craft then
+	elseif fields.craft then
 		minetest.show_formspec(player, "", worktable.crafting(pos))
 	end
 end
 
 function worktable.dig(pos, _)
 	local inv = minetest.get_meta(pos):get_inventory()
-	if not inv:is_empty("input") or not inv:is_empty("hammer") or not
-		inv:is_empty("tool") or not inv:is_empty("storage") then
-		return false end
-	return true
+	return inv:is_empty("input") and inv:is_empty("hammer") and
+		inv:is_empty("tool") and inv:is_empty("storage")
 end
 
 function worktable.contains(table, element)
@@ -94,38 +113,41 @@ end
 function worktable.put(_, listname, _, stack, _)
 	local stn = stack:get_name()
 	local count = stack:get_count()
-	local mod, node = stn:match("([%a_]+):([%a_]+)")
+	local mod, node = stn:match("([%w_]+):([%w_]+)")
+	local tdef = minetest.registered_tools[stn]
+	local twear = stack:get_wear()
 
-	if listname == "forms" then return 0 end
-	if listname == "input" then
-		if not worktable.contains(nodes[mod], node) then return 0 end
+	if listname == "input" and
+		worktable.contains(nodes[mod], node) then return count
+	elseif listname == "hammer" and
+		stn == "xdecor:hammer" then return 1
+	elseif listname == "tool" and tdef and twear > 0 then
+		return 1
+	elseif listname == "storage" then
+		return count
 	end
-	if listname == "hammer" then
-		if stn ~= "xdecor:hammer" then return 0 end
-	end
-	if listname == "tool" then
-		local tdef = minetest.registered_tools[stn]
-		local twear = stack:get_wear()
-		if not (tdef and twear > 0) then return 0 end
-	end
-	return count
+	return 0
 end
 
-function worktable.take(pos, listname, _, stack, _)
+function worktable.take(pos, listname, _, stack, player)
 	local inv = minetest.get_meta(pos):get_inventory()
+	local user_inv = player:get_inventory()
 	local inputstack = inv:get_stack("input", 1):get_name()
-	local mod, node = inputstack:match("([%a_]+):([%a_]+)")
+	local mod, node = inputstack:match("([%w_]+):([%w_]+)")
 
 	if listname == "forms" then
-		if not worktable.contains(nodes[mod], node) then return 0 end
-		return -1
+		if worktable.contains(nodes[mod], node) and
+			user_inv:room_for_item("main", stack:get_name()) then
+			return -1
+		end
+		return 0
 	end
 	return stack:get_count()
 end
 
 function worktable.move(_, from_list, _, to_list, _, count, _)
-	if from_list == "storage" and to_list == "storage" then
-		return count else return 0 end
+	if from_list == "storage" and to_list == "storage" then return count end
+	return 0
 end
 
 local function update_inventory(inv, inputstack)
@@ -135,11 +157,11 @@ local function update_inventory(inv, inputstack)
 	for _, n in pairs(def) do
 		local mat = inputstack:get_name()
 		local input = inv:get_stack("input", 1)
-		local mod, node = mat:match("([%a_]+):([%a_]+)")
+		local mod, node = mat:match("([%w_]+):([%w_]+)")
 		local count = math.min(n[2] * input:get_count(), inputstack:get_stack_max())
-		
+
 		if not worktable.contains(nodes[mod], node) then return end
-		output[#output+1] = string.format("%s_%s %d", mat, n[1], count)
+		output[#output+1] = mat.."_"..n[1].." "..count
 	end
 	inv:set_list("forms", output)
 end
@@ -193,7 +215,8 @@ for _, name in pairs(n) do
 
 		for k, v in pairs(ndef.groups) do
 			if k ~= "wood" and k ~= "stone" and k ~= "level" then
-				groups[k] = v end
+				groups[k] = v
+			end
 		end
 
 		minetest.register_node(":"..mod..":"..name.."_"..d[1], {
@@ -234,3 +257,4 @@ minetest.register_abm({
 		inv:set_stack("hammer", 1, hammer)
 	end
 })
+

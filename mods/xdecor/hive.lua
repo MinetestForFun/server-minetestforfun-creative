@@ -3,10 +3,14 @@ local hive = {}
 function hive.construct(pos)
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
-	local xbg = default.gui_bg..default.gui_bg_img..default.gui_slots
+	local xbg = default.gui_bg..default.gui_bg_img..default.gui_slots..default.get_hotbar_bg(0,1.35)
 
 	local formspec = "size[8,5;]"..xbg..
-		"label[1.35,0;Bees are making honey\nwith pollen around...]image[6,0;1,1;hive_bee.png]image[5,0;1,1;hive_layout.png]list[current_name;honey;5,0;1,1;]list[current_player;main;0,1.35;8,4;]"
+			"label[1.35,0;Bees are making honey\nwith pollen around...]"..
+			"image[6,0;1,1;hive_bee.png]"..
+			"image[5,0;1,1;hive_layout.png]"..
+			"list[context;honey;5,0;1,1;]"..
+			"list[current_player;main;0,1.35;8,4;]"
 
 	meta:set_string("formspec", formspec)
 	meta:set_string("infotext", "Artificial Hive")
@@ -15,8 +19,7 @@ end
 
 function hive.dig(pos, _)
 	local inv = minetest.get_meta(pos):get_inventory()
-	if not inv:is_empty("honey") then return false end
-	return true
+	return inv:is_empty("honey")
 end
 
 xdecor.register("hive", {
@@ -37,10 +40,7 @@ xdecor.register("hive", {
 		local health = clicker:get_hp()
 		clicker:set_hp(health - 1)
 	end,
-	allow_metadata_inventory_put = function(_, listname, _, stack, _)
-		if listname == "honey" then return 0 end
-		return stack:get_count()
-	end
+	allow_metadata_inventory_put = function(...) return 0 end
 })
 
 minetest.register_abm({
@@ -56,7 +56,8 @@ minetest.register_abm({
 		local maxp = vector.add(pos, radius)
 		local flowers = minetest.find_nodes_in_area(minp, maxp, "group:flower")
 
-		if #flowers >= 2 and honey < 10 then
-			inv:add_item("honey", "xdecor:honey") end
+		if #flowers >= 2 and honey < 12 then
+			inv:add_item("honey", "xdecor:honey")
+		end
 	end
 })
