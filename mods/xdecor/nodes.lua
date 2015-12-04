@@ -1,38 +1,6 @@
 screwdriver = screwdriver or {}
 local xbg = default.gui_bg..default.gui_bg_img..default.gui_slots
 
-local function sit(pos, node, clicker)
-	local player = clicker:get_player_name()
-	if default.player_attached[player] == true then
-		pos.y = pos.y - 0.5
-		clicker:setpos(pos)
-		clicker:set_eye_offset({x=0, y=0, z=0}, {x=0, y=0, z=0})
-		clicker:set_physics_override(1, 1, 1)
-		default.player_attached[player] = false
-		default.player_set_animation(clicker, "stand", 30)
-	elseif default.player_attached[player] ~= true and
-		clicker:get_player_velocity().x == 0 and
-		clicker:get_player_velocity().y == 0 and
-		clicker:get_player_velocity().z == 0 and node.param2 <= 3 then
-
-		clicker:set_eye_offset({x=0, y=-7, z=2}, {x=0, y=0, z=0})
-		clicker:set_physics_override(0, 0, 0)
-		clicker:setpos(pos)
-		default.player_attached[player] = true
-		default.player_set_animation(clicker, "sit", 30)
-
-		if node.param2 == 0 then
-			clicker:set_look_yaw(3.15)
-		elseif node.param2 == 1 then
-			clicker:set_look_yaw(7.9)
-		elseif node.param2 == 2 then
-			clicker:set_look_yaw(6.28)
-		elseif node.param2 == 3 then
-			clicker:set_look_yaw(4.75)
-		end
-	end
-end
-
 xpanes.register_pane("bamboo_frame", {
 	description = "Bamboo Frame",
 	tiles = {"xdecor_bamboo_frame.png"},
@@ -123,38 +91,6 @@ xdecor.register("candle", {
 	}
 })
 
-xdecor.register("cauldron", {
-	description = "Cauldron",
-	groups = {cracky=2, oddly_breakable_by_hand=1},
-	on_rotate = screwdriver.rotate_simple,
-	tiles = {
-		{ name = "xdecor_cauldron_top_anim.png",
-			animation = {type="vertical_frames", length=3.0} },
-		"xdecor_cauldron_sides.png"
-	}
-})
-
-if minetest.get_modpath("bucket") then
-	local original_bucket_on_use = minetest.registered_items["bucket:bucket_empty"].on_use
-	minetest.override_item("bucket:bucket_empty", {
-		on_use = function(itemstack, user, pointed_thing)
-			local inv = user:get_inventory()
-			if pointed_thing.type == "node" and minetest.get_node(pointed_thing.under).name == "xdecor:cauldron" then
-				if inv:room_for_item("main", "bucket:bucket_water 1") then
-					itemstack:take_item()
-					inv:add_item("main", "bucket:bucket_water 1")
-				else
-					minetest.chat_send_player(user:get_player_name(), "No room in your inventory to add a filled bucket!")
-				end
-				return itemstack
-			else if original_bucket_on_use then
-				return original_bucket_on_use(itemstack, user, pointed_thing)
-			end
-		end
-	end
-	})
-end
-
 xpanes.register_pane("chainlink", {
 	description = "Chain Link",
 	tiles = {"xdecor_chainlink.png"},
@@ -169,44 +105,6 @@ xpanes.register_pane("chainlink", {
 		{"", "default:steel_ingot", ""},
 		{"default:steel_ingot", "", "default:steel_ingot"}
 	}
-})
-
-xdecor.register("chair", {
-	description = "Chair",
-	tiles = {"xdecor_wood.png"},
-	sounds = default.node_sound_wood_defaults(),
-	groups = {choppy=3, oddly_breakable_by_hand=2, flammable=3},
-	on_rotate = screwdriver.rotate_simple,
-	node_box = {
-		type = "fixed",
-		fixed = {{-0.3125, -0.5, 0.1875, -0.1875, 0.5, 0.3125},
-			{0.1875, -0.5, 0.1875, 0.3125, 0.5, 0.3125},
-			{-0.1875, 0.025, 0.22, 0.1875, 0.45, 0.28},
-			{-0.3125, -0.5, -0.3125, -0.1875, -0.125, -0.1875},
-			{0.1875, -0.5, -0.3125, 0.3125, -0.125, -0.1875},
-			{-0.3125, -0.125, -0.3125, 0.3125, 0, 0.1875}}
-	},
-	on_rightclick = function(pos, node, clicker)
-		local objs = minetest.get_objects_inside_radius(pos, 0.5)
-		for _, p in pairs(objs) do
-			if p:get_player_name() ~= clicker:get_player_name() then return end
-		end
-		pos.y = pos.y + 0
-		sit(pos, node, clicker)
-	end,
-	can_dig = function(pos, player)
-		local pname = player:get_player_name()
-		local objs = minetest.get_objects_inside_radius(pos, 0.5)
-
-		for _, p in pairs(objs) do
-			if p:get_player_name() ~= nil or
-				default.player_attached[pname] == true or not
-				player or not player:is_player() then 
-				return false
-			end
-		end
-		return true
-	end
 })
 
 xdecor.register("cobweb", {
@@ -226,9 +124,7 @@ xdecor.register("cobweb", {
 	sounds = default.node_sound_leaves_defaults()
 })
 
-local colors = {"red"} -- Add more curtains colors simply here.
-
-for _, c in pairs(colors) do
+for _, c in pairs({"red"}) do  -- Add more curtains colors simply here.
 	xdecor.register("curtain_"..c, {
 		description = c:gsub("^%l", string.upper).." Curtain",
 		walkable = false,
@@ -273,35 +169,6 @@ xdecor.register("crate", {
 	tiles = {"xdecor_crate.png"},
 	groups = {choppy=2, oddly_breakable_by_hand=1, flammable=3},
 	sounds = default.node_sound_wood_defaults()
-})
-
-xdecor.register("cushion", {
-	description = "Cushion",
-	tiles = {"xdecor_cushion.png"},
-	groups = {snappy=3, flammable=3, fall_damage_add_percent=-50},
-	on_place = minetest.rotate_node,
-	node_box = xdecor.nodebox.slab_y(-0.5, 0.5),
-	on_rightclick = function(pos, node, clicker)
-		local objs = minetest.get_objects_inside_radius(pos, 0.5)
-		for _, p in pairs(objs) do
-			if p:get_player_name() ~= clicker:get_player_name() then return end
-		end
-		pos.y = pos.y + 0
-		sit(pos, node, clicker)
-	end,
-	can_dig = function(pos, player)
-		local pname = player:get_player_name()
-		local objs = minetest.get_objects_inside_radius(pos, 0.5)
-
-		for _, p in pairs(objs) do
-			if p:get_player_name() ~= nil or
-				default.player_attached[pname] == true or not
-				player or not player:is_player() then 
-				return false
-			end
-		end
-		return true
-	end
 })
 
 local function door_access(door)
@@ -371,7 +238,7 @@ xdecor.register("fire", {
 		{ name = "xdecor_fire_anim.png",
 		animation = {type="vertical_frames", length=1.5} }
 	},
-	damage_per_second = 2,
+	damage_per_second = 4,
 	drop = "",
 	selection_box = {
 		type = "fixed", fixed = {-0.3, -0.5, -0.3, 0.3, -0.3, 0.3}
@@ -459,8 +326,8 @@ xdecor.register("packed_ice", {
 	sounds = default.node_sound_glass_defaults()
 })
 
-local flowers = {"dandelion_white", "dandelion_yellow", "geranium",
-		"rose", "tulip", "viola"}
+local flowers = {"dandelion_white", "dandelion_yellow", "geranium", "rose",
+		"tulip", "viola"}
 
 for _, f in pairs(flowers) do
 	xdecor.register("potted_"..f, {
@@ -483,19 +350,46 @@ for _, f in pairs(flowers) do
 	})
 end
 
-xdecor.register("painting", {
+xdecor.register("painting_1", {
 	description = "Painting",
-	drawtype = "signlike",
-	tiles = {"xdecor_painting.png"},
-	inventory_image = "xdecor_painting.png",
+	tiles = {"xdecor_painting_1.png"},
+	inventory_image = "xdecor_painting_empty.png",
+	wield_image = "xdecor_painting_empty.png",
 	paramtype2 = "wallmounted",
 	legacy_wallmounted = true,
-	walkable = false,
-	on_rotate = screwdriver.rotate_simple,
-	wield_image = "xdecor_painting.png",
-	selection_box = {type="wallmounted"},
-	groups = {dig_immediate=3, flammable=3, attached_node=1}
+	wield_image = "xdecor_painting_empty.png",
+	sunlight_propagates = true,
+	groups = {choppy=3, oddly_breakable_by_hand=2, flammable=3, attached_node=1},
+	node_box = {
+		type = "wallmounted",
+		wall_top = {-0.4375, 0.4375, -0.3125, 0.4375, 0.5, 0.3125},
+		wall_bottom = {-0.4375, -0.5, -0.3125, 0.4375, -0.4375, 0.3125},
+		wall_side = {-0.5, -0.3125, -0.4375, -0.4375, 0.3125, 0.4375}
+	},
+	after_place_node = function(pos, _, _, _)
+		local node = minetest.get_node(pos)
+		minetest.set_node(pos, {name="xdecor:painting_"..math.random(1,4), param2=node.param2})
+	end
 })
+
+minetest.register_alias("xdecor:painting", "xdecor:painting_1")
+
+for i = 2, 4 do
+	xdecor.register("painting_"..i, {
+		tiles = {"xdecor_painting_"..i..".png"},
+		paramtype2 = "wallmounted",
+		legacy_wallmounted = true,
+		drop = "xdecor:painting_1",
+		sunlight_propagates = true,
+		groups = {choppy=3, oddly_breakable_by_hand=2, flammable=3, attached_node=1, not_in_creative_inventory=1},
+		node_box = {
+			type = "wallmounted",
+			wall_top = {-0.4375, 0.4375, -0.3125, 0.4375, 0.5, 0.3125},
+			wall_bottom = {-0.4375, -0.5, -0.3125, 0.4375, -0.4375, 0.3125},
+			wall_side = {-0.5, -0.3125, -0.4375, -0.4375, 0.3125, 0.4375}
+		}
+	})
+end
 
 for _, b in pairs({{"cactus", "cactus"}, {"moon", "stone"}}) do
 	xdecor.register(b[1].."brick", {
@@ -557,8 +451,8 @@ xdecor.register("stonepath", {
 	selection_box = xdecor.nodebox.slab_y(0.05)
 })
 
-local stonish = {"desertstone_tile", "stone_tile", "stone_rune",
-		"coalstone_tile", "hard_clay"}
+local stonish = {"desertstone_tile", "stone_tile", "stone_rune", "coalstone_tile",
+		"hard_clay"}
 
 for _, t in pairs(stonish) do
 	xdecor.register(t, {

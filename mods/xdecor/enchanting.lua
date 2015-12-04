@@ -18,18 +18,14 @@ function enchanting.formspec(pos, tooltype)
 			"tooltip[speed;Your speed is increased]"
 
 	if tooltype == "sword" then
-		formspec = formspec..
-				"image_button[3.9,2.9;4,0.92;bg_btn.png;sharp;Sharpness]"
+		formspec = formspec.."image_button[3.9,2.9;4,0.92;bg_btn.png;sharp;Sharpness]"
 	elseif tooltype == "tool" then
-		formspec = formspec..
-				"image_button[3.9,0.85;4,0.92;bg_btn.png;fast;Efficiency]"..
+		formspec = formspec.."image_button[3.9,0.85;4,0.92;bg_btn.png;fast;Efficiency]"..
 				"image_button[3.9,1.77;4,1.12;bg_btn.png;durable;Durability]"
 	elseif tooltype == "armor" then
-		formspec = formspec..
-				"image_button[3.9,0.85;4,0.92;bg_btn.png;strong;Strength]"
+		formspec = formspec.."image_button[3.9,0.85;4,0.92;bg_btn.png;strong;Strength]"
 	elseif tooltype == "boots" then
-		formspec = formspec..
-				"image_button[3.9,0.85;4,0.92;bg_btn.png;strong;Strength]"..
+		formspec = formspec.."image_button[3.9,0.85;4,0.92;bg_btn.png;strong;Strength]"..
 				"image_button[3.9,1.77;4,1.12;bg_btn.png;speed;Speed]"
 	end
 
@@ -80,18 +76,27 @@ function enchanting.dig(pos, _)
 	return inv:is_empty("tool") and inv:is_empty("mese")
 end
 
+local function allowed(tool)
+	for item, _ in pairs(minetest.registered_tools) do
+	for t in item:gmatch("enchanted_"..tool) do
+		if t then return true end
+	end
+	end
+
+	return false
+end
+
 function enchanting.put(_, listname, _, stack, _)
 	local toolstack = stack:get_name()
 	local toolname = toolstack:match("[%w_]+:([%w_]+)")
-	local count = stack:get_count()
-	local enchanted_tool = minetest.serialize(minetest.registered_tools):match("enchanted_"..toolname)
 
 	if listname == "mese" and toolstack ~= "default:mese_crystal" then
 		return 0
-	elseif listname == "tool" and not enchanted_tool then
+	elseif listname == "tool" and not allowed(toolname) then
 		return 0 
 	end
-	return count
+
+	return 1
 end
 
 xdecor.register("enchantment_table", {
@@ -120,7 +125,9 @@ xdecor.register("enchantment_table", {
 	allow_metadata_inventory_put = enchanting.put,
 	allow_metadata_inventory_move = function(...) return 0 end,
 	on_metadata_inventory_take = function(pos, listname, _, _, _)
-		if listname == "tool" then enchanting.formspec(pos, nil) end
+		if listname == "tool" then
+			enchanting.formspec(pos, nil)
+		end
 	end
 })
 
