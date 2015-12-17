@@ -1,5 +1,8 @@
 gameid = minetestforfun_creative
-backend = sqlite3
+backend = redis
+redis_hash = IGNORED
+redis_address = localhost
+redis_port = 6381
 
 load_mod_3dmushrooms = true
 load_mod__misc = true
@@ -123,7 +126,7 @@ load_mod_spawn = true
 load_mod_sponge = true
 load_mod_stained_glass = true
 load_mod_stairsshine = true
-load_mod_track_players = false
+load_mod_track_players = true
 load_mod_trunks = true
 load_mod_u_skins = true
 load_mod_unified_inventory = true
