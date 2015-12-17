@@ -33,6 +33,31 @@ xconnected.register_fence('xconnected:fence_pine',   'default_pine_wood.png',   
 xconnected.register_fence('xconnected:fence_jungle', 'default_junglewood.png',  'default:junglewood');
 xconnected.register_fence('xconnected:fence_acacia', 'default_acacia_wood.png', 'default:acacia_wood');
 
+-- Now, time for aliases
+minetest.register_alias('default:fence_wood', 'fences:fence_wood')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_1')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_2')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_3')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_4')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_5')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_11')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_12')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_13')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_14')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_15')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_21')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_22')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_23')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_24')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_25')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_31')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_32')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_33')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_34')
+minetest.register_alias('default:fence_wood', 'fences:fence_wood_35')
+
+
+
 --[[
 -- this innocent loop creates quite a lot of nodes - but only if you have the stained_glass mod installed
 if(    minetest.get_modpath( "stained_glass" )
