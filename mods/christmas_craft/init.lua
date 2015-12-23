@@ -1,6 +1,6 @@
 --dofile(minetest.get_modpath("christmas_craft").."/mods.lua")--disabled because 4seasons is not installed
 dofile(minetest.get_modpath("christmas_craft").."/crafts.lua") --temporary disabled because cristmas is over--
--- dofile(minetest.get_modpath("christmas_craft").."/settings.lua") -- makes it snow
+dofile(minetest.get_modpath("christmas_craft").."/settings.lua") -- makes it snow
 -- blocks --
 
 minetest.register_node("christmas_craft:snowman", {
@@ -59,13 +59,14 @@ minetest.register_node("christmas_craft:christmas_star", {
 	sounds = default.node_sound_sand_defaults(),
 })
 
-minetest.register_node("christmas_craft:snow_block", {
+--[[minetest.register_node("christmas_craft:snow_block", {
 	description = "snow block",
 	tiles = {"snow.png"},
 	is_ground_content = true,
 	groups = {crumbly=3},
 	sounds = default.node_sound_sand_defaults(),
-})
+})]]
+minetest.register_alias("christmas_craft:snow_block", "default:snowblock")
 
 minetest.register_node("christmas_craft:christmas_leaves", {
 	description = "Christmas leaves",
@@ -317,24 +318,25 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		groups = {crumbly=3},
 		drop = {
 			max_items = 1, min_items = 1, items = {
-				{items = {'default:bookshelf'},	rarity = 90,},
-				{items = {'default:pick_mese'},	rarity = 80,},
-				{items = {'default:shovel_steel'},	rarity = 90,},
-				{items = {'default:axe_steel'},	rarity = 90,},
-				{items = {'default:pick_steel'},	rarity = 90,},
-				{items = {'default:sign_wall'},	rarity = 80,},
-				{items = {'default:chest'},	rarity = 80,},
-				{items = {'default:furnace'},	rarity = 80,},
-				{items = {'default:steelblock'},	rarity = 80,},
-				{items = {'default:coal_lump'},	rarity = 80,},
-				{items = {'default:pick_diamond'},	rarity = 75,},
-				{items = {'default:shovel_diamond'},	rarity = 75,},
-				{items = {'default:axe_diamond'},	rarity = 75,},
-				{items = {'default:diamondblock'},	rarity = 75},
-				{items = {'fake_fire:flint_and_steel'},	rarity = 90,},
-				{items = {'default:chest_locked'},	rarity = 80,},
-				{items = {'default:brick'},	rarity = 80,},
+				{items = {'default:bookshelf'}, rarity = 90,},
+				{items = {'default:pick_mese'}, rarity = 80,},
+				{items = {'default:shovel_steel'},      rarity = 90,},
+				{items = {'default:axe_steel'}, rarity = 90,},
+				{items = {'default:pick_steel'},        rarity = 90,},
+				{items = {'default:sign_wall'}, rarity = 80,},
+				{items = {'default:chest'},     rarity = 80,},
+				{items = {'default:furnace'},   rarity = 80,},
+				{items = {'default:steelblock'},        rarity = 80,},
+				{items = {'default:coal_lump'}, rarity = 80,},
+				{items = {'default:pick_diamond'},      rarity = 75,},
+				{items = {'default:shovel_diamond'},    rarity = 75,},
+				{items = {'default:axe_diamond'},       rarity = 75,},
+				{items = {'default:diamondblock'},      rarity = 75},
+				{items = {'fake_fire:flint_and_steel'}, rarity = 90,},
+				{items = {'default:chest_locked'},      rarity = 80,},
+				{items = {'default:brick'},     rarity = 80,},
 				{items = {'default:dirt_with_grass'}, rarity = 80,},
+				{items = {'christmas_craft:Christmas_present'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -358,14 +360,15 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:furnace'},	rarity = 20,},
 				{items = {'default:steelblock'},	rarity = 25,},
 				{items = {'default:coal_lump'},	rarity = 25,},
-				{items = {'diamonds:pick'},	rarity = 30,},
-				{items = {'diamonds:shovel'},	rarity = 30,},
-				{items = {'diamonds:axe'},	rarity = 30,},
-				{items = {'diamonds:block'},	rarity = 30,},
+				{items = {'default:pick_diamond'},	rarity = 30,},
+				{items = {'default:shovel_diamond'},	rarity = 30,},
+				{items = {'default:axe_diamond'},	rarity = 30,},
+				{items = {'default:diamondblock'},	rarity = 30,},
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_green'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -389,14 +392,15 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:furnace'},	rarity = 20,},
 				{items = {'default:steelblock'},	rarity = 25,},
 				{items = {'default:coal_lump'},	rarity = 25,},
-				{items = {'diamonds:pick'},	rarity = 30,},
-				{items = {'diamonds:shovel'},	rarity = 30,},
-				{items = {'diamonds:axe'},	rarity = 30,},
-				{items = {'diamonds:block'},	rarity = 30,},
+				{items = {'default:pick_diamond'},	rarity = 30,},
+				{items = {'default:shovel_diamond'},	rarity = 30,},
+				{items = {'default:axe_diamond'},	rarity = 30,},
+				{items = {'default:diamondblock'},	rarity = 30,},
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_red'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -420,14 +424,15 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:furnace'},	rarity = 20,},
 				{items = {'default:steelblock'},	rarity = 25,},
 				{items = {'default:coal_lump'},	rarity = 25,},
-				{items = {'diamonds:pick'},	rarity = 30,},
-				{items = {'diamonds:shovel'},	rarity = 30,},
-				{items = {'diamonds:axe'},	rarity = 30,},
-				{items = {'diamonds:block'},	rarity = 30,},
+				{items = {'default:pick_diamond'},	rarity = 30,},
+				{items = {'default:shovel_diamond'},	rarity = 30,},
+				{items = {'default:axe_diamond'},	rarity = 30,},
+				{items = {'default:diamondblock'},	rarity = 30,},
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_blue'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -451,14 +456,15 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:furnace'},	rarity = 20,},
 				{items = {'default:steelblock'},	rarity = 25,},
 				{items = {'default:coal_lump'},	rarity = 25,},
-				{items = {'diamonds:pick'},	rarity = 30,},
-				{items = {'diamonds:shovel'},	rarity = 30,},
-				{items = {'diamonds:axe'},	rarity = 30,},
-				{items = {'diamonds:block'},	rarity = 30,},
+				{items = {'default:pick_diamond'},	rarity = 30,},
+				{items = {'default:shovel_diamond'},	rarity = 30,},
+				{items = {'default:axe_diamond'},	rarity = 30,},
+				{items = {'default:diamondblock'},	rarity = 30,},
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_yellow'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -482,14 +488,15 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:furnace'},	rarity = 20,},
 				{items = {'default:steelblock'},	rarity = 25,},
 				{items = {'default:coal_lump'},	rarity = 25,},
-				{items = {'diamonds:pick'},	rarity = 30,},
-				{items = {'diamonds:shovel'},	rarity = 30,},
-				{items = {'diamonds:axe'},	rarity = 30,},
-				{items = {'diamonds:block'},	rarity = 30,},
+				{items = {'default:pick_diamond'},	rarity = 30,},
+				{items = {'default:shovel_diamond'},	rarity = 30,},
+				{items = {'default:axe_diamond'},	rarity = 30,},
+				{items = {'default:diamondblock'},	rarity = 30,},
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_red'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -513,14 +520,15 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:furnace'},	rarity = 20,},
 				{items = {'default:steelblock'},	rarity = 25,},
 				{items = {'default:coal_lump'},	rarity = 25,},
-				{items = {'diamonds:pick'},	rarity = 30,},
-				{items = {'diamonds:shovel'},	rarity = 30,},
-				{items = {'diamonds:axe'},	rarity = 30,},
-				{items = {'diamonds:block'},	rarity = 30,},
+				{items = {'default:pick_diamond'},	rarity = 30,},
+				{items = {'default:shovel_diamond'},	rarity = 30,},
+				{items = {'default:axe_diamond'},	rarity = 30,},
+				{items = {'default:diamondblock'},	rarity = 30,},
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_violet'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -544,14 +552,15 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:furnace'},	rarity = 20,},
 				{items = {'default:steelblock'},	rarity = 25,},
 				{items = {'default:coal_lump'},	rarity = 25,},
-				{items = {'diamonds:pick'},	rarity = 30,},
-				{items = {'diamonds:shovel'},	rarity = 30,},
-				{items = {'diamonds:axe'},	rarity = 30,},
-				{items = {'diamonds:block'},	rarity = 30,},
+				{items = {'default:pick_diamond'},	rarity = 30,},
+				{items = {'default:shovel_diamond'},	rarity = 30,},
+				{items = {'default:axe_diamond'},	rarity = 30,},
+				{items = {'default:diamondblock'},	rarity = 30,},
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_orange'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -575,14 +584,15 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:furnace'},	rarity = 20,},
 				{items = {'default:steelblock'},	rarity = 25,},
 				{items = {'default:coal_lump'},	rarity = 25,},
-				{items = {'diamonds:pick'},	rarity = 30,},
-				{items = {'diamonds:shovel'},	rarity = 30,},
-				{items = {'diamonds:axe'},	rarity = 30,},
-				{items = {'diamonds:block'},	rarity = 30,},
+				{items = {'default:pick_diamond'},	rarity = 30,},
+				{items = {'default:shovel_diamond'},	rarity = 30,},
+				{items = {'default:axe_diamond'},	rarity = 30,},
+				{items = {'default:diamondblock'},	rarity = 30,},
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_pink'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -707,6 +717,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 
 -- complex node  --
 
+-- disable christmas_craft:snowball and make alias to default:snow
+minetest.register_alias("christmas_craft:snowball", "default:snow")
+--[[
 snowball_DAMAGE=0.5
 snowball_GRAVITY=9
 snowball_VELOCITY=19
@@ -768,6 +781,7 @@ minetest.register_craftitem("christmas_craft:snowball", {
 	inventory_image = "snowball.png",
 	on_use = snow_shoot_snowball,
 })
+--]]
 
 --Snow.
 minetest.register_node("christmas_craft:snow", {
@@ -781,7 +795,7 @@ minetest.register_node("christmas_craft:snow", {
 	--1 = Moss
 	groups = {crumbly=3,melts=1,falling_node=1},
 	buildable_to = true,
-	drop = 'christmas_craft:snowball',
+	drop = 'default:snow',
 	node_box = {
 		type = "fixed",
 		fixed = {
