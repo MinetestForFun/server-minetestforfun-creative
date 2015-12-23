@@ -21,7 +21,6 @@ load_mod_bushes = true
 load_mod_bushes_classic = true
 load_mod_carpet3d = true
 load_mod_cavestuff = true
-load_mod_chatplus = true
 load_mod_christmas_craft = true
 load_mod_clams = true
 load_mod_colored_steel = true
