@@ -27,16 +27,17 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "christmas_craft:snow_block",
 	recipe = {
-		{"christmas_craft:snowball","christmas_craft:snowball"},
-		{"christmas_craft:snowball","christmas_craft:snowball"},
+		{"default:snow","default:snow","default:snow"},
+		{"default:snow","default:snow","default:snow"},
+		{"default:snow","default:snow","default:snow"},
 	}
 })
 
 minetest.register_craft({
 	output = "christmas_craft:snowman",
 	recipe = {
-		{"default:coal_lump","christmas_craft:snowball","default:coal_lump"},
-		{"christmas_craft:snowball","christmas_craft:snowball","christmas_craft:snowball"},
+		{"default:coal_lump","default:snow","default:coal_lump"},
+		{"default:snow","default:snow","default:snow"},
 		{"default:coal_lump","default:coal_lump","default:coal_lump"},
 	}
 })
@@ -52,7 +53,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "christmas_craft:snowball 4",
+	output = "default:snow 9",
 	recipe = {
 		{"christmas_craft:snow_block"},
 	}
