@@ -1,4 +1,4 @@
-minetest.register_alias("xdecor:cauldron", "xdecor:cauldron_empty")
+minetest.register_alias("xdecor:cauldron", "xdecor:cauldron_empty") -- legacy code
 
 local cauldron_cbox = {
 	type = "fixed",
@@ -10,6 +10,15 @@ local cauldron_cbox = {
 		{-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	}
 }
+
+local function fill_water_bucket(pos, node, clicker, itemstack, _)
+	local wield_item = clicker:get_wielded_item():get_name()
+	if wield_item == "bucket:bucket_empty" then
+		minetest.set_node(pos, {name="xdecor:cauldron_empty", param2=node.param2})
+		itemstack:replace("bucket:bucket_water")
+	end
+end
+	
 
 xdecor.register("cauldron_empty", {
 	description = "Cauldron",
@@ -34,7 +43,8 @@ xdecor.register("cauldron_idle", {
 	tiles = {"xdecor_cauldron_top_idle.png", "xdecor_cauldron_sides.png"},
 	drop = "xdecor:cauldron_empty",
 	infotext = "Cauldron (idle)",
-	collision_box = cauldron_cbox
+	collision_box = cauldron_cbox,
+	on_rightclick = fill_water_bucket
 })
 
 xdecor.register("cauldron_boiling_water", {
@@ -48,7 +58,8 @@ xdecor.register("cauldron_boiling_water", {
 			animation = {type="vertical_frames", length=3.0} },
 		"xdecor_cauldron_sides.png"
 	},
-	collision_box = cauldron_cbox
+	collision_box = cauldron_cbox,
+	on_rightclick = fill_water_bucket
 })
 
 xdecor.register("cauldron_soup", {
@@ -94,18 +105,23 @@ minetest.register_abm({
 	nodenames = {"xdecor:cauldron_boiling_water"},
 	interval = 3, chance = 1,
 	action = function(pos, node, _, _)
-		local objs = nil
-		local ingredients = {}
-		objs = minetest.get_objects_inside_radius(pos, 0.5)
+		local objs = minetest.get_objects_inside_radius(pos, 0.5)
 		if not objs then return end
+
+		local ingredients = {}
+		local ingredients_list = {  -- Add more ingredients here that make a soup.
+			"apple", "mushroom", "honey", "pumpkin", "egg", "bread",
+			"meat", "chicken"
+		}
 
 		for _, obj in pairs(objs) do
 			if obj and obj:get_luaentity() then
-				local itemstring = obj:get_luaentity().itemstring:match("([%w_:]+)%s")
-				if itemstring and not minetest.serialize(ingredients):find(itemstring) and
-						(itemstring:find("apple") or itemstring:find("mushroom") or
-						itemstring:find("honey") or itemstring:find("pumpkin")) then	
-					ingredients[#ingredients+1] = itemstring
+				local itemstring = obj:get_luaentity().itemstring:match("[%w_]+:([%w_]+)")
+				for _, ing in pairs(ingredients_list) do
+					if itemstring and itemstring:match(ing)
+							and not minetest.serialize(ingredients):find(itemstring) then
+						ingredients[#ingredients+1] = itemstring
+					end
 				end
 			end
 		end

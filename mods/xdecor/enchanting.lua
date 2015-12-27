@@ -20,12 +20,14 @@ function enchanting.formspec(pos, tooltype)
 	if tooltype == "sword" then
 		formspec = formspec.."image_button[3.9,2.9;4,0.92;bg_btn.png;sharp;Sharpness]"
 	elseif tooltype == "tool" then
-		formspec = formspec.."image_button[3.9,0.85;4,0.92;bg_btn.png;fast;Efficiency]"..
+		formspec = formspec..
+				"image_button[3.9,0.85;4,0.92;bg_btn.png;fast;Efficiency]"..
 				"image_button[3.9,1.77;4,1.12;bg_btn.png;durable;Durability]"
 	elseif tooltype == "armor" then
 		formspec = formspec.."image_button[3.9,0.85;4,0.92;bg_btn.png;strong;Strength]"
 	elseif tooltype == "boots" then
-		formspec = formspec.."image_button[3.9,0.85;4,0.92;bg_btn.png;strong;Strength]"..
+		formspec = formspec..
+				"image_button[3.9,0.85;4,0.92;bg_btn.png;strong;Strength]"..
 				"image_button[3.9,1.77;4,1.12;bg_btn.png;speed;Speed]"
 	end
 
@@ -77,11 +79,12 @@ function enchanting.dig(pos, _)
 end
 
 local function allowed(tool)
-	for item, _ in pairs(minetest.registered_tools) do
-	for t in item:gmatch("enchanted_"..tool) do
-		if t then return true end
+	for item in pairs(minetest.registered_tools) do
+		if item:match("enchanted_"..tool) then
+			return true
+		end
 	end
-	end
+
 	return false
 end
 
@@ -172,7 +175,6 @@ for _, tooldef in next, defs, 1 do
 for _, ench in pairs(tooldef[3]) do
 	local tool, group, material, enchant = tooldef[1], tooldef[2], mat, ench
 	local original_tool = minetest.registered_tools[mod..":"..tool.."_"..material]
-	local ceil = math.ceil
 
 	if original_tool then
 		if mod == "default" then
@@ -184,7 +186,7 @@ for _, ench in pairs(tooldef[3]) do
 			local max_drop_level = original_tool.tool_capabilities.max_drop_level
 
 			if enchant == "durable" then
-				groupcaps[group].uses = ceil(original_groupcaps[group].uses * use_factor)
+				groupcaps[group].uses = math.ceil(original_groupcaps[group].uses * use_factor)
 			elseif enchant == "fast" then
 				for i = 1, 3 do
 					groupcaps[group].times[i] = original_groupcaps[group].times[i] - times_subtractor
@@ -213,7 +215,7 @@ for _, ench in pairs(tooldef[3]) do
 
 			for armor_group, value in pairs(original_armor_groups) do
 				if enchant == "strong" then
-					armorcaps[armor_group] = ceil(value * strength_factor)
+					armorcaps[armor_group] = math.ceil(value * strength_factor)
 				elseif enchant == "speed" then
 					armorcaps[armor_group] = value
 					armorcaps.physics_speed = speed_factor
@@ -231,7 +233,8 @@ for _, ench in pairs(tooldef[3]) do
 			})
 		end
 	end
-	minetest.register_alias("xdecor:enchanted_"..tool.."_"..material.."_"..enchant, mod..":enchanted_"..tool.."_"..material.."_"..enchant)
+	minetest.register_alias("xdecor:enchanted_"..tool.."_"..material.."_"..enchant, mod..
+			":enchanted_"..tool.."_"..material.."_"..enchant) -- legacy code
 end
 end
 end
