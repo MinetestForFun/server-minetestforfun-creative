@@ -40,7 +40,7 @@ minetest.register_node("advertising:cyberpangolin", {
 
 minetest.register_node("advertising:prayforparis_text", {
 	description = "Pray For Paris Text Advertising",
-	tile_images = {"advertising_prayforparis_text.png.png"},
+	tile_images = {"advertising_prayforparis_text.png"},
 	groups = {cracky=3, stone=2},
     	paramtype2 = "facedir",
     	paramtype = "light",
