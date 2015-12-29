@@ -1,6 +1,6 @@
 minetest.register_node("advertising:minetest1", {
 	description = "Minetest Advertising",
-	tile_images = {"minetest1_side.bmp", "minetest1.bmp"},
+	tile_images = {"minetest1_side.png", "minetest1.png"},
 	groups = {cracky=3, stone=2},
     paramtype2 = "facedir",
     paramtype = "light",
@@ -10,7 +10,7 @@ minetest.register_node("advertising:minetest1", {
 
 minetest.register_node("advertising:linux", {
 	description = "Linux Advertising",
-	tile_images = {"linux1_side.bmp", "linux1.bmp"},
+	tile_images = {"linux1_side.png", "linux1.png"},
 	groups = {cracky=3, stone=2},
     paramtype2 = "facedir",
     paramtype = "light",
