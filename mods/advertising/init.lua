@@ -1,6 +1,6 @@
 minetest.register_node("advertising:minetest1", {
 	description = "Minetest Advertising",
-	tile_images = {"minetest1_side.png", "minetest1.png"},
+	tiles = {"minetest1_side.png", "minetest1.png"},
 	groups = {cracky=3, stone=2},
     paramtype2 = "facedir",
     paramtype = "light",
@@ -10,7 +10,7 @@ minetest.register_node("advertising:minetest1", {
 
 minetest.register_node("advertising:linux", {
 	description = "Linux Advertising",
-	tile_images = {"linux1_side.png", "linux1.png"},
+	tiles = {"linux1_side.png", "linux1.png"},
 	groups = {cracky=3, stone=2},
     paramtype2 = "facedir",
     paramtype = "light",
@@ -20,7 +20,7 @@ minetest.register_node("advertising:linux", {
 
 minetest.register_node("advertising:minetestforfun", {
 	description = "MinetestForFun Advertising",
-	tile_images = {"advertising_mff.png"},
+	tiles = {"advertising_mff.png"},
 	groups = {cracky=3, stone=2},
     	paramtype2 = "facedir",
     	paramtype = "light",
@@ -30,7 +30,7 @@ minetest.register_node("advertising:minetestforfun", {
 
 minetest.register_node("advertising:cyberpangolin", {
 	description = "Cyberpangolin Advertising",
-	tile_images = {"advertising_cyberpangolin.png"},
+	tiles = {"advertising_cyberpangolin.png"},
 	groups = {cracky=3, stone=2},
     	paramtype2 = "facedir",
     	paramtype = "light",
@@ -40,7 +40,7 @@ minetest.register_node("advertising:cyberpangolin", {
 
 minetest.register_node("advertising:prayforparis_text", {
 	description = "Pray For Paris Text Advertising",
-	tile_images = {"advertising_prayforparis_text.png"},
+	tiles = {"advertising_prayforparis_text.png"},
 	groups = {cracky=3, stone=2},
     	paramtype2 = "facedir",
     	paramtype = "light",
@@ -50,7 +50,7 @@ minetest.register_node("advertising:prayforparis_text", {
 
 minetest.register_node("advertising:prayforparis_logo", {
 	description = "Pray For Paris Logo Advertising",
-	tile_images = {"advertising_prayforparis_logo.png"},
+	tiles = {"advertising_prayforparis_logo.png"},
 	groups = {cracky=3, stone=2},
     	paramtype2 = "facedir",
     	paramtype = "light",
