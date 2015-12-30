@@ -89,53 +89,42 @@ local function player_exists(name)
 	return false
 end
 
+
 -- Chatcommands removed
 --[[ Chatcommands (edited) written by sss
 minetest.register_chatcommand("to_hell", {
-	params = "",
+	params = "[<player_name>]",
 	description = "Send someone to hell",
 	func = function(name, pname)
-		if not minetest.get_player_privs(name).nether then
-			local self_player = minetest.get_player_by_name(name)
-			if self_player then
-				return false, "You can't send anyone to hell."
-			else
-				return false, "Something went wrong."
-			end
+		if not minetest.check_player_privs(name, {nether=true}) then
+			return false, "You need the nether priv to execute this chatcommand."
 		end
 		if not player_exists(pname) then
 			pname = name
 		end
 		local player = minetest.get_player_by_name(pname)
 		if not player then
-			minetest.chat_send_player(name, "Something went wrong.")
-			return false
+			return false, "Something went wrong."
 		end
 		minetest.chat_send_player(pname, "Go to hell !!!")
 		player_to_nether(player)
-		return true
+		return true, pname.." is now in the nether."
 	end
 })
 
 minetest.register_chatcommand("from_hell", {
-	params = "",
+	params = "[<player_name>]",
 	description = "Extract from hell",
 	func = function(name, pname)
-		if not minetest.get_player_privs(name).nether then
-			local self_player = minetest.get_player_by_name(name)
-			if self_player then
-				return false, "You can't extract anyone from hell"
-			else
-				return false, "Something went wrong."
-			end
+		if not minetest.check_player_privs(name, {nether=true}) then
+			return false, "You need the nether priv to execute this chatcommand."
 		end
 		if not player_exists(pname) then
 			pname = name
 		end
 		local player = minetest.get_player_by_name(pname)
 		if not player then
-			minetest.chat_send_player(name, "Something went wrong.")
-			return false
+			return false, "Something went wrong."
 		end
 		minetest.chat_send_player(pname, "You are free now")
 		player_from_nether(player)
@@ -219,6 +208,7 @@ minetest.register_abm({
 	nodenames = {"nether:portal"},
 	interval = 1,
 	chance = 2,
+	catch_up = false,
 	action = function(pos, node)
 		if not abm_allowed then
 			return
@@ -439,7 +429,6 @@ minetest.override_item("default:obsidian", {
 minetest.after(0.1, function()
 	minetest.override_item("default:mese_crystal_fragment", {
 		on_place = function(stack, player, pt)
-			print("moo")
 			if pt.under
 			and minetest.get_node(pt.under).name == "default:obsidian" then
 				print("[nether] tries to enable a portal")
@@ -520,11 +509,22 @@ local function netherport(pos)
 	return true
 end
 
+-- cache known portals
+local known_portals_d = {}
+local known_portals_u = {}
+local function get_portal(t, z,x)
+	return t[z] and t[z][x]
+end
+local function set_portal(t, z,x, y)
+	t[z] = t[z] or {}
+	t[z][x] = y
+end
+
 function nether_port(player, pos)
 	if not player
 	or not pos
 	or not pos.x then
-		print("[nether] something failed.")
+		minetest.log("error", "[nether] nether_port: something failed.")
 		return
 	end
 	if not netherport(pos) then
@@ -541,8 +541,11 @@ function nether_port(player, pos)
 		end
 		player:moveto(pos_togo)
 	else
-		player:moveto({x=pos.x, y=portal_target+math.random(4), z=pos.z})
-		nether.player_to_nether(player, true)
+		set_portal(known_portals_u, pos.z,pos.x, pos.y)
+		pos.y = get_portal(known_portals_d, pos.z,pos.x) or portal_target+math.random(4)
+		player:moveto(pos)
+		player_to_nether(player, true)
 	end
+	minetest.sound_play("nether_teleporter", {pos=pos})
 	return true
 end
