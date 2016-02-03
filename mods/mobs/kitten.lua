@@ -7,7 +7,9 @@ mobs:register_mob("mobs:kitten", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 4, hp_max = 8, armor = 200,
+	hp_min = 4,
+	hp_max = 8,
+	armor = 200,
 	-- textures and model
 	collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
@@ -27,6 +29,8 @@ mobs:register_mob("mobs:kitten", {
 	},
 	-- speed and jump
 	walk_velocity = 0.6,
+	run_velocity = 2,
+	runaway = true,
 	jump = false,
 	--	drops string
 --	drops = {
@@ -36,18 +40,23 @@ mobs:register_mob("mobs:kitten", {
 	-- damaged by
 	water_damage = 1,
 	lava_damage = 5,
+	fear_height = 3,
 	-- model animation
 	animation = {
 		speed_normal = 42,
-		stand_start = 97,		stand_end = 192,
-		walk_start = 0,			walk_end = 96,
+		stand_start = 97,
+		stand_end = 192,
+		walk_start = 0,
+		walk_end = 96,
 	},
 	-- follows Rat and Raw Fish
 	follow = {"mobs:rat", "ethereal:fish_raw"},
 	view_range = 10,
 	-- feed with raw fish to tame or right click to pick up
 	on_rightclick = function(self, clicker)
-		mobs:feed_tame(self, clicker, 4, true, true)
+		if mobs:feed_tame(self, clicker, 4, true, true) then
+			return
+		end
 		mobs:capture_mob(self, clicker, 50, 50, 90, false, nil)
 	end
 })

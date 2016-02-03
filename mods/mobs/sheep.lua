@@ -6,7 +6,7 @@ local all_colours = {
 
 -- Sheep by PilzAdam
 
-for _, col in ipairs(all_colours) do
+for _, col in pairs(all_colours) do
 
 	mobs:register_mob("mobs:sheep_"..col, {
 		-- animal, monster, npc, barbarian
@@ -18,7 +18,8 @@ for _, col in ipairs(all_colours) do
 		hp_max = 15,
 		armor = 200,
 		-- textures and model
-		collisionbox = {-0.4, -1, -0.4, 0.4, 0.3, 0.4},
+		--collisionbox = {-0.4, -1, -0.4, 0.4, 0.3, 0.4},
+		collisionbox = {-0.5, -1, -0.5, 0.5, 0.3, 0.5},
 		visual = "mesh",
 		mesh = "mobs_sheep.b3d",
 		textures = {
@@ -35,6 +36,7 @@ for _, col in ipairs(all_colours) do
 		-- speed and jump
 		walk_velocity = 1,
 		run_velocity = 2,
+		runaway = true,
 		jump = true,
 		-- drops raw meat and woll of its color when dead
 --		drops = {
@@ -49,9 +51,12 @@ for _, col in ipairs(all_colours) do
 		light_damage = 0,
 		-- model animation
 		animation = {
-			speed_normal = 15,		speed_run = 15,
-			stand_start = 0,		stand_end = 80,
-			walk_start = 81,		walk_end = 100,
+			speed_normal = 15,
+			speed_run = 15,
+			stand_start = 0,
+			stand_end = 80,
+			walk_start = 81,
+			walk_end = 100,
 		},
 		follow = {"farming:wheat", "default:grass_5"},
 		view_range = 10,
@@ -61,6 +66,7 @@ for _, col in ipairs(all_colours) do
 		replace_with = "air",
 		-- right click sheep to shear sheep and get wood, feed 8 wheat for wool to grow back
 		replace_offset = -1,
+		fear_height = 3,
 		on_rightclick = function(self, clicker)
 			local shpcolor = string.split(self.name,"_")[2]
 			if shpcolor =="dark" then
@@ -89,7 +95,7 @@ for _, col in ipairs(all_colours) do
 					if minetest.get_modpath("wool") then
 						local pos = self.object:getpos()
 						pos.y = pos.y + 0.5
-						local obj = minetest.add_item(pos, ItemStack("wool:"..shpcolor.." "..math.random(2,3)))
+						local obj = minetest.add_item(pos, ItemStack("wool:"..shpcolor.." "..math.random(1,3)))
 						if obj then
 							obj:setvelocity({
 								x = math.random(-1,1),
@@ -112,7 +118,10 @@ for _, col in ipairs(all_colours) do
 
 			--are we coloring?
 			if itemname:find("dye:") then
-				if self.gotten == false and self.child == false and self.tamed == true and name == self.owner then
+				if self.gotten == false
+				and self.child == false
+				and self.tamed == true
+				and name == self.owner then
 					local col = string.split(itemname,":")[2]
 					for _,c in pairs(all_colours) do
 						if c == col then
@@ -168,6 +177,7 @@ minetest.register_entity("mobs:sheep", {
 	end,
 
 	on_step = function(self, dtime)
+
 		self.timer = self.timer + dtime
 		if self.timer >= 1 then
 			self.timer = 0
@@ -180,17 +190,3 @@ minetest.register_entity("mobs:sheep", {
 	end,
 
 })
-
--- -- shears (right click sheep to shear wool)
--- minetest.register_tool("mobs:shears", {
--- 	description = "Steel Shears (right-click sheep to shear)",
--- 	inventory_image = "mobs_shears.png",
--- 	tool_capabilities = {				-- Modif MFF /DEBUT
--- 		full_punch_interval = 1,
--- 		max_drop_level=1,
--- 		groupcaps={
--- 			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=30, maxlevel=2},
--- 		},
--- 		damage_groups = {fleshy=0},
--- 	}
--- })							-- Modif MFF /FIN

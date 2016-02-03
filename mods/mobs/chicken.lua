@@ -7,7 +7,9 @@ mobs:register_mob("mobs:chicken", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 4, hp_max = 8, armor = 200,
+	hp_min = 4,
+	hp_max = 8,
+	armor = 200,
 	-- textures and model
 	collisionbox = {-0.3, -0.75, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
@@ -31,6 +33,8 @@ mobs:register_mob("mobs:chicken", {
 	},
 	-- speed and jump
 	walk_velocity = 1,
+	run_velocity = 3,
+	runaway = true,
 	jump = true,
 	-- drops raw chicken when dead
 --	drops = {
@@ -43,6 +47,7 @@ mobs:register_mob("mobs:chicken", {
 	light_damage = 0,
 	fall_damage = 0,
 	fall_speed = -8,
+	fear_height = 5,
 	-- model animation
 	animation = {
 		speed_normal = 15,
@@ -56,7 +61,9 @@ mobs:register_mob("mobs:chicken", {
 	view_range = 8,
 
 	on_rightclick = function(self, clicker)
-		mobs:feed_tame(self, clicker, 8, true, true)
+		if mobs:feed_tame(self, clicker, 8, true, true) then
+			return
+		end
 		mobs:capture_mob(self, clicker, 30, 50, 80, false, nil)
 	end,
 
@@ -134,12 +141,12 @@ mobs:register_arrow("mobs:egg_entity", {
 	end
 })
 
--- snowball throwing item
+-- egg throwing item
 
 local egg_GRAVITY = 9
 local egg_VELOCITY = 19
 
--- shoot snowball
+-- shoot egg
 local mobs_shoot_egg = function (item, player, pointed_thing)
 	local playerpos = player:getpos()
 	minetest.sound_play("default_place_node_hard", {
@@ -152,8 +159,10 @@ local mobs_shoot_egg = function (item, player, pointed_thing)
 		y = playerpos.y +1.5,
 		z = playerpos.z
 	}, "mobs:egg_entity")
+	local ent = obj:get_luaentity()
 	local dir = player:get_look_dir()
-	obj:get_luaentity().velocity = egg_VELOCITY -- needed for api internal timing
+	ent.velocity = egg_VELOCITY -- needed for api internal timing
+	ent.switch = 1 -- needed so that egg doesn't despawn straight away
 	obj:setvelocity({
 		x = dir.x * egg_VELOCITY,
 		y = dir.y * egg_VELOCITY,
