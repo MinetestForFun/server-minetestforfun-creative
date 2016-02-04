@@ -54,18 +54,11 @@ end
 
 	have_1112access(user,1)
 
-	if mode>=13 and admin==-1 then mode=12 end
+	if mode>=15 and admin==-1 then mode=14 end
 	if mode<=0 and admin==-1 then mode=1 end
 	if mode==8 and admin==-1 and diplazer_Enable_mode8==false then mode=9 end
-	if mode>=13 then mode=12 end
+	if mode>=15 then mode=14 end
 	if mode<=0 then mode=1 end
-
-
-	if mode==11 and admin==-1 and diplazer_Enable_com_mode11==false then mode=1 minetest.chat_send_player(user,"Mode 11 is inactived for this tool") end
-	if mode==12 and admin==-1 and diplazer_Enable_com_mode12==false then mode=2 minetest.chat_send_player(user,"Mode 12 is inactived for this tool") end
-	if mode==11 and admin>=0 and diplazer_Enable_mode11==false then mode=1 minetest.chat_send_player(user,"Mode 11 is inactived for this tool") end
-	if mode==12 and admin>=0 and diplazer_Enable_mode12==false then mode=2 minetest.chat_send_player(user,"Mode 12 is inactived for this tool") end
-
 
 	meta["mode"]=mode
 	mode=(meta["mode"])
@@ -90,10 +83,7 @@ end
 
 	diplazer_T(user,tellmode,user,admin)
 	minetest.sound_play("diplazer_mode" , {pos = pos, gain = 2.0, max_hear_distance = 5,})
-
 	return {access=true,item=item}
-
-
 	end
 
 
@@ -175,7 +165,9 @@ fmeta:set_string("formspec",
 	"button[5,4; 1.5,1;dip_cm9;Mode 9]" ..
 	"button[6.5,4; 1.5,1;dip_cm10;Mode 10]" ..
 	"button[3.5,0; 1.5,1;dip_cm11;Mode 11]" ..
-	"button[3.5,1; 1.5,1;dip_cm12;Mode 12]")
+	"button[3.5,1; 1.5,1;dip_cm12;Mode 12]"..
+	"button[3.5,2; 1.5,1;dip_cm13;Mode 13]" ..
+	"button[3.5,3; 1.5,1;dip_cm14;Mode 14]")
 	fmeta:set_string("infotext", "Diplazer switcher (owned by: " .. placer:get_player_name() .. ")")
 if tt==1 then
 fmeta:set_string("infotext", "Diplazer switcher")
@@ -183,13 +175,12 @@ end
 
 end
 
-
 minetest.register_node("diplazer:box", {
 	description = "Diplazer box",
 	tiles = {
 	"default_steel_block.png^diplazer_boxtop.png",
-	"default_steel_block.png",
 	"default_steel_block.png^diplazer_boxside.png",
+	"default_steel_block.png^diplazer_boxside2.png",
 	"default_steel_block.png^diplazer_boxside.png",
 	"default_steel_block.png^diplazer_boxside.png",
 	"default_steel_block.png^diplazer_boxpanel.png",},
@@ -231,7 +222,7 @@ allow_metadata_inventory_take = function(pos, listname, index, stack, player)
 can_dig = function(pos, player)
 		local meta=minetest.get_meta(pos)
 		local inv=meta:get_inventory()
-		if player:get_player_name() ~= meta:get_string("owner") then
+		if player:get_player_name() ~= meta:get_string("owner") and meta:get_string("owner")~="" then
 		return false
 		end
 		return inv:get_stack("dipinv", 1):is_empty() and inv:get_stack("diprep", 1):is_empty()
@@ -257,6 +248,8 @@ on_receive_fields = function(pos, formname, fields, sender)
 		if fields.dip_cm10 then meta:set_string("setmode", "10") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
 		if fields.dip_cm11 then meta:set_string("setmode", "11") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
 		if fields.dip_cm12 then meta:set_string("setmode", "12") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm13 then meta:set_string("setmode", "13") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
+		if fields.dip_cm14 then meta:set_string("setmode", "14") minetest.get_node_timer(pos):start(1) diaplzer_loadbox=1 end
 
 
 		if fields.dip_hlp then

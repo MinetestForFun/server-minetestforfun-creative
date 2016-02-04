@@ -20,10 +20,6 @@ local function diplazer_Transferuse_count(to_do,pos,user,diplazer_amountT,nodes2
 	return false
 	end
 
-
-
-
-	print(diplazer_amountT)
 	if to_do=="check" then
 		pos.y=pos.y+1
 	end

@@ -34,6 +34,7 @@ or / if you not have a keyboard, use switcher:  dipalzer:box / di_box
 Place:
 Place nodes front of you
 if there is atleast 1 block over the pointed, it will place backwards
+if there is a block on the backside of the pointed, it will use its rotation (between you and the pointed)
 Dc: taking from inventory
 Dg: taking from inventory if not have give
 Da: 
@@ -41,10 +42,10 @@ Dan:
 [][B][D][][][][][]
 
 Shoot lazer:
-Dc: hurts 10hp if pvp is off 	/ can pick up droped stuff / taking from inventory
-Dg: always hurts 10hp	/ can pick up droped stuff / taking from inventory if not have give
-Da: always kills		/ can pick up droped stuff
-Dan: always kills		/ destroy droped stuff
+Dc: hurts 10hp if pvp is off 	/ can pick up drops
+Dg: always hurts 10hp	/ can pick up drops
+Da: always kills		/ can pick up drops
+Dan: always kills		/ destroy drops
 [][?][D][][][][][]
 
 
@@ -106,6 +107,18 @@ It will always place front then the other to left, this mking it automacly fill 
 Place platform:
 this will always palce stack x stack (like 2=4, 5=25, 10=100 ...)
 to use more then 10 do /di_1112 to get access until next time you change mods or if someone leaves the game
+[][B][D][][][][][]
+
+================Mode13================
+Place cube:
+this works like mode11, but in 3d like stack x stack x stack (2=8, 5=125, 10=1000)
+to use more then 10 do /di_1112 to get access 1 time
+[][B][D][][][][][]
+
+================Mode14================
+Dig cube:
+this works like mode13, but will dig instand stack x stack x stack (2=8, 5=125, 10=1000)
+to use more then 10 do /di_1112 to get access 1 time
 [][B][D][][][][][]
 
 ==================================================

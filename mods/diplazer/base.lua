@@ -9,6 +9,9 @@ local function diplazer_getAmount(player, mode,admin)
 	elseif stack_count>diplazer_amount*2 and admin==1 then stack_count=diplazer_amount*2
 	elseif stack_count>diplazer_com_amount and admin==-1 then stack_count=diplazer_com_amount
 	end
+	if (mode==13 or mode==14) then
+		return stack_count
+	end
 	if (mode==11 or mode==12) then
 		return stack_count
 	end
@@ -49,8 +52,10 @@ function diplazer_T(name,msg,user,admin,box)
 		Mode[8]="Gravity gun (click to pickup, click it again to drop, right+click to throw it away jump+click to drop single block/stack)"
 		Mode[9]="Replace front: stack to left replace with stack to right"
 		Mode[10]="AutoSwitch using from all stacks in hotbar from left to right [place dipalzer to right for max use]"
-		Mode[11]="Place platform NxN amo"
-		Mode[12]="Dig platform NxN amo"
+		Mode[11]="Massive Place: platform NxN nodes"
+		Mode[12]="Massive Dig: platform NxN nodes"
+		Mode[13]="Massive Place: cube NxNxN nodes (be extremely careful!)"
+		Mode[14]="Massive Dig: cube NxNxN nodes (be extremely careful!)"
 		minetest.chat_send_player(name,"Diplazer Mode" .. msg .. ": ".. Mode[msg])
 	end
 end
@@ -167,7 +172,7 @@ function have_1112access(name,remove)
 	if remove==1 then
 		for i=1,diplazer_getLength(diplazer_1112access),1 do
 			if name==diplazer_1112access[i] then
-				diplazer_1112access[i]=nil
+				table.remove(diplazer_1112access,i)
 				return true
 			end
 		end
@@ -568,7 +573,7 @@ if GGunInUse>0 then
 	end
 end)
 
-local function diplazer_is_unbreakable(pos)
+function diplazer_is_unbreakable(pos)
 	local nodedef
 
 	nodedef = minetest.registered_nodes[minetest.get_node(pos).name]
@@ -682,15 +687,13 @@ local function diplazer_place(pos, player, stack_count,Name,Node,creative,admin)
 
 	if Node.name=="diplazer:box" and admin<1 then return false end
 
-	local fn = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).name]
+	local fn = minetest.registered_nodes[minetest.get_node(pos).name]
 
 	if admin<0 and fn.drop=="" and fn.name:find("maptools:",1)~=nil then return false end
 
 	if fn.walkable==false then
-
 		if stack_count>0 then
-			minetest.add_node({x=pos.x, y=pos.y, z=pos.z}, Node)
-
+			minetest.set_node(pos, Node)
 			if not creative and admin==0 and diplazer_Enable_gun_limitation==true then
 				player:get_inventory():remove_item("main", Name)
 				return true
@@ -809,6 +812,7 @@ local function diplazer_use(pos, player, meta,admin,drops,keys,com)
 			end
 		end
 		if Items==0 then
+			minetest.sound_play("diplazer_error", {pos = player:getpos(), gain = 1.0, max_hear_distance = 10,})
 			minetest.chat_send_player(player:get_player_name(), "You need at least 1 slot free while digging")
 			return false
 		end
@@ -1024,7 +1028,6 @@ end
 
 	if mode == 1 then
 	local lazer=0
-
 			if is_node then
 				if drops==0 then Name="diplazer:lazer_adminno"
 				elseif admin==0 then Name="diplazer:lazer_gun"
@@ -1042,10 +1045,9 @@ end
 
 			local plus=1
 			local minus=-1
-			local dir = diplazer_getdir(player)
 			local tp2node1=minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).name].walkable
 			local tp2node2=minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name].walkable
-
+			local dir = diplazer_getdir(player)
 			if tp2node1==true and tp2node2==true then
 				pos.y=pos.y-1
 				plus=-1
@@ -1057,8 +1059,16 @@ end
 			end
 
 			minetest.sound_play("diplazer_place", {pos = player:getpos(), gain = 1.0, max_hear_distance = 5,})
-
+			
 			pos.y=pos.y+1
+
+				local param=0
+				if dir==0 then  param=minetest.get_node({x=pos.x-1,y=pos.y,z=pos.z}).param2 end
+				if dir==1 then  param=minetest.get_node({x=pos.x+1,y=pos.y,z=pos.z}).param2 end
+				if dir==2 then  param=minetest.get_node({x=pos.x,y=pos.y,z=pos.z-1}).param2 end
+				if dir==3 then  param=minetest.get_node({x=pos.x,y=pos.y,z=pos.z+1}).param2 end
+
+				Node.param2=param
 				for i=1,diplazer_amountT,1 do
 
 				if lazer==1 then
@@ -1081,8 +1091,6 @@ end
 						end
 				end
 				end
-
-
 					if diplazer_place(pos, player, stack_count,Name,Node,creative,admin)==true then
 						stack_count=stack_count-1
 						if dir==0 then pos.x=pos.x+plus end
@@ -1248,6 +1256,119 @@ end
 		end
 		return true
 	end
+
+	if mode == 13 or mode == 14 then
+	local y=1
+		local pos3={x=pos.x,y=pos.y+1,z=pos.z}
+		local pos2={x=pos.x,y=pos.y+1,z=pos.z}
+		local pos1={x=pos.x,y=pos.y+1,z=pos.z}
+	if mode==14 then
+		y=-1
+		pos3={x=pos.x,y=pos.y,z=pos.z}
+		pos2={x=pos.x,y=pos.y,z=pos.z}
+		pos1={x=pos.x,y=pos.y,z=pos.z}
+	end
+	local plus=1
+	local minus=-1
+	local dir=diplazer_getdir(player)
+
+	if stack_count>diplazer_amountT and admin>0 then
+		stack_count=diplazer_amountT*2
+	elseif stack_count>diplazer_amountT then
+		stack_count=diplazer_amountT
+	end
+	if stack_count>diplazer_mode1314_Max then
+		stack_count=diplazer_mode1314_Max
+	end
+
+	if mode==13 and (admin<1 or creative==0) then
+		local stackcount=0
+		local stack_should_be=(stack_count*stack_count)*stack_count
+		for i=0,32,1 do
+			local st=player:get_inventory():get_stack("main",i)
+			if st:get_name()==Name then
+				stackcount=stackcount+st:get_count()
+			end
+			if stackcount>=stack_should_be then
+				break
+			end
+			if i==32 then
+				minetest.sound_play("diplazer_error", {pos = player:getpos(), gain = 1.0, max_hear_distance = 10,})
+				minetest.chat_send_player(player_name, "You need more blocks to place (will place: ".. stack_should_be .. " missing: " .. stack_should_be-stackcount .. ")")
+				return false
+			end
+		end
+	end
+
+	if mode==14 and (admin<1 or creative==0) then
+		local stack_should_be=(stack_count*stack_count)*stack_count
+		local stackcount=stack_should_be+99
+		for i=0,32,1 do
+			local st=player:get_inventory():get_stack("main",i)
+			if st:get_name()=="" then
+				stackcount=stackcount-99
+			end
+			if stackcount<=0 then
+				break
+			end
+			if i==32 then
+				local tmpnfree=stackcount
+				local nfree=0
+				for i2=0,stackcount,1 do
+					tmpnfree=tmpnfree-99
+					nfree=nfree+1
+					if tmpnfree<=0 then break end
+				end
+				minetest.sound_play("diplazer_error", {pos = player:getpos(), gain = 1.0, max_hear_distance = 10,})
+				minetest.chat_send_player(player_name, "You need a more empty inventory to dig (will dig: ".. stack_should_be .. " need empty slots: " .. nfree .. ")")
+				return false
+			end
+		end
+	end
+
+	if stack_count>10 and have_1112access(player_name,0)==false then
+		minetest.sound_play("diplazer_error", {pos = player:getpos(), gain = 1.0, max_hear_distance = 10,})
+		return false
+	elseif stack_count>10 then
+		have_1112access(player_name,1)
+	end
+
+	if mode==13 then
+		minetest.sound_play("diplazer_massive3dplace", {pos=player:getpos(), gain = 1.0, max_hear_distance = 10,})
+	else
+		minetest.sound_play("diplazer_massive3ddig", {pos=player:getpos(), gain = 1.0, max_hear_distance = 10,})
+	end
+
+	for i1=1,stack_count,1 do					 --level
+		for i2=1,stack_count,1 do				 --front
+			for i3=1,stack_count,1 do			 --side
+					if mode==13 then
+						if diplazer_place(pos3, player, stack_count,Name,Node,creative,admin)==false then
+							break
+						end
+					else
+						if diplazer_dig(pos3,player,drops,admin)==false then
+							break
+						end
+					end
+					if dir==0 then pos3.z=pos3.z+plus  end
+					if dir==1 then pos3.z=pos3.z+minus end
+					if dir==2 then pos3.x=pos3.x+minus end
+					if dir==3 then pos3.x=pos3.x+plus end
+			end
+				if dir==0 then pos3.z=pos2.z		pos3.x=pos3.x+1		pos2.x=pos2.x+1 end
+				if dir==1 then pos3.z=pos2.z		pos3.x=pos3.x-1		pos2.x=pos2.x-1 end
+				if dir==2 then pos3.x=pos2.x		pos3.z=pos3.z+1		pos2.z=pos2.z+1 end
+				if dir==3 then pos3.x=pos2.x		pos3.z=pos3.z-1		pos2.z=pos2.z-1 end
+		end
+	pos1.y=pos1.y+y
+	pos2={x=pos1.x,y=pos1.y,z=pos1.z}
+	pos3={x=pos2.x,y=pos2.y,z=pos2.z}
+	end
+
+
+
+	end-- end of cube mode
 end
 
 
@@ -1289,16 +1410,9 @@ local function diplazer_setmode(user,itemstack,admin,keys,drops,com)
 	else mode=mode+1
 	end
 
-
 	have_1112access(player_name,1)
 
 -- Settings mode for :com
-
-	if mode==11 and diplazer_Enable_com_mode12==true and diplazer_Enable_com_mode11==false and admin==-1 and keys.jump then mode=10 end
-	if mode<=0 and diplazer_Enable_com_mode12==false and diplazer_Enable_com_mode11==true and admin==-1 and	keys.jump	then mode=11 end
-	if mode<=0 and diplazer_Enable_com_mode12==false and diplazer_Enable_com_mode11==false and admin==-1 and	keys.jump	then mode=10 end
-	if mode==11 and diplazer_Enable_com_mode11==false and admin==-1 then mode=12 end
-	if mode==12 and diplazer_Enable_com_mode12==false and admin==-1 then mode=1 end
 
 	if diplazer_Enable_com_mode8==false then
 	if mode==8 and keys.sneak and keys.jump and admin==-1 then mode=7 end
@@ -1307,19 +1421,8 @@ local function diplazer_setmode(user,itemstack,admin,keys,drops,com)
 
 -- Settings mode for :gun or better
 
-	if mode==11 and diplazer_Enable_mode12==true and diplazer_Enable_mode11==false and admin>=0 and keys.jump then mode=10 end
-	if mode<=0 and diplazer_Enable_mode12==false and diplazer_Enable_mode11==true and admin>=0 and	keys.jump	then mode=11 end
-	if mode<=0 and diplazer_Enable_mode12==false and diplazer_Enable_mode11==false and admin>=0 and	keys.jump	then mode=10 end
-	if mode==11 and diplazer_Enable_mode11==false and admin>=0 then mode=12 end
-	if mode==12 and diplazer_Enable_mode12==false and admin>=0 then mode=1 end
-
-	if mode>=13 and admin>=0 then mode=1 end
-	if mode<=0 and admin>=0 then mode=12 end
-
---
-
-	if mode>=13 then mode=1 end
-	if mode<=0 then mode=12 end
+	if mode>=15 then mode=1 end
+	if mode<=0 then mode=14 end
 
 --
 	if mode==8 and diplazer_Enable_mode8==false and keys.jump then mode=7 end
@@ -1430,10 +1533,24 @@ end
 		if GGunInUse<0 then GGunInUse=0 end
 		local len=diplazer_getLength(diplazer_UserTele)
 
-
+		for i=1,len,1 do
+			if diplazer_Tele[i] and diplazer_Tele[i]~=false and diplazer_UserTele[i]~=false then
+				if diplazer_UserTele[i]=="8?" .. player_name and diplazer_Tele[i]:is_player() then
+					diplazer_Tele[i]:set_physics_override({gravity=diplazer_restore_gravity_to,})
+					diplazer_Tele[i]=false
+					diplazer_UserTele[i]=false
+					GGunInUse=GGunInUse-1
+					break
+				end
+			end
+		end
 
 		for i=1,len,1 do
 			if meta.mode .."?".. player_name==diplazer_UserTele[i] and (not diplazer_Tele[i]==false ) then
+
+
+
+
 
 			if diplazer_Tele[i]==nil or diplazer_Tele[i]==0 then return false end
 			if minetest.get_node(diplazer_Tele[i]:getpos())
@@ -1654,10 +1771,7 @@ minetest.register_tool("diplazer:adminno", {
 })
 
 if diplazer_Enable_com==true then
-for i=1,12,1 do
-
-if i==11 and diplazer_Enable_com_mode11==false then i=i+1 end
-if i==12 and diplazer_Enable_com_mode12==false then return end
+for i=1,14,1 do
 
 	minetest.register_tool("diplazer:com" .. i, {
 		description = "Diplazer mode ".. i,
@@ -1706,11 +1820,7 @@ end
 end
 end
 
-for i=1,12,1 do
-
-if i==11 and diplazer_Enable_mode11==false then i=i+1 end
-if i==12 and diplazer_Enable_mode12==false then return end
-
+for i=1,14,1 do
 
 	minetest.register_tool("diplazer:gun" .. i, {
 		description = "Diplazer mode ".. i,
@@ -1837,7 +1947,7 @@ minetest.register_node("diplazer:lazer_" .. diplazer_lazer[i], {
 	walkable=false,
 	use_texture_alpha = true,
 	drawtype = "glasslike",
-	sunlight_propagates = false,
+	sunlight_propagates = true,
 	groups = {not_in_creative_inventory=1,liquid = 2, hot = 3,igniter = 1},
 can_dig = function(pos, player)
 		return false
@@ -1852,7 +1962,7 @@ minetest.register_node("diplazer:lazerblock_" .. diplazer_lazer[i], {
 	alpha = 30,
 	use_texture_alpha = true,
 	drawtype = "glasslike",
-	sunlight_propagates = false,
+	sunlight_propagates = true,
 	groups = {cracky=3,oddly_breakable_by_hand=3},
 	sounds=default.node_sound_stone_defaults(),
 })
