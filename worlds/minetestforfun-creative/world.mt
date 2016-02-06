@@ -127,6 +127,7 @@ load_mod_spawn = true
 load_mod_sponge = true
 load_mod_stained_glass = true
 load_mod_stairsshine = true
+load_mod_time_regulation = true
 load_mod_track_players = true
 load_mod_trunks = true
 load_mod_u_skins = true

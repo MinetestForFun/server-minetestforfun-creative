@@ -16,3 +16,6 @@
 [submodule "mods/cottages"]
 	path = mods/cottages
 	url = git://github.com/Sokomine/cottages.git
+[submodule "mods/time_regulation"]
+	path = mods/time_regulation
+	url = https://github.com/MinetestForFun/time_regulation.git
