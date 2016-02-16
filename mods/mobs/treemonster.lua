@@ -7,6 +7,7 @@ mobs:register_mob("mobs:tree_monster", {
 	-- aggressive, deals 9 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
+	reach = 2,
 	damage = 8,
 	-- health & armor
 	hp_min = 40,
@@ -32,16 +33,11 @@ mobs:register_mob("mobs:tree_monster", {
 	view_range = 16,
 	-- drops saplings, junglesapling, apple and/or silver coin
 	drops = {
-		{name = "default:sapling",
-		chance = 2, min = 1, max = 2},
-		{name = "default:junglesapling",
-		chance = 2, min = 1, max = 2},
-		{name = "default:apple",
-		chance = 2, min = 2, max = 3,},
-		{name = "maptools:superapple",
-		chance = 4, min = 1, max = 1,},
-		{name = "maptools:silver_coin",
-		chance = 3, min = 1, max = 1,},
+		{name = "default:sapling", chance = 2, min = 1, max = 2},
+		{name = "default:junglesapling", chance = 2, min = 1, max = 2},
+		{name = "default:apple", chance = 2, min = 2, max = 3,},
+		{name = "maptools:superapple", chance = 4, min = 1, max = 1,},
+		{name = "maptools:silver_coin", chance = 3, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
@@ -50,15 +46,22 @@ mobs:register_mob("mobs:tree_monster", {
 	fall_damage = 0,
 	-- model animation
 	animation = {
-		speed_normal = 15,		speed_run = 15,
-		stand_start = 0,		stand_end = 24,
-		walk_start = 25,		walk_end = 47,
-		run_start = 48,			run_end = 62,
-		punch_start = 48,		punch_end = 62,
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 0,
+		stand_end = 24,
+		walk_start = 25,
+		walk_end = 47,
+		run_start = 48,
+		run_end = 62,
+		punch_start = 48,
+		punch_end = 62,
 	},
 })
+
 -- spawn on leaves and beech_leaves, between 0 and 5 light, 1 in 8000 chance, 1 in area up to 31000 in height
-mobs:spawn_specific("mobs:tree_monster", {"default:leaves", "moretrees:beech_leaves"}, {"air"}, 0, 5, 30, 8000, 1, -31000, 31000, false)
+mobs:spawn_specific("mobs:tree_monster", {"default:leaves", "moretrees:beech_leaves"}, {"air"}, 0, 5, 30, 8000, 1, -31000, 31000, false, false)
+
 -- register spawn egg
 mobs:register_egg("mobs:tree_monster", "Tree Monster", "mobs_tree_monster_inv.png", 1)
 
@@ -67,3 +70,12 @@ if not minetest.get_modpath("ethereal") then
 	minetest.register_alias("ethereal:tree_sapling", "default:sapling")
 	minetest.register_alias("ethereal:jungle_tree_sapling", "default:junglesapling")
 end
+
+minetest.register_craft({
+	output = "mobs:tree_monster",
+	recipe = {
+		{"default:tree", "default:tree", "default:tree"},
+		{"default:tree", "default:nyancat_rainbow", "default:tree"},
+		{"default:tree", "default:tree", "default:tree"}
+	}
+})

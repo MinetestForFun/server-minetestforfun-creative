@@ -7,10 +7,11 @@ mobs:register_mob("mobs:stone_monster", {
 	-- aggressive, deals 8 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 7,
+	reach = 2,
+	damage = 6,
 	-- health & armor
-	hp_min = 30,
-	hp_max = 35,
+	hp_min = 20,
+	hp_max = 25,
 	armor = 70,
 	-- textures and model
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
@@ -36,12 +37,9 @@ mobs:register_mob("mobs:stone_monster", {
 	drops = {
 		{name = "default:torch",
 		chance = 10, min = 3, max = 5,},
-		{name = "default:iron_lump",
-		chance = 5, min = 1, max = 2,},
-		{name = "default:coal_lump",
-		chance = 3, min = 1, max = 3,},
-		{name = "maptools:silver_coin",
-		chance = 1, min = 1, max = 1,},
+		{name = "default:iron_lump", chance = 5, min = 1, max = 2,},
+		{name = "default:coal_lump", chance = 3, min = 1, max = 3,},
+		{name = "maptools:silver_coin", chance = 1, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,
@@ -49,14 +47,30 @@ mobs:register_mob("mobs:stone_monster", {
 	light_damage = 0,
 	-- model animation
 	animation = {
-		speed_normal = 15,		speed_run = 15,
-		stand_start = 0,		stand_end = 14,
-		walk_start = 15,		walk_end = 38,
-		run_start = 40,			run_end = 63,
-		punch_start = 40,		punch_end = 63,
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 0,
+		stand_end = 14,
+		walk_start = 15,
+		walk_end = 38,
+		run_start = 40,
+		run_end = 63,
+		punch_start = 40,
+		punch_end = 63,
 	},
 })
+
 -- spawns on stone between -1 and 5 light, 1 in 7000 chance, 1 in area below -25
 mobs:spawn_specific("mobs:stone_monster", {"default:stone", "default:sandstone"}, {"air"}, -1, 5, 30, 7000, 1, -31000, -25, false)
+
 -- register spawn egg
 mobs:register_egg("mobs:stone_monster", "Stone Monster", "mobs_stone_monster_inv.png", 1)
+
+minetest.register_craft({
+	output = "mobs:stone_monster",
+	recipe = {
+		{"default:stone", "default:stone", "default:stone"},
+		{"default:stone", "default:nyancat_rainbow", "default:stone"},
+		{"default:stone", "default:stone", "default:stone"}
+	}
+})

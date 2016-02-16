@@ -7,6 +7,7 @@ mobs:register_mob("mobs:oerkki", {
 	-- aggressive, deals 7 damage when player hit
 	passive = false,
 	attack_type = "dogfight",
+	reach = 2,
 	damage = 6,
 	-- health & armor
 	hp_min = 40,
@@ -25,7 +26,7 @@ mobs:register_mob("mobs:oerkki", {
 	makes_footstep_sound = false,
 	sounds = {
 		random = "mobs_oerkki",
-		attack = "mobs_oerkki_attack",
+		shoot_attack = "mobs_oerkki_attack",
 	},
 	-- speed and jump
 	walk_velocity = 2,
@@ -34,22 +35,26 @@ mobs:register_mob("mobs:oerkki", {
 	jump = true,
 	-- chance of dropping obsidian and coins
 	drops = {
-		{name = "default:obsidian",
-		chance = 3, min = 1, max = 2,},
-		{name = "maptools:silver_coin",
-		chance = 1, min = 1, max = 1},
+		{name = "default:obsidian", chance = 3, min = 1, max = 2,},
+		{name = "maptools:silver_coin", chance = 1, min = 1, max = 1},
 	},
 	-- damaged by
 	water_damage = 2,
 	lava_damage = 4,
 	light_damage = 1,
+	fear_height = 3,
 	-- model animation
 	animation = {
-		stand_start = 0,		stand_end = 23,
-		walk_start = 24,		walk_end = 36,
-		run_start = 37,			run_end = 49,
-		punch_start = 37,		punch_end = 49,
-		speed_normal = 15,		speed_run = 15,
+		stand_start = 0,
+		stand_end = 23,
+		walk_start = 24,
+		walk_end = 36,
+		run_start = 37,
+		run_end = 49,
+		punch_start = 37,
+		punch_end = 49,
+		speed_normal = 15,
+		speed_run = 15,
 	},
 	-- replace torch with air (remove)
 	replace_rate = 50,

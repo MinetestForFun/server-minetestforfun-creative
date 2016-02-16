@@ -64,3 +64,6 @@ alias("advertising:pepso", "default:stone")
 alias("advertising:mineyoshi", "default:stone")
 alias("advertising:michel", "default:stone")
 alias("advertising:avivas", "default:stone")
+
+-- Remove "xmas_tree" from snow mod
+alias("snow:xmas_tree", "default:dirt")

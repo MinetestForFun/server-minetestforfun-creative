@@ -26,6 +26,7 @@ dofile(path.."/sandmonster.lua") -- PilzAdam
 dofile(path.."/stonemonster.lua") -- PilzAdam
 dofile(path.."/treemonster.lua") -- PilzAdam
 dofile(path.."/wolf.lua") -- PilzAdam
+dofile(path.."/dog.lua") -- CProgrammerRU
 --dofile(path.."/lava_flan.lua") -- Zeg9 --Remplaced by Lava Slimes
 dofile(path.."/mese_monster.lua") -- Zeg9
 dofile(path.."/spider.lua") -- AspireMint
@@ -34,6 +35,10 @@ dofile(path.."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
 dofile(path.."/zombie.lua") -- ???
 dofile(path.."/yeti.lua") -- ???
 dofile(path.."/minotaur.lua") -- Kalabasa
+
+-- The bosses
+dofile(path.."/pumpkins.lua")
+dofile(path.."/ent.lua")
 ]]
 
 -- begin slimes mobs compatibility changes

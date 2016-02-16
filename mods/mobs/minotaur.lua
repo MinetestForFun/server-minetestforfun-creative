@@ -7,11 +7,11 @@ mobs:register_mob("mobs:minotaur", {
 	-- aggressive, deals 11 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 10,
+	damage = 7,
 	-- health & armor
-	hp_min = 80,
-	hp_max = 100,
-	armor = 70,
+	hp_min = 60,
+	hp_max = 70,
+	armor = 90,
 	-- textures and model
 	collisionbox = {-0.9,-0.01,-0.9, 0.9,2.5,0.9},
 	visual = "mesh",
@@ -30,22 +30,18 @@ mobs:register_mob("mobs:minotaur", {
 		-- death = "mobs_zombie_death",
 	-- },
 	-- speed and jump
-	walk_velocity = 3,
-	run_velocity = 4,
+	walk_velocity = 2.5,
+	run_velocity = 3.5,
 	jump = true,
 	floats = 1,
 	view_range = 16,
 	knock_back = 0.05,	--this is a test
 	-- drops desert_sand and coins when dead
 	drops = {
-		{name = "maptools:gold_coin",
-		chance = 40, min = 1, max = 1,},
-		{name = "mobs:minotaur_eye",
-		chance = 2, min = 1, max = 2,},
-		{name = "mobs:minotaur_horn",
-		chance = 4, min = 1, max = 2,},
-		{name = "mobs:minotaur_fur",
-		chance = 1, min = 1, max = 3,},
+		{name = "maptools:gold_coin", chance = 40, min = 1, max = 1,},
+		{name = "mobs:minotaur_eye", chance = 2, min = 1, max = 2,},
+		{name = "mobs:minotaur_horn", chance = 4, min = 1, max = 2,},
+		{name = "mobs:minotaur_fur", chance = 1, min = 1, max = 3,},
 	},
 	water_damage = 0,
 	lava_damage = 5,

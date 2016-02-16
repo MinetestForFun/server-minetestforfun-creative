@@ -46,15 +46,17 @@ do_warp_queue = function()
 	local t = minetest.get_us_time()
 	for i = table.getn(warps_queue),1,-1 do
 		local e = warps_queue[i]
-		if e and e.p and e.p:getpos() and e.p:getpos().x == e.pos.x and e.p:getpos().y == e.pos.y and e.p:getpos().z == e.pos.z then
-			if t > e.t then
-				warp(e.p, e.w)
+		if e.p:getpos() then
+			if e.p:getpos().x == e.pos.x and e.p:getpos().y == e.pos.y and e.p:getpos().z == e.pos.z then
+				if t > e.t then
+					warp(e.p, e.w)
+					table.remove(warps_queue, i)
+				end
+			else
+				minetest.sound_stop(e.sh)
+				minetest.chat_send_player(e.p:get_player_name(), "You have to stand still for " .. warps_freeze .. " seconds!")
 				table.remove(warps_queue, i)
 			end
-		else
-			minetest.sound_stop(e.sh)
-			minetest.chat_send_player(e.p:get_player_name(), "You have to stand still for " .. warps_freeze .. " seconds!")
-			table.remove(warps_queue, i)
 		end
 	end
 	if table.getn(warps_queue) == 0 then

@@ -43,29 +43,28 @@ mobs:register_mob("mobs:dungeon_master", {
 	knock_back = 0.05,	-- Very small knockback
 	-- drops mese or diamond when dead
 	drops = {
-		{name = "mobs:dungeon_master_blood",
-		chance = 2, min = 1, max = 2,},
-		{name = "default:diamond",
-		chance = 4, min = 1, max = 3,},
-		{name = "default:mese_crystal",
-		chance = 4, min = 3, max = 6,},
-		{name = "mobs:dungeon_master_diamond",
-		chance = 6, min = 1, max = 1,},
-		{name = "maptools:gold_coin",
-		chance = 20, min = 1, max = 1,},
-		{name = "default:diamondblock",
-		chance = 33, min = 1, max = 1,},
+		{name = "mobs:dungeon_master_blood", chance = 2, min = 1, max = 2,},
+		{name = "default:diamond", chance = 4, min = 1, max = 3,},
+		{name = "default:mese_crystal", chance = 4, min = 3, max = 6,},
+		{name = "mobs:dungeon_master_diamond", chance = 6, min = 1, max = 1,},
+		{name = "maptools:gold_coin", chance = 20, min = 1, max = 1,},
+		{name = "default:diamondblock", chance = 33, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
 	lava_damage = 1,
 	light_damage = 0,
+	fear_height = 3,
 	-- model animation
 	animation = {
-		stand_start = 0,		stand_end = 19,
-		walk_start = 20,		walk_end = 35,
-		punch_start = 36,		punch_end = 48,
-		speed_normal = 15,		speed_run = 15,
+		stand_start = 0,
+		stand_end = 19,
+		walk_start = 20,
+		walk_end = 35,
+		punch_start = 36,
+		punch_end = 48,
+		speed_normal = 15,
+		speed_run = 15,
 	},
 })
 -- spawn on stone between 20 and -1 light, 1 in 7000 chance, 1 dungeon master in area starting at -100 and below
