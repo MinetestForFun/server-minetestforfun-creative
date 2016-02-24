@@ -61,7 +61,7 @@ function diplazer_T(name,msg,user,admin,box)
 end
 
 local function diplazer_getLength(a)
-	if a==nil then return 0 end
+if a==nil then return 0 end
 	local count = 0
 	for _ in pairs(a) do count = count + 1 end
 	return count
@@ -75,7 +75,7 @@ minetest.register_chatcommand("dihelp", {
 		minetest.chat_send_player(name, "/dihelp (V" ..diplazer_vesrion ..") ... Use while sneaking / hold shift and left-click / use the switcherbox")
 		minetest.chat_send_player(name, "Set a [stack] of blocks [left of the tool], the [amount of stack] sets how many to place/dig")
 		minetest.chat_send_player(name, "If someone keep teleporting or wear you, type /di_dropme (for admins /di_dropall)")
-		if diplazer_pipeworks==1 then minetest.chat_send_player(name, "dipalzer also works with pipeworks:nodebreaker") end
+		if diplazer_pipeworks==1 then minetest.chat_send_player(name, "diplazer also works with pipeworks:nodebreaker") end
 		return true
 	end})
 
@@ -602,7 +602,7 @@ local function diplazer_dig(pos,player,drops,admin)
 	end
 	end
 
-function diplazer_getdir (player)
+function diplazer_getdir(player)
 	local dir=player:get_look_dir()
 	if math.abs(dir.x)>math.abs(dir.z) then
 		if dir.x>0 then return 0 end
@@ -1741,7 +1741,7 @@ minetest.register_tool("diplazer:gun", {
 	description = "Diplazer gun",
 	range = diplazer_amount,
 	inventory_image = "diplazer.png",
-	groups = {not_in_creative_inventory=1},
+	groups = {not_in_creative_inventory=diplazer_hide_stuff},
 	on_use = function(itemstack, user, pointed_thing)
 	diplazer_onuse(itemstack,user,pointed_thing,0,1)
 	return itemstack
@@ -1752,7 +1752,7 @@ minetest.register_tool("diplazer:admin", {
 	description = "Diplazer Admin",
 	range = diplazer_amount,
 	inventory_image = "diplazeradmin.png",
-	groups = {not_in_creative_inventory=1},
+	groups = {not_in_creative_inventory=diplazer_hide_stuff},
 	on_use = function(itemstack, user, pointed_thing)
 	diplazer_onuse(itemstack,user,pointed_thing,1,1)
 	return itemstack
@@ -1763,7 +1763,7 @@ minetest.register_tool("diplazer:adminno", {
 	description = "Diplazer Admin no drops",
 	range = diplazer_amount,
 	inventory_image = "diplazeradminno.png",
-	groups = {not_in_creative_inventory=1},
+	groups = {not_in_creative_inventory=diplazer_hide_stuff},
 	on_use = function(itemstack, user, pointed_thing)
 	diplazer_onuse(itemstack,user,pointed_thing,1,0)
 	return itemstack
@@ -1896,13 +1896,13 @@ minetest.register_tool("diplazer:orba", {
 	description = "Healing Admin Orb",
 	range = 0,
 	inventory_image = "diplazer_orba.png",
-	groups = {not_in_creative_inventory=1},
+	groups = {not_in_creative_inventory=diplazer_hide_stuff},
 })
 minetest.register_tool("diplazer:orbg", {
 	description = "Healing Moderator Orb",
 	range = 0,
 	inventory_image = "diplazer_orbg.png",
-	groups = {not_in_creative_inventory=1},
+	groups = {not_in_creative_inventory=diplazer_hide_stuff},
 })
 minetest.register_tool("diplazer:orbc", {
 	description = "Healing Orb",

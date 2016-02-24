@@ -122,7 +122,9 @@ local diplazer_serbot=function(self, dtime)
 
 	if self.timer2>=0.2 then
 		self.timer2=0
-
+		if self.uname==nil or diplazer_disb[self.uname]==nil then
+			return self
+		end
 
 -- set status by controler
 		if diplazer_disb[self.uname].status~="" then
@@ -251,7 +253,7 @@ local diplazer_serbot=function(self, dtime)
 						self.status_target1:punch(self.user, {full_punch_interval=1.0,damage_groups={fleshy=4}}, "default:bronze_pick", nil)
 					else
 						self.status_target1:set_hp(self.status_target1:get_hp()-self.dmg)
-						self.status_target1:punch(self.object, {full_punch_interval=1.0,damage_groups={fleshy=4}}, "default:bronze_pick", nil)
+						self.status_target1:punch(self.user, {full_punch_interval=1.0,damage_groups={fleshy=4}}, "default:bronze_pick", nil)
 					end
 					if self.axid then minetest.set_node(self.status_target1:getpos(), {name="diplazer:acid_fire"}) end
 					setanim(self,"mine")

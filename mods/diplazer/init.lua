@@ -1,4 +1,4 @@
-diplazer_vesrion=18
+diplazer_vesrion="19"
 
 diplazer_Tele={}
 diplazer_UserTele={}
@@ -21,9 +21,6 @@ GGunInUse=0
 
 if minetest.get_modpath("pipeworks") then diplazer_pipeworks=1 end
 
-
-
-
 dofile(minetest.get_modpath("diplazer") .. "/settings.lua")
 dofile(minetest.get_modpath("diplazer") .. "/base.lua")
 dofile(minetest.get_modpath("diplazer") .. "/dipbox.lua")
@@ -32,14 +29,16 @@ dofile(minetest.get_modpath("diplazer") .. "/3d2shield.lua")
 dofile(minetest.get_modpath("diplazer") .. "/pchest.lua")
 dofile(minetest.get_modpath("diplazer") .. "/flashlight.lua")
 dofile(minetest.get_modpath("diplazer") .. "/serbot.lua")
-
+dofile(minetest.get_modpath("diplazer") .. "/lighfix.lua")
+dofile(minetest.get_modpath("diplazer") .. "/invis.lua")
 if diplazer_Enable_gravity==true then
 dofile(minetest.get_modpath("diplazer") .. "/digrav.lua")
 end
  
 
+minetest.register_alias("di_in", "diplazer:in")
+minetest.register_alias("di_lightfix", "diplazer:lightfixer")
 minetest.register_alias("di_ch", "diplazer:chip")
-minetest.register_alias("di_sb", "diplazer:serbotcon")
 minetest.register_alias("di_sb", "diplazer:serbotcon")
 minetest.register_alias("di_chest", "diplazer:pchest")
 minetest.register_alias("di_adpick", "diplazer:adpick")

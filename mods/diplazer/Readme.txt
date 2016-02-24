@@ -1,5 +1,7 @@
 See the version in the init.lua or type /dihelp in game
 
+Diplazer is a advanced build / digging tool, and it can even teleport, object teleporter and gravitygun, and more!
+
 Rename this folder to diplazer
 
 More info: https://forum.minetest.net/viewtopic.php?f=9&t=12395
@@ -8,8 +10,8 @@ Other info: type /dihelp in game
 
 type /di_dropme to drop you self from mode7 and mode8 (or drop all with diplazer_admin priv /di_dropall)
 
+You can easy toogle / functions and see all items in the init.lua
 
-Diplazer is a kind of lasergun / fast placing / diging tool, and it can even teleport, object teleporter and gravitygun, and more!!
 
 To change modes: Use while sneaking / hold shift and left click
 To change modes backward: Use while sneaking and jump / hold shift+jump and left click
@@ -157,9 +159,24 @@ The Portable chest:
 the title says all, put down the blue chest, put in stuff, pick up the chest, put it somewhere else, and you stuff are there.
 the chest cant save metadata / info from tools, that means it will be restored, but tool damage.
 
-You can easy toogle / functions and see all items in the init.lua
+Lighfix:
+It's basically lava but will not cause any damage or on players.
+just put it near unnatural darkness and it will disappear!
+
+In tool:
+based on the gbpinvisible mod, but works better, 1 use and the glitch making you 99.99% invisible.
+why only 99.99? your player (mesh) and the title will disappear, but the collision box is still visible if someone point you.
+people can see you if they join after you used the tool, or if you become attached to something, or die.
+require kick to use.
 
 Changes log:
+V19
+Fixed:	crash in service bot
+Added:	lighfix
+Added:	in (Invisible) imported from the gbpinvisiable mod
+Added:	setting diplazer_Enable_pick (enable the green pick)
+Added:	setting diplazer_hide_stuff
+Fixed:	di_sb aliases error
 V18:
 Fixed	shadows from lazer
 Added:	portable chest (imported from pollution)
@@ -219,12 +236,12 @@ Fixed:	full inventory cant dig wirh no free slot
 Fixed:	mode8: crash when pick up stuff
 Fixed:	mode8: performance bug, shift mode while hold something
 V11.4
-Fixed:  :com placing over unbreakabel blocks without colision
+Fixed: 	:com placing over unbreakabel blocks without collision
 V11.3
-Fixed: warning for :com
-Fixed: com: craft recipe for mode 11 & 12
-Added: better support in dig modes
-Added: setting: diplazer_Enable_gun_limitation
+Fixed:	warning for :com
+Fixed:	com: craft recipe for mode 11 & 12
+Added:	better support in dig modes
+Added:	setting: diplazer_Enable_gun_limitation
 V11.2
 Fixed:	nil crasch
 Fixed:	low but powerfull sound (mode12)
