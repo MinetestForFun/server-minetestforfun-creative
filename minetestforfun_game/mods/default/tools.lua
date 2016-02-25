@@ -14,7 +14,7 @@ minetest.register_item(":", {
 			snappy = {times = {[3] = 0.25}, uses = 0, maxlevel = 1},
 			oddly_breakable_by_hand = {times = {[1] = 3.50, [2] = 2.00, [3] = 0.65}, uses = 0}
 		},
-		damage_groups = {fleshy=1},
+		damage_groups = {fleshy = 2},
 	}
 })
 

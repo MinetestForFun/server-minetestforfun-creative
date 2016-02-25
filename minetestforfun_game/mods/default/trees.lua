@@ -16,9 +16,9 @@ function default.can_grow(pos)
 	if is_soil == 0 then
 		return false
 	end
-	local light_level = minetest.get_node_light(pos)
-	if not light_level or light_level < 13 then
-		return false
+	local ll = minetest.get_node_light(pos)
+	if not ll or ll < 13 then -- Minimum light level for growth
+		return false          -- matches grass, wheat and cotton
 	end
 	return true
 end
@@ -28,9 +28,10 @@ end
 
 minetest.register_abm({
 	nodenames = {"default:sapling", "default:junglesapling",
-		"default:pine_sapling", "default:acacia_sapling"},
-	interval = 10,
-	chance = 50,
+		"default:pine_sapling", "default:acacia_sapling",
+		"default:aspen_sapling"},
+	interval = 5,
+	chance = 40,
 	action = function(pos, node)
 		if not default.can_grow(pos) then
 			return
@@ -65,6 +66,10 @@ minetest.register_abm({
 			minetest.log("action", "An acacia sapling grows into a tree at "..
 				minetest.pos_to_string(pos))
 			default.grow_new_acacia_tree(pos)
+		elseif node.name == "default:aspen_sapling" then
+			minetest.log("action", "An aspen sapling grows into a tree at "..
+				minetest.pos_to_string(pos))
+			default.grow_new_aspen_tree(pos)
 		end
 	end
 })
@@ -360,7 +365,6 @@ function default.grow_pine_tree(pos)
 	vm:update_map()
 end
 
-
 -- New apple tree
 
 function default.grow_new_apple_tree(pos)
@@ -394,6 +398,14 @@ function default.grow_new_acacia_tree(pos)
 	local path = minetest.get_modpath("default") .. "/schematics/acacia_tree_from_sapling.mts"
 	minetest.place_schematic({x = pos.x - 4, y = pos.y - 1, z = pos.z - 4},
 		path, random, nil, false)
+end
+
+-- New aspen tree
+
+function default.grow_new_aspen_tree(pos)
+	local path = minetest.get_modpath("default") .. "/schematics/aspen_tree_from_sapling.mts"
+	minetest.place_schematic({x = pos.x - 2, y = pos.y - 1, z = pos.z - 2},
+		path, 0, nil, false)
 end
 
 -- From BFD:
