@@ -148,7 +148,7 @@ local function grow(itemstack, user, pointed_thing)
 	and node.name:find("%d") then
 		local node = node.name:split(":")
 		local name = node[2]:split("_")
-		local next_node = node[1]..":"..name[1].."_"..tonumber(name[2])+1
+		local next_node = node[1]..":"..name[1].."_"..tonumber(name[#name])+1
 		local last_node = node[1]..":"..name[1]
 		if minetest.registered_nodes[next_node] then
 			minetest.set_node(pos,{name=next_node})
