@@ -48,6 +48,7 @@ load_mod_irc_commands = true
 load_mod_item_drop = true
 load_mod_itemframes = true
 load_mod_jukebox = true
+load_mod_jumping = true
 load_mod_junglegrass = true
 load_mod_lantern = true
 load_mod_liquid_security = true
