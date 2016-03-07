@@ -250,6 +250,7 @@ else
 	-- test if player is in nether when he/she joins
 	minetest.register_on_joinplayer(function(player)
 		minetest.after(0, function(player)
+			local pname = player:get_player_name()
 			if player:getpos().y < nether.start then
 				if not table.icontains(players_in_nether, pname) then
 					players_in_nether[#players_in_nether+1] = pname

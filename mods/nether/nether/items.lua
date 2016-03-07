@@ -36,23 +36,7 @@ end
 --]]
 
 local function digging_allowed(player, v)
-	if not player then
-		return false
-	end
-	local tool = minetest.registered_tools[player:get_wielded_item():get_name()]
-	if not tool
-	or not tool.tool_capabilities then
-		return false
-	end
-	local groups = tool.tool_capabilities.groupcaps
-	if not groups then
-		return false
-	end
-	if groups.nether
-	and groups.nether.times[v] then
-		return true
-	end
-	return false
+	return true
 end
 
 -- Netherrack

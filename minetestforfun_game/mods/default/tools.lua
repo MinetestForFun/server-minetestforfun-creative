@@ -12,7 +12,8 @@ minetest.register_item(":", {
 		groupcaps = {
 			crumbly = {times = {[2] = 2.75, [3] = 0.65}, uses = 0, maxlevel = 1},
 			snappy = {times = {[3] = 0.25}, uses = 0, maxlevel = 1},
-			oddly_breakable_by_hand = {times = {[1] = 3.50, [2] = 2.00, [3] = 0.65}, uses = 0}
+			oddly_breakable_by_hand = {times = {[1] = 3.50, [2] = 2.00, [3] = 0.65}, uses = 0},
+			nether = {times = {[1] = 0.5, [2] = 0.5, [3] = 0.5}, uses = 0}, 
 		},
 		damage_groups = {fleshy=1},
 	}
