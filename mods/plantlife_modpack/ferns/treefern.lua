@@ -67,9 +67,9 @@ minetest.register_node("ferns:tree_fern_leaves", {
 			{
 				items = {"ferns:sapling_tree_fern"},
 			},
-			{
-				items = {"ferns:tree_fern_leaves"},
-			}
+--			{
+--				items = {"ferns:tree_fern_leaves"},
+--			}
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
@@ -98,9 +98,9 @@ minetest.register_node("ferns:tree_fern_leaves_02", {
 			{
 				items = {"ferns:sapling_tree_fern"},
 			},
-			{
-				items = {"ferns:tree_fern_leaves"},
-			}
+--			{
+--				items = {"ferns:tree_fern_leaves"},
+--			}
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
@@ -131,11 +131,10 @@ minetest.register_node("ferns:fern_trunk", {
 	},
 	groups = {tree=1,choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
-	after_destruct = function(pos,oldnode)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
         local node = minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z})
         if node.name == "ferns:fern_trunk" then
-            minetest.dig_node({x=pos.x,y=pos.y+1,z=pos.z})
-            minetest.add_item(pos,"ferns:fern_trunk")
+            minetest.node_dig({x=pos.x,y=pos.y+1,z=pos.z}, node, digger)
         end
     end,
 })

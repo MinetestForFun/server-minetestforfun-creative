@@ -90,7 +90,8 @@ mesecon.register_node("mesecons_extrawires:vertical", {
 	after_dig_node = vertical_update
 },{
 	tiles = {"mesecons_wire_off.png"},
-	groups = {dig_immediate=3},
+	groups = {dig_immediate=2}, --MFF
+	vertical_conductor_state = "off",
 	mesecons = {conductor = {
 		state = mesecon.state.off,
 		onstate = "mesecons_extrawires:vertical_on",
@@ -98,7 +99,8 @@ mesecon.register_node("mesecons_extrawires:vertical", {
 	}}
 },{
 	tiles = {"mesecons_wire_on.png"},
-	groups = {dig_immediate=3, not_in_creative_inventory=1},
+	groups = {dig_immediate=2, not_in_creative_inventory=1}, --MFF
+	vertical_conductor_state = "on",
 	mesecons = {conductor = {
 		state = mesecon.state.on,
 		offstate = "mesecons_extrawires:vertical_off",
@@ -113,7 +115,7 @@ mesecon.register_node("mesecons_extrawires:vertical_top", {
 	walkable = false,
 	paramtype = "light",
 	sunlight_propagates = true,
-	groups = {dig_immediate=3, not_in_creative_inventory=1},
+	groups = {dig_immediate=2, not_in_creative_inventory=1}, --MFF
 	selection_box = top_box,
 	node_box = top_box,
 	is_vertical_conductor = true,
@@ -143,7 +145,7 @@ mesecon.register_node("mesecons_extrawires:vertical_bottom", {
 	walkable = false,
 	paramtype = "light",
 	sunlight_propagates = true,
-	groups = {dig_immediate = 3, not_in_creative_inventory = 1},
+	groups = {dig_immediate = 2, not_in_creative_inventory = 1}, --MFF
 	selection_box = bottom_box,
 	node_box = bottom_box,
 	is_vertical_conductor = true,

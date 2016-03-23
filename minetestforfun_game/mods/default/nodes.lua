@@ -80,6 +80,11 @@ default:acacia_wood
 default:acacia_leaves
 default:acacia_sapling
 
+default:aspen_tree
+default:aspen_wood
+default:aspen_leaves
+default:aspen_sapling
+
 default:cherry_tree
 default:cherry_log
 default:cherry_plank
@@ -195,9 +200,13 @@ default:nyancat_rainbow
 minetest.register_node("default:stone", {
 	description = "Stone",
 	tiles = {"default_stone.png"},
+	is_ground_content = false,
 	groups = {cracky = 3, stone = 1},
-	drop = 'default:cobble',
-	legacy_mineral = true,
+	drop = {
+		items = {
+			{items = {"default:cobble"}},
+		},
+	},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -230,7 +239,7 @@ minetest.register_node("default:mossycobble", {
 	description = "Mossy Cobblestone",
 	tiles = {"default_mossycobble.png"},
 	is_ground_content = false,
-	groups = {cracky = 3, stone = 1},
+	groups = {cracky=3, stone=1},
 	drop = "default:mossycobble",
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -239,9 +248,9 @@ minetest.register_node("default:mossycobble", {
 minetest.register_node("default:desert_stone", {
 	description = "Desert Stone",
 	tiles = {"default_desert_stone.png"},
+	legacy_mineral = true,
 	groups = {crumbly = 1, cracky = 3, stone = 1},
 	drop = 'default:desert_cobble',
-	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
 })
 

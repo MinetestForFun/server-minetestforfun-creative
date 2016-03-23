@@ -60,8 +60,8 @@ mobs:register_mob("mobs:cow", {
 		punch_end = 100,
 	},
 	follow = "farming:wheat",
-	view_range = 8,
-	replace_rate = 50,
+	view_range = 7,
+	replace_rate = 10,
 	replace_what = {"default:grass_3", "default:grass_4", "default:grass_5", "farming:wheat_8"},
 	replace_with = "air",
 	fear_height = 2,
@@ -110,7 +110,7 @@ mobs:register_mob("mobs:cow", {
 })
 
 -- spawn on default;green;prairie grass between 0 and 20 light, 1 in 11000 chance, 1 cow in area up to 31000 in height
-mobs:spawn_specific("mobs:cow", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:cow", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 2, -31000, 31000, true, true)
 -- register spawn egg
 mobs:register_egg("mobs:cow", "Cow", "mobs_cow_inv.png", 1)
 

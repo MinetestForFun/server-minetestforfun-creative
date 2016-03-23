@@ -15,7 +15,7 @@ minetest.register_item(":", {
 			oddly_breakable_by_hand = {times = {[1] = 3.50, [2] = 2.00, [3] = 0.65}, uses = 0},
 			nether = {times = {[1] = 0.5, [2] = 0.5, [3] = 0.5}, uses = 0}, 
 		},
-		damage_groups = {fleshy=1},
+		damage_groups = {fleshy = 2},
 	}
 })
 

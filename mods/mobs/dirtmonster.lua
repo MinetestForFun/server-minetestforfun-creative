@@ -33,25 +33,39 @@ mobs:register_mob("mobs:dirt_monster", {
 	jump = true,
 	-- drops dirt and coins when dead
 	drops = {
-		{name = "default:dirt",
-		chance = 1, min = 3, max = 5,},
-		{name = "maptools:silver_coin",
-		chance = 2, min = 1, max = 1,},
+		{name = "default:dirt", chance = 1, min = 3, max = 5,},
+		{name = "maptools:silver_coin", chance = 2, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 2,
+	fear_height = 3,
 	-- model animation
 	animation = {
-		speed_normal = 15,		speed_run = 15,
-		stand_start = 0,		stand_end = 14,
-		walk_start = 15,		walk_end = 38,
-		run_start = 40,			run_end = 63,
-		punch_start = 40,		punch_end = 63,
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 0,
+		stand_end = 14,
+		walk_start = 15,
+		walk_end = 38,
+		run_start = 40,
+		run_end = 63,
+		punch_start = 40,
+		punch_end = 63,
 	},
 })
+
 -- spawn on dirt_with_grass and drygrass between -1 and 5 light, 1 in 10000 change, 1 dirt monster in area up to 31000 in height
-mobs:spawn_specific("mobs:dirt_monster", {"default:dirt_with_grass", "default:dirt_with_dry_grass"}, {"air"}, -1, 5, 30, 10000, 1, -31000, 31000, false)
+mobs:spawn_specific("mobs:dirt_monster", {"default:dirt_with_grass", "default:dirt_with_dry_grass"}, {"air"}, -1, 5, 30, 10000, 1, -31000, 31000, false, false)
 -- register spawn egg
 mobs:register_egg("mobs:dirt_monster", "Dirt Monster", "mobs_dirt_monster_inv.png", 1)
+
+minetest.register_craft({
+	output = "mobs:dirt_monster",
+	recipe = {
+		{"default:dirt", "default:dirt", "default:dirt"},
+		{"default:dirt", "default:nyancat_rainbow", "default:dirt"},
+		{"default:dirt", "default:dirt", "default:dirt"}
+	}
+})

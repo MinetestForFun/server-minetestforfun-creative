@@ -9,8 +9,7 @@
 # 0 to disable
 #share_bones_time = 1200
 
-# Whether standard fire should be disabled ('basic flame' nodes will disappear)
-# 'permanent flame' nodes will remain with either setting
+# Whether fire should be disabled (all fire nodes will instantly disappear)
 #disable_fire = false
 
 # Whether steel tools, torches and cobblestone should be given to new players

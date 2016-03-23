@@ -6,7 +6,7 @@ mobs:register_mob("mobs:mese_monster", {
 	type = "monster",
 	-- agressive, deals 9 damage to player when hit
 	passive = false,
-	damage = 8,
+	damage = 7,
 	attack_type = "shoot",
 	shoot_interval = 1.0,
 	arrow = "mobs:mese_arrow",
@@ -37,16 +37,13 @@ mobs:register_mob("mobs:mese_monster", {
 	jump_height = 8,
 	fall_damage = 0,
 	fall_speed = -6,
+	stepheight = 2.1,
 	-- drops mese when dead
 	drops = {
-		{name = "default:mese_crystal",
-		chance = 9, min = 1, max = 3,},
-		{name = "default:mese_crystal_fragment",
-		chance = 1, min = 1, max = 9,},
-		{name = "maptools:silver_coin",
-		chance = 1, min = 1, max = 2,},
-		{name = "returnmirror:mirror_inactive",
-		chance = 50, min = 1, max = 1,},
+		{name = "default:mese_crystal", chance = 9, min = 1, max = 3,},
+		{name = "default:mese_crystal_fragment", chance = 1, min = 1, max = 9,},
+		{name = "maptools:silver_coin", chance = 1, min = 1, max = 2,},
+		{name = "returnmirror:mirror_inactive", chance = 50, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,
@@ -79,14 +76,14 @@ mobs:register_arrow("mobs:mese_arrow", {
 	velocity = 6,
 
 	hit_player = function(self, player)
-		player:punch(self.object, 1.0,  {
+		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = 8},     --Modif MFF
 		}, nil)
 	end,
 
 	hit_mob = function(self, player)
-		player:punch(self.object, 1.0,  {
+		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = 8},     --Modif MFF
 		}, nil)

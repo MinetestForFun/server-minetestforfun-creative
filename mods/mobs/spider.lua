@@ -2,11 +2,12 @@
 -- Spider by AspireMint (fishyWET (CC-BY-SA 3.0 license for texture)
 
 mobs:register_mob("mobs:spider", {
-	-- animal, monster, npc, barbarian
+	docile_by_day = true,
 	type = "monster",
 	-- agressive, does 6 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
+	reach = 2,
 	damage = 5,
 	-- health & armor
 	hp_min = 30,
@@ -19,7 +20,7 @@ mobs:register_mob("mobs:spider", {
 	textures = {
 		{"mobs_spider.png"},
 	},
-	visual_size = {x=7,y=7},
+	visual_size = {x = 7, y = 7},
 	blood_texture = "mobs_blood.png",
 	-- sounds
 	makes_footstep_sound = true,
@@ -36,13 +37,10 @@ mobs:register_mob("mobs:spider", {
 	view_range = 16,
 	floats = 0,
 	-- drops string with a chance of sandstone or crystal spike if Ethereal installed
-    	drops = {
-		{name = "farming:string",
-		chance = 2, min = 1, max = 3,},
-		{name = "mobs:meat_raw",
-		chance = 4, min = 1, max = 2,},
-		{name = "maptools:silver_coin",
-		chance = 3, min = 1, max = 1,},
+	drops = {
+		{name = "farming:string", chance = 2, min = 1, max = 3,},
+		{name = "mobs:meat_raw", chance = 4, min = 1, max = 2,},
+		{name = "maptools:silver_coin", chance = 3, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 5,
@@ -50,15 +48,22 @@ mobs:register_mob("mobs:spider", {
 	light_damage = 0,
 	-- model animation
 	animation = {
-		speed_normal = 15,		speed_run = 15,
-		stand_start = 1,		stand_end = 1,
-		walk_start = 20,		walk_end = 40,
-		run_start = 20,			run_end = 40,
-		punch_start = 50,		punch_end = 90,
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 1,
+		stand_end = 1,
+		walk_start = 20,
+		walk_end = 40,
+		run_start = 20,
+		run_end = 40,
+		punch_start = 50,
+		punch_end = 90,
 	},
 })
+
 -- spawn on jungleleaves/jungletree, between 0 and 5 light, 1 in 10000 chance, 1 in area up to 31000 in height
 mobs:spawn_specific("mobs:spider", {"default:jungleleaves", "default:jungletree"}, {"air"}, -1, 20, 30, 7500, 1, -31000, 31000, false)
+
 -- register spawn egg
 mobs:register_egg("mobs:spider", "Spider", "mobs_spider_inv.png", 1)
 

@@ -99,9 +99,9 @@ minetest.register_chatcommand("timeonline",{
 	description = "Shows the cumulative time a player has been online",
 	func = function (name, param)
 		if ( param ~= nil ) then
-		  if param == "" then
-		     param = name
-		  end
+			if param == "" then
+				param = name
+			end
 			local t = whoison.getTimeOnline(param)
 			if ( t ~= nil ) then
 				minetest.chat_send_player(name,param.." has been online for "..breakdowntime(t))
