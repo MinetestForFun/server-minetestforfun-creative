@@ -91,7 +91,6 @@ mesecon.register_node("mesecons_extrawires:vertical", {
 },{
 	tiles = {"mesecons_wire_off.png"},
 	groups = {dig_immediate=2}, --MFF
-	vertical_conductor_state = "off",
 	mesecons = {conductor = {
 		state = mesecon.state.off,
 		onstate = "mesecons_extrawires:vertical_on",
@@ -100,7 +99,6 @@ mesecon.register_node("mesecons_extrawires:vertical", {
 },{
 	tiles = {"mesecons_wire_on.png"},
 	groups = {dig_immediate=2, not_in_creative_inventory=1}, --MFF
-	vertical_conductor_state = "on",
 	mesecons = {conductor = {
 		state = mesecon.state.on,
 		offstate = "mesecons_extrawires:vertical_off",
