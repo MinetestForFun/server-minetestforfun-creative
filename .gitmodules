@@ -10,9 +10,6 @@
 [submodule "mods/irc_modpack"]
 	path = mods/irc_modpack
 	url = https://github.com/MinetestForFun/irc_modpack.git
-[submodule "mods/xdecor"]
-	path = mods/xdecor
-	url = https://github.com/MinetestForFun/xdecor.git
 [submodule "mods/cottages"]
 	path = mods/cottages
 	url = git://github.com/Sokomine/cottages.git
