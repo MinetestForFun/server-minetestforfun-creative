@@ -67,3 +67,17 @@ alias("advertising:avivas", "default:stone")
 
 -- Remove "xmas_tree" from snow mod
 alias("snow:xmas_tree", "default:dirt")
+
+-- Xdecor stuff that's broken
+alias("xdecor:fire", "fire:permanent_flame")
+alias("xdecor:prison_rust_door", "doors:rusty_prison_door")
+alias("xdecor:prison_rust_door_t_2", "air")
+alias("xdecor:prison_rust_door_t_1", "air")
+alias("xdecor:prison_rust_door_b_2", "doors:rusty_prison_door_a")
+alias("xdecor:prison_rust_door_b_1", "doors:rusty_prison_door_b")
+
+for i = 1, 15 do
+	alias("xpanes:rust_bar_" .. i, "xpanes:rusty_bar_" .. i)
+end
+
+alias("xdecor:lightbox", "xdecor:wooden_lightbox")
