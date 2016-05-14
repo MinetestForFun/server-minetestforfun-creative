@@ -360,7 +360,7 @@ local permafire = table.copy(minetest.registered_nodes["fire:basic_flame"])
 permafire.stack_max = 10000
 permafire.range = 12
 permafire.description = S("Permanent Fire")
-permafire.groups = {not_in_creative_inventory = maptools.creative}
+permafire.groups = {not_in_creative_inventory = maptools.creative, dig_immediate = 1}
 
 minetest.register_node("maptools:permanent_fire", permafire)
 
