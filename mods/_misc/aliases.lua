@@ -81,6 +81,8 @@ alias("xdecor:prison_door_t_2", "air")
 alias("xdecor:prison_door_t_1", "air")
 alias("xdecor:prison_door_b_2", "doors:prison_door_a")
 alias("xdecor:prison_door_b_1", "doors:prison_door_b")
+alias("xdecor:woodglass_door_b_2", "doors:woodglass_door_a")
+alias("xdecor:woodglass_door_b_1", "doors:woodglass_door_b")
 
 for i = 1, 15 do
 	alias("xpanes:rust_bar_" .. i, "xpanes:rusty_bar_" .. i)
