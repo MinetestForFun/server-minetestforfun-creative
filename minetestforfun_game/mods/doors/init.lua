@@ -135,7 +135,7 @@ function _doors.door_toggle(pos, clicker)
 	local def = minetest.registered_nodes[minetest.get_node(pos).name]
 	local name = def.door.name
 
-	local state = meta:get_string("state")
+	local state = meta:get_string("state") or ""
 	if state == "" then
 		-- fix up lvm-placed right-hinged doors, default closed
 		if minetest.get_node(pos).name:sub(-2) == "_b" then
