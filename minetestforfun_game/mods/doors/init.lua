@@ -222,6 +222,7 @@ function _doors.door_toggle(pos, clicker)
 		end
 	else
 		state = tonumber(state)
+		if not state then state = 2 end -- For some reason it can be nil sometimes
 	end
 
 	if clicker and not minetest.check_player_privs(clicker:get_player_name(), {protection_bypass = true}) then
