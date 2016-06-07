@@ -687,6 +687,8 @@ function nether_port(player, pos)
 			pos.y = y
 		end
 		player:moveto(pos)
+	elseif nether.spawn_point then
+		player:moveto(nether.spawn_point)
 	else
 		set_portal(known_portals_u, pos.z,pos.x, pos.y)
 
