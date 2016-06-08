@@ -119,8 +119,12 @@ unified_inventory.register_button("nether_to_hell", {
 	image = "ui_to_hell.png",
 	tooltip = S("Go to the Nether"),
 	action = function(player)
-		nether.player_to_nether(player, true)
-		player:moveto({x = 0, y = -20000, z = 0})
+	   nether.player_to_nether(player, true)
+	   if nether.spawn_point then
+	      player:moveto(nether.spawn_point)
+	   else
+	      player:moveto({x = 0, y = -20000, z = 0})
+	   end
 	end,
 })
 

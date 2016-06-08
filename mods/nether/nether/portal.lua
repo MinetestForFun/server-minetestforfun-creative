@@ -79,6 +79,7 @@ local function get_player_died_target(player)
 	target.y = portal_target + math.random(4)
 	return target
 end
+nether.get_player_died_target = get_player_died_target
 
 -- used for obsidian portal
 local function obsidian_teleport(player, pname)
