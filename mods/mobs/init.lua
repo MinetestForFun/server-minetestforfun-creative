@@ -1,72 +1,80 @@
-local path = minetest.get_modpath("mobs")
-
--- Mob Api
-
-dofile(path.."/api.lua")
-
--- Animals
-
-dofile(path.."/chicken.lua") -- JKmurray
-dofile(path.."/cow.lua") -- KrupnoPavel
-dofile(path.."/rat.lua") -- PilzAdam
-dofile(path.."/sheep.lua") -- PilzAdam
-dofile(path.."/pig.lua") -- farfadet46
-dofile(path.."/bee.lua") -- KrupnoPavel
-dofile(path.."/bunny.lua") -- ExeterDad
-dofile(path.."/kitten.lua") -- Jordach/BFD
-dofile(path.."/goat.lua") -- ???
-dofile(path.."/dog.lua") -- CProgrammerRU
-
---[[ Monsters
-
-dofile(path.."/dirtmonster.lua") -- PilzAdam
-dofile(path.."/dungeonmaster.lua") -- PilzAdam
-dofile(path.."/oerkki.lua") -- PilzAdam
-dofile(path.."/sandmonster.lua") -- PilzAdam
-dofile(path.."/stonemonster.lua") -- PilzAdam
-dofile(path.."/treemonster.lua") -- PilzAdam
-dofile(path.."/wolf.lua") -- PilzAdam
-dofile(path.."/dog.lua") -- CProgrammerRU
---dofile(path.."/lava_flan.lua") -- Zeg9 --Remplaced by Lava Slimes
-dofile(path.."/mese_monster.lua") -- Zeg9
-dofile(path.."/spider.lua") -- AspireMint
-dofile(path.."/greenslimes.lua") -- davedevils/TomasJLuis/TenPlus1
-dofile(path.."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
-dofile(path.."/zombie.lua") -- ???
-dofile(path.."/yeti.lua") -- ???
-dofile(path.."/minotaur.lua") -- Kalabasa
-
--- The bosses
-dofile(path.."/pumpkins.lua")
-dofile(path.."/ent.lua")
-]]
-
--- begin slimes mobs compatibility changes
--- cannot find mesecons?, craft glue instead
-if not minetest.get_modpath("mesecons_materials") then
-	minetest.register_craftitem(":mesecons_materials:glue", {
-		image = "mesecons_glue.png",
-		description = "Glue",
-	})
+function register_ghost(name)
+	minetest.register_alias("mobs:" .. name, "default:apple")
 end
 
-if minetest.setting_get("log_mods") then minetest.log("action", "Slimes loaded") end
--- end slimes mobs compatibility changes
+function register_dummy(name)
+	minetest.register_entity("mobs:" .. name, {
+		on_activate = function(self)
+			minetest.log("info", "Mob " .. name .. " removed at " .. minetest.pos_to_string(self.object:getpos()))
+			self.object:remove()
+		end,
+	})
 
--- NPC
-dofile(path.."/npc.lua") -- TenPlus1
-dofile(path.."/npc_female.lua") -- nuttmeg20
+	register_ghost(name)
+end
 
--- Creeper (fast impl by davedevils)
--- dofile(path.."/creeper.lua")
 
--- Mob Items
-dofile(path.."/crafts.lua")
+local all_colours = {
+	"grey", "black", "red", "yellow", "green", "cyan", "blue", "magenta",
+	"white", "orange", "violet", "brown", "pink", "dark_grey", "dark_green"
+}
 
--- Spawner
---dofile(path.."/spawner.lua")
+for _, col in pairs(all_colours) do
+	register_dummy("sheep_" .. col, {mob=1, egg=1})
+end
 
--- Mob menu spawner special MFF
-dofile(path.."/mff_menu.lua")
+register_dummy("bee")
+register_ghost("beehive")
+register_ghost("honey")
+register_ghost("honey_block")
 
-minetest.log("action", "[MOD] Mobs Redo loaded")
+
+
+register_dummy("chicken")
+register_ghost("egg")
+register_ghost("chicken_egg_fried")
+register_ghost("chicken_raw")
+register_ghost("chicken_cooked")
+
+register_dummy("bunny")
+
+register_dummy("cow")
+register_ghost("leather")
+register_ghost("bucket_milk")
+register_ghost("cheese")
+register_ghost("cheeseblock")
+register_ghost("dung")
+
+register_ghost("meat_raw")
+register_ghost("meat")
+register_ghost("magic_lasso")
+register_ghost("net")
+register_ghost("shears")
+
+register_dummy("rat")
+register_ghost("rat_cooked")
+
+register_dummy("pig")
+register_ghost("pork_raw")
+register_ghost("pork_cooked")
+
+register_dummy("kitten")
+
+register_dummy("goat")
+
+register_dummy("dog")
+
+register_dummy("pumpking")
+register_dummy("pumpboom")
+register_ghost("pumpking_spawner")
+register_ghost("pumpboom_spawner")
+
+register_dummy("ent")
+register_ghost("ent_spawner")
+register_ghost("tree_monster_spawner")
+
+register_dummy("npc")
+
+register_dummy("npc_female")
+
+minetest.log("action", "[MOD] Mobs Legacy loaded")
