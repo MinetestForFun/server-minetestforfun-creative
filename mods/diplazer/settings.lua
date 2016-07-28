@@ -11,9 +11,7 @@ diplazer_Enable_di3Dt_for_all=true
 diplazer_Enable_mode8=true --gravitygun takes little more when used, then its off again
 diplazer_Enable_warning_mode11_12=true
 diplazer_warning_mode11_12=11
-
 diplazer_Enable_com_mode8=false
-
 diplazer_Enable_gravity=true
 diplazer_gravity_to_use=0.5
 diplazer_Enable_orbs=true

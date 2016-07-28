@@ -67,9 +67,23 @@ minetest.register_tool("diplazer:pchest", {
 minetest.register_node("diplazer:pchest_node", {
 	description = "Portable locked chest",
 	tiles = {"diplazer_chest2.png","diplazer_chest2.png","diplazer_chest1.png","diplazer_chest1.png","diplazer_chest1.png","diplazer_chest3.png"},
-	groups = {dig_immediate = 2, not_in_creative_inventory=1},
+	groups = {dig_immediate = 2, not_in_creative_inventory=1,tubedevice = 1, tubedevice_receiver = 1},
 	drop="diplazer:pchest",
 	paramtype2 = "facedir",
+	tube = {insert_object = function(pos, node, stack, direction)
+			local meta = minetest.get_meta(pos)
+			local inv = meta:get_inventory()
+			local added = inv:add_item("main", stack)
+			--after_inventory_change(pos)
+			return added
+		end,
+		can_insert = function(pos, node, stack, direction)
+			local meta = minetest.get_meta(pos)
+			local inv = meta:get_inventory()
+			return inv:room_for_item("main", stack)
+		end,
+		input_inventory = "main",
+		connect_sides = {left = 1, right = 1, front = 1, back = 1, top = 1, bottom = 1}},
 allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		local owner = minetest.get_meta(pos):get_string("owner")
 		if (stack:get_name()~="diplazer:pchest") and (owner==player:get_player_name() or owner=="") then

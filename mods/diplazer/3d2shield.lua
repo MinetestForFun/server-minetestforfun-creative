@@ -17,8 +17,7 @@ minetest.register_tool("diplazer:pick", {
 			crumbly={times={[1]=0,[2]=0,[3]=0},uses=100,maxlevel=3},
 			snappy={times={[1]=0,[2]=0,[3]=0},uses=0,maxlevel=3},
 		},
-		damage_groups={fleshy=8},
-	},
+		damage_groups={fleshy=8},	},
 })
 end
 

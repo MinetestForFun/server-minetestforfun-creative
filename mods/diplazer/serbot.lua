@@ -119,7 +119,6 @@ end
 local diplazer_serbot=function(self, dtime)
 	self.timer=self.timer+dtime
 	self.timer2=self.timer2+dtime
-
 	if self.timer2>=0.2 then
 		self.timer2=0
 		if self.uname==nil or diplazer_disb[self.uname]==nil then
@@ -253,7 +252,7 @@ local diplazer_serbot=function(self, dtime)
 						self.status_target1:punch(self.user, {full_punch_interval=1.0,damage_groups={fleshy=4}}, "default:bronze_pick", nil)
 					else
 						self.status_target1:set_hp(self.status_target1:get_hp()-self.dmg)
-						self.status_target1:punch(self.user, {full_punch_interval=1.0,damage_groups={fleshy=4}}, "default:bronze_pick", nil)
+						self.status_target1:punch(self.object, {full_punch_interval=1.0,damage_groups={fleshy=4}}, "default:bronze_pick", nil)
 					end
 					if self.axid then minetest.set_node(self.status_target1:getpos(), {name="diplazer:acid_fire"}) end
 					setanim(self,"mine")
@@ -280,7 +279,13 @@ local diplazer_serbot=function(self, dtime)
 			local ppos=self.object:getpos()
 			local nodes={}
 			for i=1,5,1 do --starts front of the object and y: -2 to +2
-				nodes[i]=minetest.registered_nodes[minetest.get_node({x=ppos.x+self.move.x,y=ppos.y+(i-3.5),z=ppos.z+self.move.z}).name].walkable
+				local node = minetest.get_node({x=ppos.x+self.move.x, y=ppos.y+(i-3.5), z=ppos.z+self.move.z})
+				-- Unknown blocks and ignore are walkable
+				if node and node.name then
+					nodes[i]=(minetest.registered_nodes[node.name] or {walkable = true}).walkable
+				else
+					nodes[i]=true
+				end
 			end
 
  -- jump over 2

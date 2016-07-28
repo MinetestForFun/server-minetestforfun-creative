@@ -1,4 +1,4 @@
-diplazer_vesrion="19"
+diplazer_vesrion="19.1"
 
 diplazer_Tele={}
 diplazer_UserTele={}
@@ -34,7 +34,6 @@ dofile(minetest.get_modpath("diplazer") .. "/invis.lua")
 if diplazer_Enable_gravity==true then
 dofile(minetest.get_modpath("diplazer") .. "/digrav.lua")
 end
- 
 
 minetest.register_alias("di_in", "diplazer:in")
 minetest.register_alias("di_lightfix", "diplazer:lightfixer")

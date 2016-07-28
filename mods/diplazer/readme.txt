@@ -1,3 +1,8 @@
+License: CC-BY-SA
+Name: Diplazer
+Created by: UjEdwin
+Date: 2016-03-27
+
 See the version in the init.lua or type /dihelp in game
 
 Diplazer is a advanced build / digging tool, and it can even teleport, object teleporter and gravitygun, and more!
@@ -5,9 +10,7 @@ Diplazer is a advanced build / digging tool, and it can even teleport, object te
 Rename this folder to diplazer
 
 More info: https://forum.minetest.net/viewtopic.php?f=9&t=12395
-
 Other info: type /dihelp in game
-
 type /di_dropme to drop you self from mode7 and mode8 (or drop all with diplazer_admin priv /di_dropall)
 
 You can easy toogle / functions and see all items in the init.lua
@@ -153,7 +156,6 @@ it turns of if you:
 are inside a block (not water)
 if you are in daylight
 and if you chnage its possition in the inventory
-
 
 The Portable chest:
 the title says all, put down the blue chest, put in stuff, pick up the chest, put it somewhere else, and you stuff are there.
