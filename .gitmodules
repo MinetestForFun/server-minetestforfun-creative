@@ -19,3 +19,6 @@
 [submodule "mods/unified_inventory"]
 	path = mods/unified_inventory
 	url = git://github.com/MinetestForFun/unified_inventory.git
+[submodule "mods/stacktraceplus"]
+	path = mods/stacktraceplus
+	url = https://github.com/MinetestForFun/stacktraceplus.git
