@@ -25,3 +25,6 @@
 [submodule "mods/profilerdumper"]
 	path = mods/profilerdumper
 	url = https://github.com/MinetestForFun/profilerdumper.git
+[submodule "mods/mysql_auth"]
+	path = mods/mysql_auth
+	url = https://github.com/MinetestForFun/mysql_auth
