@@ -303,6 +303,7 @@ function doors.register(name, def)
 	minetest.register_lbm({
 		name = ":doors:replace_" .. name:gsub(":", "_"),
 		nodenames = {name.."_b_1", name.."_b_2"},
+		run_at_every_load = true,
 		action = function(pos, node)
 			local l = tonumber(node.name:sub(-1))
 			local meta = minetest.get_meta(pos)
@@ -981,6 +982,7 @@ function doors.register3(name, def)
 	minetest.register_lbm({
 		name = ":doors:replace_" .. name:gsub(":", "_"),
 		nodenames = {name.."_b_1", name.."_b_2"},
+		run_at_every_load = true,
 		action = function(pos, node)
 			local l = tonumber(node.name:sub(-1))
 			local meta = minetest.get_meta(pos)
