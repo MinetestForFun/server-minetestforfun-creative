@@ -34,3 +34,6 @@
 [submodule "mods/name_restrictions"]
 	path = mods/name_restrictions
 	url = https://github.com/MinetestForFun/name_restrictions.git
+[submodule "mods/areas"]
+	path = mods/areas
+	url = https://github.com/MinetestForFun/areas.git
