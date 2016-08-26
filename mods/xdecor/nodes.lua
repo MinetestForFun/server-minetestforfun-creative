@@ -257,6 +257,12 @@ for name, recipe in pairs(xdecor_doors) do
 		groups = {choppy=2, cracky=2, oddly_breakable_by_hand=1, door=1},
 		recipe = recipe
 	})
+
+	minetest.register_alias("xdecor:"..name.."_door", "doors:"..name.."_door")
+	minetest.register_alias("xdecor:"..name.."_door_t_1", "doors:hidden")
+	minetest.register_alias("xdecor:"..name.."_door_t_2", "doors:hidden")
+	minetest.register_alias("xdecor:"..name.."_door_b_1", "doors:"..name.."_door_a")
+	minetest.register_alias("xdecor:"..name.."_door_b_2", "doors:"..name.."_door_b")
 end
 
 xdecor.register("enderchest", {
