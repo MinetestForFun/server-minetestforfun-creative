@@ -60,7 +60,7 @@ minetest.register_tool("diplazer:armholder", {
 	range = 4,
 	inventory_image = "diplazer_shield_armholder.png",
 		on_use = function(itemstack, user, pointed_thing)
-		plazmashield_tmp={user=user:get_player_name()}
+		local plazmashield_tmp={user=user:get_player_name()}
 		local p=user:getpos()
 		local dir = user:get_look_dir()
 		p={x=p.x, y=p.y+1, z=p.z}

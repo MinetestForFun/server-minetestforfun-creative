@@ -429,7 +429,7 @@ local diplazer_serbot=function(self, dtime)
 --keepdigging
 		if self.status_static=="keepdigging" and (self.status_curr=="stay" or self.status_curr=="keepdigging") then --
 
-			np=minetest.find_node_near(self.object:getpos(), self.distance,self.status_node)
+			local np=minetest.find_node_near(self.object:getpos(), self.distance,self.status_node)
 			if np==nil then
 				self.status_curr="stay"
 			else
