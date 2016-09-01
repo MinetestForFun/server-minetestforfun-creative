@@ -3,7 +3,7 @@
 local pipereceptor_on = nil
 local pipereceptor_off = nil
 
-if mesecon then
+if minetest.get_modpath("mesecons") then
 	pipereceptor_on = {
 		receptor = {
 			state = mesecon.state.on,
@@ -34,6 +34,8 @@ local pipes_devicelist = {
 	"storage_tank_9",
 	"storage_tank_10"
 }
+
+local rules = pipeworks.mesecons_rules -- Enough with the undefined global variable // MFF (Mg|01/07/2016 for #68)
 
 -- Now define the nodes.
 
