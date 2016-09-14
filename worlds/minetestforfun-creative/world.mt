@@ -158,6 +158,6 @@ load_mod_xdecor = true
 load_mod_cottages = true
 load_mod_fences = true
 
-load_mod_profilerdumper = true
+load_mod_profilerdumper = false
 load_mod_stacktraceplus = true
 load_mod_mysql_auth = true
