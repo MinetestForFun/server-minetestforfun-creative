@@ -64,21 +64,15 @@ local function count_items()
 	minetest.log("action", "There are " .. number .. " registered nodes, items and tools.")
 end
 
-local function player_join_sounds()
-	minetest.register_on_joinplayer(function()
-		minetest.sound_play("player_join", {gain = 0.75})
-	end)
-end
+minetest.register_on_joinplayer(function()
+	minetest.sound_play("player_join", {gain = 0.75})
+end)
 
-local function player_leave_sounds()
-	minetest.register_on_leaveplayer(function()
-		minetest.sound_play("player_leave", {gain = 1})
-	end)
-end
+minetest.register_on_leaveplayer(function()
+	minetest.sound_play("player_leave", {gain = 1})
+end)
 
 minetest.after(1, count_items)
-minetest.after(5, player_join_sounds)
-minetest.after(5, player_leave_sounds)
 
 
 minetest.register_on_joinplayer(function(player)
