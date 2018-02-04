@@ -6,7 +6,7 @@ local timers = {}
 
 file = io.open(minetest.get_worldpath() .. "/liquid_security.dat", "r")
 if file then
-	timers = minetest.deserialize(file:read()) or {}
+	timers = minetest.deserialize(file:read() or "") or {}
 end
 
 minetest.register_on_newplayer(function(player)
