@@ -37,3 +37,6 @@
 [submodule "mods/areas"]
 	path = mods/areas
 	url = https://github.com/MinetestForFun/areas.git
+[submodule "mods/mysql_base"]
+	path = mods/mysql_base
+	url = https://github.com/MinetestForFun/mysql_base.git
